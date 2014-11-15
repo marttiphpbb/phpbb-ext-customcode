@@ -1,0 +1,58 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_ACP_CUSTOMCODE_CREATE_DELETE}</h1>
+<p>{L_ACP_CUSTOMCODE_CREATE_DELETE_EXPLAIN} </p>
+
+<form method="post" action="{U_ACTION}">
+	<fieldset><legend>{L_ACP_CUSTOMCODE_CREATE}</legend>
+					
+		<dl>
+			<dt><label for="new_file">{L_ACP_CUSTOMCODE_NEW_FILE}</label>
+			</dt>
+			<dd><input type="text" class="text medium" name="new_file" value="{NEW_FILE}" maxlength="100" /></dd>
+		</dl>
+		<p>
+		<input class="button1" type="submit" id="create" name="create" value="{L_ACP_CUSTOMCODE_CREATE}" />
+		</p>
+	</fieldset>
+	
+	<fieldset><legend>{L_ACP_CUSTOMCODE_DELETE}</legend>
+		<p>{L_ACP_CUSTOMCODE_DELETE_EXPLAIN}</p>
+		
+		<table class="table1 zebra-table">
+		<thead>
+		<tr>
+			<th>{L_ACP_CUSTOMCODE_FILES}</th>
+			<th>{L_SELECT}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!-- BEGIN customfiles -->
+			<tr>
+				<td>{customfiles.NAME}</td>
+				<td class="select">
+				<!-- IF customfiles.S_SELECTABLE -->
+				<input type="checkbox" name="filenames[{customfiles.NAME}]" <!-- IF customfiles.S_SELECTED --> selected="selected"<!-- ENDIF -->>
+				<!-- ENDIF -->
+				</td>
+			</tr>
+		<!-- BEGINELSE -->
+			<tr class="row3">
+				<td colspan="2">{L_ACP_NO_ITEMS}</td>
+			</tr>
+		<!-- END customfiles -->
+		</tbody>
+		</table>		
+		<p>
+		<a href="#" id="select_all">{L_ACP_CUSTOMCODE_SELECT_ALL}</a> | 
+		<a href="#" id="unselect_all">{L_ACP_CUSTOMCODE_UNSELECT_ALL}</a> 
+		</p>
+		<p>
+		<input class="button1" type="submit" id="delete" name="delete" value="{L_ACP_CUSTOMCODE_DELETE_SELECTED}" />
+		</p>
+	</fieldset>	
+{S_FORM_TOKEN}
+</form>
+
+<!-- INCLUDEJS customcode.js -->
+<!-- INCLUDE overall_footer.html -->

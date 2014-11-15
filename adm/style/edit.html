@@ -1,0 +1,43 @@
+<!-- INCLUDE overall_header.html -->
+
+
+<h1>{L_ACP_CUSTOMCODE_EDIT}: {FILENAME}</h1>
+
+<p>{L_ACP_CUSTOMCODE_EDIT_EXPLAIN}</p>
+
+<form method="post" action="{U_ACTION}" id="file_edit">
+
+<fieldset>
+
+<dl>
+	<dt><label for="filename">{L_ACP_CUSTOMCODE_FILE}</label>
+	
+	<br/><span>{L_ACP_CUSTOMCODE_FILE_EXPLAIN}</span>
+	</dt>
+	<dd>
+		<select id="filename" name="filename">
+			{S_FILENAMES}
+		</select> 
+		<input class="button2" type="submit" value="{L_SELECT}" />
+	</dd>
+</dl>
+	<dl>
+		<dt><label for="text_rows">{L_ACP_CUSTOMCODE_EDITOR_ROWS}</label></dt>
+		<dd><input id="text_rows" type="number" maxlength="3" min="5" max="999" value="{TEXT_ROWS}" /> 
+		</dd>
+	</dl>
+	<textarea name="file_data" id="file_data" style="font-family:'Courier New', monospace;font-size:9pt;line-height:125%;width:100%;" cols="80" rows="{TEXT_ROWS}">
+		{FILE_DATA}
+	</textarea>
+</fieldset>
+
+<fieldset class="submit-buttons">
+	<legend>{L_SUBMIT}</legend>
+	{S_HIDDEN_FIELDS}
+	{S_FORM_TOKEN}
+	<input class="button1" id="save" type="submit" name="save" value="{L_ACP_CUSTOMCODE_SAVE}" />
+</fieldset>
+</form>
+
+<!-- INCLUDEJS customcode.js -->
+<!-- INCLUDE overall_footer.html -->
