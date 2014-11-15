@@ -104,8 +104,6 @@ class main_module
 				$new_file = $request->variable('new_file', '');
 				$selected_files = array_keys($request->variable('filenames', array('' => '')));
 				
-				var_dump($selected_files);
-				
 				if ($request->is_set_post('create'))
 				{
 					if (!check_form_key('marttiphpbb/customcode'))
