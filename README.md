@@ -6,7 +6,7 @@
 You can install this on the latest release of phpBB 3.1 by following the steps below:
 
 * Create `marttiphpbb/customcode` in the `ext` directory. 
-* Download and unpack the repository into `ext/marttisphpbb/customcode`
+* Download and unpack the repository into `ext/marttiphpbb/customcode`
 * Enable `Custom Code` in the ACP at `Customise -> Manage extensions`.
 * You can start editing in the ACP at `Extensions` -> `Custom Code`.
 
