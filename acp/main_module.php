@@ -89,7 +89,7 @@ class main_module
 				
 				$template->assign_vars(array(
 					'U_ACTION'					=> $this->u_action,
-					'TEXT_ROWS'					=> max(5, min(999, $request->variable('text_rows', 20))),
+					'EDITOR_ROWS'				=> max(5, min(999, $request->variable('editor_rows', 20))),
 					'FILENAME'					=> $file . (in_array($file, $this->events) ? ' (E)' : ''),
 					'FILE_DATA'					=> utf8_htmlspecialchars($data),
 					'S_FILENAMES'				=> $options,
