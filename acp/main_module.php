@@ -39,6 +39,7 @@ class main_module
 				$this->page_title = $user->lang('ACP_CUSTOMCODE_EDIT');
 
 				$file =	$request->variable('filename', '', true);
+				$editor_rows = max(5, min(999, $request->variable('editor_rows', 20)));
 
 				if ($request->is_set_post('save'))
 				{
@@ -89,7 +90,7 @@ class main_module
 				
 				$template->assign_vars(array(
 					'U_ACTION'					=> $this->u_action,
-					'EDITOR_ROWS'				=> max(5, min(999, $request->variable('editor_rows', 20))),
+					'EDITOR_ROWS'				=> $editor_rows,
 					'FILENAME'					=> $file . (in_array($file, $this->events) ? ' (E)' : ''),
 					'FILE_DATA'					=> utf8_htmlspecialchars($data),
 					'S_FILENAMES'				=> $options,
