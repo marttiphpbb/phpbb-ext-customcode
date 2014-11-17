@@ -99,6 +99,7 @@ class main_module
 				break;
 				
 			case 'create_delete':
+			
 				$this->tpl_name = 'create_delete';
 				$this->page_title = $user->lang('ACP_CUSTOMCODE_CREATE_DELETE');
 				
@@ -132,15 +133,32 @@ class main_module
 				
 				if ($request->is_set_post('delete'))
 				{
-					if (!check_form_key('marttiphpbb/customcode'))
+					if (confirm_box(true))
 					{
-						trigger_error('FORM_INVALID');
+						
+						foreach ($selected_files as $selected_file)
+						{
+							if (!unlink($phpbb_root_path . $this->dir . '/' . $selected_file))
+							{
+								trigger_error($user->lang('ACP_CUSTOMCODE_FILE_NOT_DELETED') . adm_back_link($this->u_action), E_USER_WARNING);
+							}
+						}					
+
+						$files_deleted_string = (sizeof($selected_files) == 1) ? 'ACP_CUSTOMCODE_FILE_DELETED' : 'ACP_CUSTOMCODE_FILES_DELETED';
+
+						trigger_error($user->lang($files_deleted_string) . adm_back_link($this->u_action));	
 					}
+					
 				
-					if (!count($selected_files))
+					if (!sizeof($selected_files))
 					{
 						trigger_error($user->lang('ACP_CUSTOMCODE_NO_FILE_SELECTED') . adm_back_link($this->u_action), E_USER_WARNING);
 					}
+				
+					$s_hidden_fields = array(
+						'mode'		=> 'create_delete',
+						'delete'	=> 1
+					);				
 				
 					foreach ($selected_files as $selected_file)
 					{
@@ -148,17 +166,12 @@ class main_module
 						{
 							trigger_error($user->lang('ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST') . adm_back_link($this->u_action), E_USER_WARNING);
 						}
+						$s_hidden_fields['filenames'][$selected_file] = 1;
 					}
 				
-					foreach ($selected_files as $selected_file)
-					{
-						if (!unlink($phpbb_root_path . $this->dir . '/' . $selected_file))
-						{
-							trigger_error($user->lang('ACP_CUSTOMCODE_FILE_NOT_DELETED') . adm_back_link($this->u_action), E_USER_WARNING);
-						}
-					}					
-
-					trigger_error($user->lang('ACP_CUSTOMCODE_FILES_DELETED') . adm_back_link($this->u_action));
+					$confirm_delete_string = (sizeof($selected_files) == 1) ? 'ACP_CUSTOMCODE_DELETE_FILE_CONFIRM' : 'ACP_CUSTOMCODE_DELETE_FILES_CONFIRM';
+				
+					confirm_box(false, $user->lang($confirm_delete_string), build_hidden_fields($s_hidden_fields));				
 				}				
 
 
