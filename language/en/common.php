@@ -48,6 +48,7 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_FILE'						=> 'File',
 	'ACP_CUSTOMCODE_FILE_EXPLAIN'				=> 'Files directly included with template events are marked with (E)',
 	'ACP_CUSTOMCODE_EDITOR_ROWS'				=> 'Editor rows',
+	'ACP_CUSTOMCODE_SAVE_FILE_CONFIRM'			=> 'Do you want to save the file?',
 	'ACP_CUSTOMCODE_SAVE'						=> 'Save',
 	'ACP_CUSTOMCODE_FILE_SAVED'					=> 'The file has been saved successfully!',
 	'ACP_CUSTOMCODE_FILE_NOT_EXIST'				=> 'The file does not exist.',

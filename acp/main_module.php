@@ -72,11 +72,7 @@ class main_module
 						'mode'		=> 'edit',
 						'save'		=> 1,
 					)));
-					
-
-
-
-									}
+				}
 				else
 				{
 					reset($filenames);
