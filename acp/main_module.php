@@ -43,31 +43,40 @@ class main_module
 
 				if ($request->is_set_post('save'))
 				{
-					if (!check_form_key('marttiphpbb/customcode'))
+					
+					$data	= utf8_normalize_nfc($request->variable('file_data', '', true));
+					$data	= htmlspecialchars_decode($data);					
+					
+					
+					if (confirm_box(true))
 					{
-						trigger_error('FORM_INVALID');
+						if (!($f = @fopen($phpbb_root_path . $this->dir . '/' . $file, 'wb')))
+						{
+							trigger_error($user->lang('ACP_CUSTOMCODE_NOT_WRITABLE') . adm_back_link($this->u_action), E_USER_WARNING);
+						}
+			
+						fwrite($f, $data);
+						fclose($f);	
+						
+						trigger_error($user->lang('ACP_CUSTOMCODE_FILE_SAVED') . adm_back_link($this->u_action));
 					}
-					
-					
+
 					if (!in_array($file, $filenames))
 					{
 						trigger_error($user->lang('ACP_CUSTOMCODE_FILE_NOT_EXIST') . adm_back_link($this->u_action), E_USER_WARNING);
 					}
 
-					$data	= utf8_normalize_nfc($request->variable('file_data', '', true));
-					$data	= htmlspecialchars_decode($data);
+					confirm_box(false, $user->lang('ACP_CUSTOMCODE_SAVE_FILE_CONFIRM'), build_hidden_fields(array(
+						'filename'	=> $file,
+						'file_data' => utf8_htmlspecialchars($data),
+						'mode'		=> 'edit',
+						'save'		=> 1,
+					)));
 					
 
-					if (!($f = @fopen($phpbb_root_path . $this->dir . '/' . $file, 'wb')))
-					{
-						trigger_error($user->lang('ACP_CUSTOMCODE_NOT_WRITABLE') . adm_back_link($this->u_action), E_USER_WARNING);
-					}
-		
-					fwrite($f, $data);
-					fclose($f);
 
-					trigger_error($user->lang('ACP_CUSTOMCODE_FILE_SAVED') . adm_back_link($this->u_action));
-				}
+
+									}
 				else
 				{
 					reset($filenames);
