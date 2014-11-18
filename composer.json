@@ -3,8 +3,9 @@
 	"type": "phpbb-extension",
 	"description": "Custom Code Extension for phpBB 3.1",
 	"homepage": "https://github.com/marttiphpbb/phpbb-ext-customcode",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"time": "2014-11-15",
+	"keywords": ["phpbb", "extension", "template", "custom"],
 	"license": "MIT",
 	"authors": [{
 			"name": "martti",

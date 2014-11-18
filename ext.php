@@ -13,6 +13,19 @@ class ext extends \phpbb\extension\base
 {
 	
 	public $dir = 'store/customcode';
+	
+	private $files = array(
+		'.htaccess'			=> 
+			"<Files *>\r\n    Order Allow, Deny\r\n    Deny from All\r\n</Files>",
+
+		'overall_footer_after.html'				=> '',
+		'overall_footer_copyright_append.html'	=>
+			'<br/><a href="https://github.com/marttiphpbb/phpbb-ext-customcode">Custom Code</a> extension for phpBB',
+		
+		'overall_header_content_before.html'	=> '',
+		'overall_header_head_append.html'		=> '',		
+		'overall_header_stylesheets_after.html'	=> '',
+	);
 
 	/**
 	* @param mixed $old_state State returned by previous call of this method
@@ -34,15 +47,16 @@ class ext extends \phpbb\extension\base
 						trigger_error(sprintf('Failed to create the directory %s', $this->dir), E_USER_WARNING);
 					}
 				}
-				$content = "<Files *>\r\n    Order Allow, Deny\r\n    Deny from All\r\n</Files>";
-				file_put_contents($dir . '/.htaccess', $content);
-				file_put_contents($dir . '/overall_header_head_append.html', '');
-				file_put_contents($dir . '/overall_footer_after.html', '');
-				file_put_contents($dir . '/overall_header_content_before.html', '');
-				file_put_contents($dir . '/overall_header_stylesheets_after.html', '');
-				$content = '<br/><a href="https://github.com/marttiphpbb/phpbb-ext-customcode">Custom Code</a> extension for phpBB';
-				file_put_contents($dir . '/overall_footer_copyright_append.html', $content);
 				
+				foreach ($this->files as $filename => $content)
+				{
+					$filename = $dir . '/' . $filename;
+					if (!file_exists($filename))
+					{
+						file_put_contents($filename, $content);
+					}
+				}
+
 				return '1';
 				break;
 			default:
