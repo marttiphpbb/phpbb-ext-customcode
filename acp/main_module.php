@@ -58,21 +58,21 @@ class main_module
 					{
 						if (!($f = @fopen($phpbb_root_path . $this->dir . '/' . $file, 'wb')))
 						{
-							trigger_error($user->lang('ACP_CUSTOMCODE_NOT_WRITABLE') . adm_back_link($this->u_action), E_USER_WARNING);
+							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_NOT_WRITABLE'), $file) . adm_back_link($this->u_action), E_USER_WARNING);
 						}
 			
 						fwrite($f, $data);
 						fclose($f);	
 						
-						trigger_error($user->lang('ACP_CUSTOMCODE_FILE_SAVED') . adm_back_link($this->u_action));
+						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_SAVED'), $file) . adm_back_link($this->u_action));
 					}
 
 					if (!in_array($file, $filenames))
 					{
-						trigger_error($user->lang('ACP_CUSTOMCODE_FILE_NOT_EXIST') . adm_back_link($this->u_action), E_USER_WARNING);
+						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_NOT_EXIST'), $file) . adm_back_link($this->u_action), E_USER_WARNING);
 					}
 
-					confirm_box(false, $user->lang('ACP_CUSTOMCODE_SAVE_FILE_CONFIRM'), build_hidden_fields(array(
+					confirm_box(false, sprintf($user->lang('ACP_CUSTOMCODE_SAVE_FILE_CONFIRM'), $file), build_hidden_fields(array(
 						'filename'	=> $file,
 						'file_data' => utf8_htmlspecialchars($data),
 						'mode'		=> 'edit',
@@ -131,15 +131,15 @@ class main_module
 					
 					if (in_array($new_file, $filenames))
 					{
-						trigger_error($user->lang('ACP_CUSTOMCODE_FILE_ALREADY_EXISTS') . adm_back_link($this->u_action), E_USER_WARNING);
+						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_ALREADY_EXISTS'), $new_file) . adm_back_link($this->u_action), E_USER_WARNING);
 					}
 					
 					if (!touch($phpbb_root_path . $this->dir . '/' . $new_file))
 					{
-						trigger_error($user->lang('ACP_CUSTOMCODE_FILE_NOT_CREATED') . adm_back_link($this->u_action), E_USER_WARNING);
+						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_NOT_CREATED'), $new_file) . adm_back_link($this->u_action), E_USER_WARNING);
 					}					
 
-					trigger_error($user->lang('ACP_CUSTOMCODE_FILE_CREATED') . adm_back_link($this->u_action));
+					trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_CREATED'), $new_file) . adm_back_link($this->u_action));
 				}	
 				
 				if ($request->is_set_post('delete'))
@@ -151,13 +151,13 @@ class main_module
 						{
 							if (!unlink($phpbb_root_path . $this->dir . '/' . $selected_file))
 							{
-								trigger_error($user->lang('ACP_CUSTOMCODE_FILE_NOT_DELETED') . adm_back_link($this->u_action), E_USER_WARNING);
+								trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_NOT_DELETED'), $selected_file) . adm_back_link($this->u_action), E_USER_WARNING);
 							}
 						}					
 
 						$files_deleted_string = (sizeof($selected_files) == 1) ? 'ACP_CUSTOMCODE_FILE_DELETED' : 'ACP_CUSTOMCODE_FILES_DELETED';
 
-						trigger_error($user->lang($files_deleted_string) . adm_back_link($this->u_action));	
+						trigger_error(sprintf($user->lang($files_deleted_string), $selected_file) . adm_back_link($this->u_action));	
 					}
 					
 				
@@ -175,14 +175,14 @@ class main_module
 					{
 						if (!in_array($selected_file, $filenames))
 						{
-							trigger_error($user->lang('ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST') . adm_back_link($this->u_action), E_USER_WARNING);
+							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST'), $selected_file) . adm_back_link($this->u_action), E_USER_WARNING);
 						}
 						$s_hidden_fields['filenames'][$selected_file] = 1;
 					}
 				
 					$confirm_delete_string = (sizeof($selected_files) == 1) ? 'ACP_CUSTOMCODE_DELETE_FILE_CONFIRM' : 'ACP_CUSTOMCODE_DELETE_FILES_CONFIRM';
 				
-					confirm_box(false, $user->lang($confirm_delete_string), build_hidden_fields($s_hidden_fields));				
+					confirm_box(false, sprintf($user->lang($confirm_delete_string), $selected_file), build_hidden_fields($s_hidden_fields));				
 				}				
 
 
