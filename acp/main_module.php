@@ -24,7 +24,7 @@ class main_module
 
 	function main($id, $mode)
 	{
-		global $template, $request, $phpbb_root_path, $user;
+		global $template, $request, $phpbb_root_path, $user, $cache, $config;
 		
 
 		$user->add_lang_ext('marttiphpbb/customcode', 'common');
@@ -40,6 +40,12 @@ class main_module
 
 				$file =	$request->variable('filename', '', true);
 				$editor_rows = max(5, min(999, $request->variable('editor_rows', 8)));
+/*
+	
+						//purge cache
+						$config->increment('assets_version', 1);
+						$cache->purge();
+*/
 
 				if ($request->is_set_post('save'))
 				{

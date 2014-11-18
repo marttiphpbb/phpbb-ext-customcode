@@ -26,10 +26,12 @@ class ext extends \phpbb\extension\base
 				// create directory /store/customcode
 				$phpbb_root_path = $this->container->getParameter('core.root_path');
 				$dir = $phpbb_root_path . $this->dir;
-				if (!file_exists($dir)) {
+				if (!file_exists($dir)) 
+				{
 					if (!mkdir($dir, 0777, true))
-					{
-						die('Could not create '.$this->dir.' directory.');
+					{	
+						// translation is not possible here, language files are not yet included
+						trigger_error(sprintf('Failed to create the directory %s', $this->dir), E_USER_WARNING);
 					}
 				}
 				$content = "<Files *>\r\n    Order Allow, Deny\r\n    Deny from All\r\n</Files>";
@@ -41,7 +43,7 @@ class ext extends \phpbb\extension\base
 				$content = '<br/><a href="https://github.com/marttiphpbb/phpbb-ext-customcode">Custom Code</a> extension for phpBB';
 				file_put_contents($dir . '/overall_footer_copyright_append.html', $content);
 				
-				return $this->dir .  ' directory';
+				return '1';
 				break;
 			default:
 				return parent::enable_step($old_state);
@@ -62,7 +64,7 @@ class ext extends \phpbb\extension\base
 				$phpbb_root_path = $this->container->getParameter('core.root_path');			
 				$dir = $phpbb_root_path . $this->dir;			
 				$this->remove_directory($dir);
-				return $this->dir . ' directory';
+				return '1';
 				break;
 			default:
 				return parent::purge_step($old_state);

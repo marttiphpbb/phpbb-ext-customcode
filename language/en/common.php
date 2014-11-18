@@ -64,7 +64,7 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_NO_FILE_SELECTED'			=> 'No file was selected.',
 	'ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST'		=> 'A file selected for delete does not exist.',
 	'ACP_CUSTOMCODE_FILE_NOT_DELETED'			=> 'Failed to delete file.',
-	
+
  
 
 ));
