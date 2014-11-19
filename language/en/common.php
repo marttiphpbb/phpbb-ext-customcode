@@ -31,10 +31,12 @@ if (empty($lang) || !is_array($lang))
 
 
 $lang = array_merge($lang, array(
- 
+
 	'ACP_CUSTOMCODE'							=> 'Custom Code',
 	'ACP_CUSTOMCODE_EDIT'						=> 'Edit custom file',
-	'ACP_CUSTOMCODE_EDIT_EXPLAIN'				=> 'All files are located at store/customcode. The original template files are not touched. To include your own created files, use INCLUDE, INCLUDECSS (in overall_header_head_append.html) or INCLUDEJS (i.e. in overall_footer_after.html). In the INCLUDE, INCLUDECSS or INCLUDEJS statement prepend your filename with ../../../../../../store/customcode/  <br/>Purge the cache to apply the edits.',
+	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'To include your own croeated files, prepend the filename with <code>../../../../../../store/customcode/</code><p><code>&lt;!-- INCLUDE ../../../../../../store/customcode/my_file.html --></code></p>',
+	'ACP_CUSTOMCODE_INCLUDECSS_EXAMPLE'			=> 'Include your created stylesheet in overall_header_head_append.html <p><code>&lt;!-- INCLUDECSS ../../../../../../store/customcode/my_file.css --></code></p>',
+	'ACP_CUSTOMCODE_INCLUDEJS_EXAMPLE'			=> 'To include a Javascript file that makes use of jQuery, use <code>INCLUDEJS</code> anywhere i.e. in overall_footer_after.html <p><code>&lt;!-- INCLUDEJS ../../../../../../store/customcode/my_file.js --></code></p>',
 	'ACP_CUSTOMCODE_CREATE_DELETE'				=> 'Create or delete custom files',
 	'ACP_CUSTOMCODE_CREATE_DELETE_EXPLAIN'		=> 'These files reside at store/customcode',
 	'ACP_CUSTOMCODE_CREATE'						=> 'Create',
@@ -46,7 +48,7 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_UNSELECT_ALL'				=> 'Unselect all',
 	'ACP_CUSTOMCODE_FILES'						=> 'Files',
 	'ACP_CUSTOMCODE_FILE'						=> 'File',
-	'ACP_CUSTOMCODE_FILE_EXPLAIN'				=> 'Files directly included with template events are marked with (E)',
+	'ACP_CUSTOMCODE_FILE_EXPLAIN'				=> 'Files directly included with template events are marked with (E). All files are located in directory store/customcode.',
 	'ACP_CUSTOMCODE_EDITOR_ROWS'				=> 'Editor rows',
 	'ACP_CUSTOMCODE_SAVE_CONFIRM'				=> 'Do you want to save the file %s?',
 	'ACP_CUSTOMCODE_SAVE'						=> 'Save',
@@ -67,7 +69,5 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_NO_FILE_SELECTED'			=> 'No file was selected.',
 	'ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST'		=> 'The file %s selected for delete does not exist.',
 	'ACP_CUSTOMCODE_FILE_NOT_DELETED'			=> 'Failed to delete file %s.',
-
- 
 
 ));
