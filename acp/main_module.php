@@ -16,8 +16,8 @@ class main_module
 	protected $events = array(
 		'overall_footer_after.html',
 		'overall_footer_copyright_append.html',
+		'overall_header_content_before.html',		
 		'overall_header_head_append.html',
-		'overall_header_content_before.html',
 		'overall_header_stylesheets_after.html',
 		
 	);
@@ -40,14 +40,11 @@ class main_module
 
 				$file =	$request->variable('filename', '', true);
 				$editor_rows = max(5, min(999, $request->variable('editor_rows', 8)));
-/*
-	
-						//purge cache
-						$config->increment('assets_version', 1);
-						$cache->purge();
-*/
 
-				if ($request->is_set_post('save'))
+				$save = $request->is_set_post('save');
+				$save_purge_cache = $request->is_set_post('save_purge_cache');
+
+				if ($save || $save_purge_cache)
 				{
 					
 					$data	= utf8_normalize_nfc($request->variable('file_data', '', true));
@@ -64,6 +61,13 @@ class main_module
 						fwrite($f, $data);
 						fclose($f);	
 						
+						if ($save_purge_cache)
+						{
+							$config->increment('assets_version', 1);
+							$cache->purge();								
+							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_SAVED_CACHE_PURGED'), $file) . adm_back_link($this->u_action));			
+						}
+						
 						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_SAVED'), $file) . adm_back_link($this->u_action));
 					}
 
@@ -71,13 +75,19 @@ class main_module
 					{
 						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_NOT_EXIST'), $file) . adm_back_link($this->u_action), E_USER_WARNING);
 					}
-
-					confirm_box(false, sprintf($user->lang('ACP_CUSTOMCODE_SAVE_FILE_CONFIRM'), $file), build_hidden_fields(array(
-						'filename'	=> $file,
-						'file_data' => utf8_htmlspecialchars($data),
-						'mode'		=> 'edit',
-						'save'		=> 1,
-					)));
+					
+					$confirm_message = ($save_purge_cache) ? 'ACP_CUSTOMCODE_SAVE_PURGE_CACHE_CONFIRM' : 'ACP_CUSTOMCODE_SAVE_CONFIRM';
+					
+					$s_hidden_fields = array(
+						'filename'			=> $file,
+						'file_data' 		=> utf8_htmlspecialchars($data),
+						'mode'				=> 'edit',					
+					);
+					
+					$submit_field = ($save_purge_cache) ? 'save_purge_cache' : 'save';
+					$s_hidden_fields[$submit_field] = 1;
+	
+					confirm_box(false, sprintf($user->lang($confirm_message), $file), build_hidden_fields($s_hidden_fields));
 				}
 				else
 				{
