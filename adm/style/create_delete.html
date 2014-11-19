@@ -32,6 +32,7 @@
 				<td>{customfiles.NAME}</td>
 				<td class="select">
 				<!-- IF customfiles.S_SELECTABLE -->
+				<!-- DEFINE $SELECTABLE = 1 -->
 				<input type="checkbox" name="filenames[{customfiles.NAME}]" <!-- IF customfiles.S_SELECTED --> selected="selected"<!-- ENDIF -->>
 				<!-- ENDIF -->
 				</td>
@@ -44,8 +45,10 @@
 		</tbody>
 		</table>		
 		<p>
-		<a href="#" id="select_all">{L_ACP_CUSTOMCODE_SELECT_ALL}</a> | 
-		<a href="#" id="unselect_all">{L_ACP_CUSTOMCODE_UNSELECT_ALL}</a> 
+		<!-- IF $SELECTABLE -->		
+			<a href="#" id="select_all">{L_ACP_CUSTOMCODE_SELECT_ALL}</a> | 
+			<a href="#" id="unselect_all">{L_ACP_CUSTOMCODE_UNSELECT_ALL}</a> 
+		<!-- ENDIF -->
 		</p>
 		<p>
 		<input class="button1" type="submit" id="delete" name="delete" value="{L_ACP_CUSTOMCODE_DELETE_SELECTED}" />
