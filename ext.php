@@ -12,12 +12,9 @@ namespace marttiphpbb\customcode;
 class ext extends \phpbb\extension\base
 {
 	
-	public $dir = 'store/customcode';
+	public $dir = 'customcode';
 	
 	private $files = array(
-		'.htaccess'			=> 
-			"<Files *>\r\n    Order Allow, Deny\r\n    Deny from All\r\n</Files>",
-
 		'overall_footer_after.html'				=> '',
 		'overall_footer_copyright_append.html'	=>
 			'<br/><a href="https://github.com/marttiphpbb/phpbb-ext-customcode">Custom Code</a> extension for phpBB',
@@ -36,7 +33,7 @@ class ext extends \phpbb\extension\base
 		switch ($old_state)
 		{
 			case '': // Empty means nothing has run yet
-				// create directory /store/customcode
+				// create directory /customcode
 				$phpbb_root_path = $this->container->getParameter('core.root_path');
 				$dir = $phpbb_root_path . $this->dir;
 				if (!file_exists($dir)) 

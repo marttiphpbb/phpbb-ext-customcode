@@ -11,7 +11,7 @@ class main_module
 {
 	var $u_action;
 	
-	protected $dir = 'store/customcode';
+	protected $dir = 'customcode';
 	
 	protected $events = array(
 		'overall_footer_after.html',
