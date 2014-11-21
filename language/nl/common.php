@@ -32,9 +32,9 @@ $lang = array_merge($lang, array(
  
    'ACP_CUSTOMCODE'                     => 'Aangepaste Code',
    'ACP_CUSTOMCODE_EDIT'                  => 'Bewerk aangepast code bestand',
-   'ACP_CUSTOMCODE_EDIT_EXPLAIN'            => 'Alle bestanden staan opgeslagen onder customcode/. De originele template bestanden zijn niet gewijzigd. Om je zelf gemaakte bestand in te sluiten, gebruik INCLUDE, INCLUDECSS (in overall_header_head_append.html) of INCLUDEJS (bijv. in overall_footer_after.html). In de INCLUDE, INCLUDECSS of INCLUDEJS opdracht moet je je bestandsnaam vooraf laten gaan met ../../../../../../store/customcode/  <br/>Purge de cache om de wijzigingen te laten werken.',
+   'ACP_CUSTOMCODE_EDIT_EXPLAIN'            => 'Alle bestanden staan opgeslagen onder store/customcode. De originele template bestanden zijn niet gewijzigd. Om je zelf gemaakte bestand in te sluiten, gebruik INCLUDE, INCLUDECSS (in overall_header_head_append.html) of INCLUDEJS (bijv. in overall_footer_after.html). In de INCLUDE, INCLUDECSS of INCLUDEJS opdracht moet je je bestandsnaam vooraf laten gaan met ../../../../../../store/customcode/  <br/>Purge de cache om de wijzigingen te laten werken.',
    'ACP_CUSTOMCODE_CREATE_DELETE'            => 'Maak of verwijder bestanden met aangepaste code',
-   'ACP_CUSTOMCODE_CREATE_DELETE_EXPLAIN'      => 'Deze bestanden staan onder customcode/',
+   'ACP_CUSTOMCODE_CREATE_DELETE_EXPLAIN'      => 'Deze bestanden staan onder store/customcode/',
    'ACP_CUSTOMCODE_CREATE'                  => 'Maak',
    'ACP_CUSTOMCODE_NEW_FILE'               => 'Nieuw aangepaste code bestand',
    'ACP_CUSTOMCODE_DELETE'                  => 'Verwijder',
