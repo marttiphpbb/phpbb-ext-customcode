@@ -33,12 +33,12 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 
 	'ACP_CUSTOMCODE'							=> 'Custom Code',
-	'ACP_CUSTOMCODE_EDIT'						=> 'Edit custom file',
+	'ACP_CUSTOMCODE_EDIT'						=> 'Edit',
 	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'To include your own created files, prepend the filename with <code>../../../../../../store/customcode/</code><p><code>&lt;!-- INCLUDE ../../../../../../store/customcode/my_file.html --></code></p>',
-	'ACP_CUSTOMCODE_CREATE_DELETE'				=> 'Create or delete custom files',
+	'ACP_CUSTOMCODE_CREATE_DELETE'				=> 'Create or delete files',
 	'ACP_CUSTOMCODE_CREATE_DELETE_EXPLAIN'		=> 'These files reside at store/customcode',
 	'ACP_CUSTOMCODE_CREATE'						=> 'Create',
-	'ACP_CUSTOMCODE_NEW_FILE'					=> 'New custom file',
+	'ACP_CUSTOMCODE_NEW_FILE'					=> 'New file',
 	'ACP_CUSTOMCODE_DELETE'						=> 'Delete',
 	'ACP_CUSTOMCODE_DELETE_EXPLAIN'				=> 'Files directly linked from template events (E) cannot be deleted. Use the editor to disable or delete any code in them.',
 	'ACP_CUSTOMCODE_DELETE_SELECTED'			=> 'Delete selected',
