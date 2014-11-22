@@ -31,7 +31,7 @@ class main_module
 		add_form_key('marttiphpbb/customcode');
 			
 		$filenames = array_diff(scandir($phpbb_root_path . $this->dir), array('.', '..', '.htaccess'));
-			
+	
 		switch($mode)
 		{
 			case 'edit': 
@@ -55,7 +55,7 @@ class main_module
 					{
 						if (!($f = @fopen($phpbb_root_path . $this->dir . '/' . $file, 'wb')))
 						{
-							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_NOT_WRITABLE'), $file) . adm_back_link($this->u_action), E_USER_WARNING);
+							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_NOT_WRITABLE'), $file) . adm_back_link($this->u_action . '&amp;filename=' . $file), E_USER_WARNING);
 						}
 			
 						fwrite($f, $data);
@@ -65,10 +65,10 @@ class main_module
 						{
 							$config->increment('assets_version', 1);
 							$cache->purge();								
-							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_SAVED_CACHE_PURGED'), $file) . adm_back_link($this->u_action));			
+							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_SAVED_CACHE_PURGED'), $file) . adm_back_link($this->u_action . '&amp;filename='. $file));			
 						}
 						
-						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_SAVED'), $file) . adm_back_link($this->u_action));
+						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_SAVED'), $file) . adm_back_link($this->u_action . '&amp;filename=' . $file));
 					}
 
 					if (!in_array($file, $filenames))
