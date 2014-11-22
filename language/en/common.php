@@ -34,6 +34,7 @@ $lang = array_merge($lang, array(
 
 	'ACP_CUSTOMCODE'							=> 'Custom Code',
 	'ACP_CUSTOMCODE_EDIT'						=> 'Edit custom file',
+	'ACP_CUSTOMCODE_EXAMPLES'					=> 'Explanation',
 	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'To include your own created files, prepend the filename with <code>../../../../../../store/customcode/</code><p><code>&lt;!-- INCLUDE ../../../../../../store/customcode/my_file.html --></code></p>',
 	'ACP_CUSTOMCODE_INCLUDECSS_EXAMPLE'			=> 'Include your created stylesheet in overall_header_head_append.html <p><code>&lt;!-- INCLUDECSS ../../../../../../store/customcode/my_file.css --></code></p>',
 	'ACP_CUSTOMCODE_INCLUDEJS_EXAMPLE'			=> 'To include a Javascript file that makes use of jQuery, use <code>INCLUDEJS</code> anywhere i.e. in overall_footer_after.html <p><code>&lt;!-- INCLUDEJS ../../../../../../store/customcode/my_file.js --></code></p>',
