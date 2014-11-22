@@ -41,7 +41,10 @@ class ext extends \phpbb\extension\base
 				$dir = $phpbb_root_path . $this->dir;
 				if (!file_exists($dir)) 
 				{
-					if (!mkdir($dir, 0777, true))
+					@mkdir($dir, 0777);
+					@chmod($dir, 0777);
+					
+					if (!is_dir($dir))
 					{	
 						// translation is not possible here, language files are not yet included
 						trigger_error(sprintf('Failed to create the directory %s', $this->dir), E_USER_WARNING);
