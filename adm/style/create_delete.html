@@ -26,13 +26,13 @@
 		</tr>
 		</thead>
 		<tbody>
-		<!-- BEGIN customfiles -->
+		<!-- BEGIN files -->
 			<tr>
-				<td>{customfiles.NAME}</td>
+				<td>{files.NAME}</td>
 				<td class="select">
-				<!-- IF customfiles.S_SELECTABLE -->
+				<!-- IF files.S_SELECTABLE -->
 				<!-- DEFINE $SELECTABLE = 1 -->
-				<input type="checkbox" name="filenames[{customfiles.NAME}]" <!-- IF customfiles.S_SELECTED --> selected="selected"<!-- ENDIF -->>
+				<input type="checkbox" name="filenames[{files.NAME}]" <!-- IF files.S_SELECTED --> selected="selected"<!-- ENDIF -->>
 				<!-- ENDIF -->
 				</td>
 			</tr>
@@ -40,7 +40,7 @@
 			<tr class="row3">
 				<td colspan="2">{L_ACP_NO_ITEMS}</td>
 			</tr>
-		<!-- END customfiles -->
+		<!-- END files -->
 		</tbody>
 		</table>		
 		<p>

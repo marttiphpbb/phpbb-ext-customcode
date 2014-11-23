@@ -200,7 +200,7 @@ class main_module
 				{
 					$is_event = (in_array($filename, $this->events)) ? true : false;
 
-					$template->assign_block_vars('customfiles', array(
+					$template->assign_block_vars('files', array(
 						'S_SELECTABLE'			=> !$is_event,
 						'NAME'					=> $filename . (($is_event) ? ' (E)' : ''),
 						'S_SELECTED'			=> in_array($filename, $selected_files),
