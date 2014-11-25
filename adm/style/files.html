@@ -2,22 +2,8 @@
 
 <h1>{L_ACP_CUSTOMCODE_FILES}</h1>
 <p>{L_ACP_CUSTOMCODE_FILES_EXPLAIN} </p>
-
 <form method="post" action="{U_ACTION}">
-	<fieldset><legend>{L_ACP_CUSTOMCODE_CREATE}</legend>				
-		<dl>
-			<dt><label for="new_file">{L_ACP_CUSTOMCODE_NEW_FILE}</label>
-			</dt>
-			<dd><input type="text" class="text medium" name="new_file" value="{NEW_FILE}" maxlength="100" /></dd>
-		</dl>
-		<p>
-		<input class="button1" type="submit" id="create" name="create" value="{L_ACP_CUSTOMCODE_CREATE}" />
-		</p>
-	</fieldset>
-	
-	<fieldset><legend>{L_ACP_CUSTOMCODE_DELETE}</legend>
-		<p>{L_ACP_CUSTOMCODE_DELETE_EXPLAIN}</p>
-		
+	<fieldset>
 		<table class="table1 zebra-table">
 		<thead>
 		<tr>
@@ -45,7 +31,17 @@
 			</tr>
 		<!-- END files -->
 		</tbody>
-		</table>		
+		</table>
+		<p>
+		<dl>
+		<!--	<dt><label for="new_file">{L_ACP_CUSTOMCODE_NEW_FILE}</label>
+			</dt> 
+			<dd>-->
+				<input type="text" class="text medium" name="new_file" value="{NEW_FILE}" maxlength="100" />
+			<input class="button2" type="submit" id="create" name="create" value="{L_ACP_CUSTOMCODE_CREATE_FILE}" />
+			<!-- </dd> -->
+ 		</dl>		
+		</p>		
 
 	</fieldset>	
 {S_FORM_TOKEN}

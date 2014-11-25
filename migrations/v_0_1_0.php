@@ -23,8 +23,8 @@ class v_0_1_0 extends \phpbb\db\migration\migration
 				array(
 					'module_basename'	=> '\marttiphpbb\customcode\acp\main_module',
 					'modes'				=> array(
+						'files',					
 						'edit',
-						'files',
 					),
 				),
 			)),

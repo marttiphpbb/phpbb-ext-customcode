@@ -16,16 +16,16 @@ class main_info
 			'title'		=> 'ACP_CUSTOMCODE',
 			'version'	=> '1.0.0',
 			'modes'		=> array(
-				'edit'	=> array(
-					'title' => 'ACP_CUSTOMCODE_EDIT', 
-					'auth' => 'ext_marttiphpbb/customcode && acl_a_board', 
-					'cat' => array('ACP_CUSTOMCODE'),
-				),
 				'files'	=> array(
 					'title' => 'ACP_CUSTOMCODE_FILES', 
 					'auth' => 'ext_marttiphpbb/customcode && acl_a_board', 
 					'cat' => array('ACP_CUSTOMCODE'),
-				),								
+				),				
+				'edit'	=> array(
+					'title' => 'ACP_CUSTOMCODE_EDIT', 
+					'auth' => 'ext_marttiphpbb/customcode && acl_a_board', 
+					'cat' => array('ACP_CUSTOMCODE'),
+				),			
 			),
 		);
 	}
