@@ -23,7 +23,7 @@ class main_module
 	);
 	
 	protected $comment_tag = array(
-		'open'		=> '<!-- COMMENT: ',
+		'open'		=> '<!--',
 		'close'		=> '-->',
 	);
 
@@ -219,7 +219,7 @@ class main_module
 							$end = strpos($first_line, $this->comment_tag['close'], $start);
 							if ($end !== false)
 							{
-								$comment = substr($first_line, $start, $end - $start);
+								$comment = trim(substr($first_line, $start, $end - $start));
 							}
 						}
 						
