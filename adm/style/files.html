@@ -21,9 +21,10 @@
 		<table class="table1 zebra-table">
 		<thead>
 		<tr>
-			<th>{L_ACP_CUSTOMCODE_FILES}</th>
+			<th>{L_ACP_CUSTOMCODE_FILE_NAME}</th>
 			<th>{L_ACP_CUSTOMCODE_FILE_SIZE}</th>
-			<th>{L_SELECT}</th>
+			<th>{L_ACP_CUSTOMCODE_FILE_COMMENT}</th>			
+			<th>{L_ACTION}</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -31,8 +32,9 @@
 			<tr>
 				<td>{files.NAME}</td>
 				<td>{files.SIZE}</td>
-				<td class="select">
-				<!-- IF files.S_SELECTABLE -->
+				<td>{files.COMMENT}</td>				
+				<td>
+				<!-- IF files.S_DELETABLE -->
 				<!-- DEFINE $SELECTABLE = 1 -->
 				<input type="checkbox" name="filenames[{files.NAME}]" <!-- IF files.S_SELECTED --> selected="selected"<!-- ENDIF -->>
 				<!-- ENDIF -->

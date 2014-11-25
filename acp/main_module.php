@@ -21,6 +21,11 @@ class main_module
 		'overall_header_stylesheets_after.html',
 		
 	);
+	
+	protected $comment_tag = array(
+		'open'		=> '<!-- COMMENT: ',
+		'close'		=> '-->',
+	);
 
 	function main($id, $mode)
 	{
@@ -195,15 +200,44 @@ class main_module
 					confirm_box(false, sprintf($user->lang($confirm_delete_string), $selected_file), build_hidden_fields($s_hidden_fields));				
 				}				
 
+				$file_size_ary = $file_comment_ary = array();
+
+				foreach ($filenames as $filename)
+				{
+					$path = $phpbb_root_path . $this->dir . '/' . $filename;
+					$comment = '';
+					
+					$file_size_ary[$filename] = $this->humanize_filesize(@filesize($path));
+					
+					$f = fopen($path, 'r');
+					if ($f && ($first_line = @fgets($f))) 
+					{
+						$start = strpos($first_line, $this->comment_tag['open']);
+						if ($start !== false)
+						{
+							$start += strlen($this->comment_tag['open']);
+							$end = strpos($first_line, $this->comment_tag['close'], $start);
+							if ($end !== false)
+							{
+								$comment = substr($first_line, $start, $end - $start);
+							}
+						}
+						
+					}
+					fclose($f);
+					$file_comment_ary[$filename] = $comment;
+				}
+				
 
 				foreach ($filenames as $filename)
 				{
 					$is_event = (in_array($filename, $this->events)) ? true : false;
 
 					$template->assign_block_vars('files', array(
-						'S_SELECTABLE'			=> !$is_event,
+						'S_DELETABLE'			=> !$is_event,
 						'NAME'					=> $filename . (($is_event) ? ' (E)' : ''),
-						'SIZE'					=> $this->humanize_filesize(filesize($phpbb_root_path . $this->dir . '/' . $filename)),
+						'SIZE'					=> $file_size_ary[$filename],
+						'COMMENT'				=> $file_comment_ary[$filename],
 						'S_SELECTED'			=> in_array($filename, $selected_files),
 					));
 				}
