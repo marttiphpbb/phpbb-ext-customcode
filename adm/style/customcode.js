@@ -8,16 +8,5 @@
 		$('select#filename').change(function () {
 			$('form#file_edit').submit();
 		});
-
-		$('a#select_all').click(function (e) { 
-			e.preventDefault();
-			$('table td input:checkbox').prop('checked', true);
-		});
-
-		$('a#unselect_all').click(function (e) {
-			e.preventDefault();
-			$('table td input:checkbox').prop('checked', false);
-		});
-
 	});
 })(jQuery, window, document);

@@ -24,7 +24,7 @@
 			<th>{L_ACP_CUSTOMCODE_FILE_NAME}</th>
 			<th>{L_ACP_CUSTOMCODE_FILE_SIZE}</th>
 			<th>{L_ACP_CUSTOMCODE_FILE_COMMENT}</th>			
-			<th>{L_ACTION}</th>
+			<th>{L_ACP_CUSTOMCODE_DELETE}</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -35,8 +35,7 @@
 				<td>{files.COMMENT}</td>				
 				<td>
 				<!-- IF files.S_DELETABLE -->
-				<!-- DEFINE $SELECTABLE = 1 -->
-				<input type="checkbox" name="filenames[{files.NAME}]" <!-- IF files.S_SELECTED --> selected="selected"<!-- ENDIF -->>
+					<input class="button2" type="submit" name="delete[{files.NAME}]" value="x" title="{files.DELETE_FILE_NAME}"/>
 				<!-- ENDIF -->
 				</td>
 			</tr>
@@ -47,15 +46,7 @@
 		<!-- END files -->
 		</tbody>
 		</table>		
-		<p>
-		<!-- IF $SELECTABLE -->		
-			<a href="#" id="select_all">{L_ACP_CUSTOMCODE_SELECT_ALL}</a> | 
-			<a href="#" id="unselect_all">{L_ACP_CUSTOMCODE_UNSELECT_ALL}</a> 
-		<!-- ENDIF -->
-		</p>
-		<p>
-		<input class="button1" type="submit" id="delete" name="delete" value="{L_ACP_CUSTOMCODE_DELETE_SELECTED}"<!-- IF not $SELECTABLE --> disabled style="color: #888;"<!-- ENDIF -->/>
-		</p>
+
 	</fieldset>	
 {S_FORM_TOKEN}
 </form>

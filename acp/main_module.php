@@ -78,7 +78,7 @@ class main_module
 
 					if (!in_array($file, $filenames))
 					{
-						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_NOT_EXIST'), $file) . adm_back_link($this->u_action), E_USER_WARNING);
+						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST'), $file) . adm_back_link($this->u_action), E_USER_WARNING);
 					}
 					
 					$confirm_message = ($save_purge_cache) ? 'ACP_CUSTOMCODE_SAVE_PURGE_CACHE_CONFIRM' : 'ACP_CUSTOMCODE_SAVE_CONFIRM';
@@ -130,8 +130,9 @@ class main_module
 				$this->page_title = $user->lang('ACP_CUSTOMCODE_FILES');
 				
 				$new_file = $request->variable('new_file', '');
-				$selected_files = array_keys($request->variable('filenames', array('' => '')));
-				
+				$file_to_delete = array_keys($request->variable('delete', array('' => '')));
+				$file_to_delete = (sizeof($file_to_delete)) ? $file_to_delete[0] : false; 
+	
 				if ($request->is_set_post('create'))
 				{
 					if (!check_form_key('marttiphpbb/customcode'))
@@ -159,45 +160,27 @@ class main_module
 				
 				if ($request->is_set_post('delete'))
 				{
-					if (confirm_box(true))
+					if (!in_array($file_to_delete, $filenames))
 					{
-						
-						foreach ($selected_files as $selected_file)
-						{
-							if (!unlink($phpbb_root_path . $this->dir . '/' . $selected_file))
-							{
-								trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_NOT_DELETED'), $selected_file) . adm_back_link($this->u_action), E_USER_WARNING);
-							}
-						}					
-
-						$files_deleted_string = (sizeof($selected_files) == 1) ? 'ACP_CUSTOMCODE_FILE_DELETED' : 'ACP_CUSTOMCODE_FILES_DELETED';
-
-						trigger_error(sprintf($user->lang($files_deleted_string), $selected_file) . adm_back_link($this->u_action));	
+						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST'), $file_to_delete) . adm_back_link($this->u_action), E_USER_WARNING);
 					}
 					
-				
-					if (!sizeof($selected_files))
-					{
-						trigger_error($user->lang('ACP_CUSTOMCODE_NO_FILE_SELECTED') . adm_back_link($this->u_action), E_USER_WARNING);
-					}
-				
-					$s_hidden_fields = array(
-						'mode'		=> 'create_delete',
-						'delete'	=> 1
-					);				
-				
-					foreach ($selected_files as $selected_file)
-					{
-						if (!in_array($selected_file, $filenames))
+					if (confirm_box(true))
+					{			
+						if (!unlink($phpbb_root_path . $this->dir . '/' . $file_to_delete))
 						{
-							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST'), $selected_file) . adm_back_link($this->u_action), E_USER_WARNING);
+							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_NOT_DELETED'), $file_to_delete) . adm_back_link($this->u_action), E_USER_WARNING);
 						}
-						$s_hidden_fields['filenames'][$selected_file] = 1;
-					}
-				
-					$confirm_delete_string = (sizeof($selected_files) == 1) ? 'ACP_CUSTOMCODE_DELETE_FILE_CONFIRM' : 'ACP_CUSTOMCODE_DELETE_FILES_CONFIRM';
-				
-					confirm_box(false, sprintf($user->lang($confirm_delete_string), $selected_file), build_hidden_fields($s_hidden_fields));				
+
+						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_DELETED'), $file_to_delete) . adm_back_link($this->u_action));	
+					}					
+					
+					$s_hidden_fields = array(
+						'mode'		=> 'files',
+						'delete'	=> array($file_to_delete => 1),
+					);					
+					
+					confirm_box(false, sprintf($user->lang('ACP_CUSTOMCODE_DELETE_FILE_CONFIRM'), $file_to_delete), build_hidden_fields($s_hidden_fields));				
 				}				
 
 				$file_size_ary = $file_comment_ary = array();
@@ -238,7 +221,7 @@ class main_module
 						'NAME'					=> $filename . (($is_event) ? ' (E)' : ''),
 						'SIZE'					=> $file_size_ary[$filename],
 						'COMMENT'				=> $file_comment_ary[$filename],
-						'S_SELECTED'			=> in_array($filename, $selected_files),
+						'DELETE_FILE_NAME'		=> sprintf($user->lang('ACP_CUSTOMCODE_DELETE_FILE_NAME'), $filename),
 					));
 				}
 
