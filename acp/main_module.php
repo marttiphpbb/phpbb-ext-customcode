@@ -203,6 +203,7 @@ class main_module
 					$template->assign_block_vars('files', array(
 						'S_SELECTABLE'			=> !$is_event,
 						'NAME'					=> $filename . (($is_event) ? ' (E)' : ''),
+						'SIZE'					=> $this->humanize_filesize(filesize($phpbb_root_path . $this->dir . '/' . $filename)),
 						'S_SELECTED'			=> in_array($filename, $selected_files),
 					));
 				}
@@ -214,5 +215,18 @@ class main_module
 				
 				break;
 		}
+	}
+	
+	/*
+	 * @param int $bytes
+	 * @param int $decimals
+	 * @return string 
+	 * Adapted from php.net comment of rommel at rommelsantor dot com 
+	 */
+	private function humanize_filesize($bytes, $decimals = 0) 
+	{
+		$sz = ' KMGTP';
+		$factor = floor((strlen($bytes) - 1) / 3);
+		return sprintf('%.' . $decimals . 'f', $bytes / pow(1024, $factor)) . @$sz[$factor];
 	}
 }

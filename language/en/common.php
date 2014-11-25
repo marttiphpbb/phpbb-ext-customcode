@@ -44,6 +44,7 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_DELETE_SELECTED'			=> 'Delete selected',
 	'ACP_CUSTOMCODE_SELECT_ALL'					=> 'Select all',
 	'ACP_CUSTOMCODE_UNSELECT_ALL'				=> 'Unselect all',
+	'ACP_CUSTOMCODE_FILE_SIZE'					=> 'Size',
 	'ACP_CUSTOMCODE_FILES'						=> 'Files',
 	'ACP_CUSTOMCODE_FILE'						=> 'File',
 	'ACP_CUSTOMCODE_FILE_EXPLAIN'				=> 'Files directly included with template events are marked with (E). All files are located in directory store/customcode.',
