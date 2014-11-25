@@ -21,8 +21,8 @@ class main_info
 					'auth' => 'ext_marttiphpbb/customcode && acl_a_board', 
 					'cat' => array('ACP_CUSTOMCODE'),
 				),
-				'create_delete'	=> array(
-					'title' => 'ACP_CUSTOMCODE_CREATE_DELETE', 
+				'files'	=> array(
+					'title' => 'ACP_CUSTOMCODE_FILES', 
 					'auth' => 'ext_marttiphpbb/customcode && acl_a_board', 
 					'cat' => array('ACP_CUSTOMCODE'),
 				),								

@@ -24,7 +24,7 @@ class v_0_1_0 extends \phpbb\db\migration\migration
 					'module_basename'	=> '\marttiphpbb\customcode\acp\main_module',
 					'modes'				=> array(
 						'edit',
-						'create_delete',
+						'files',
 					),
 				),
 			)),

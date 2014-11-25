@@ -119,10 +119,10 @@ class main_module
 
 				break;
 				
-			case 'create_delete':
+			case 'files':
 			
-				$this->tpl_name = 'create_delete';
-				$this->page_title = $user->lang('ACP_CUSTOMCODE_CREATE_DELETE');
+				$this->tpl_name = 'files';
+				$this->page_title = $user->lang('ACP_CUSTOMCODE_FILES');
 				
 				$new_file = $request->variable('new_file', '');
 				$selected_files = array_keys($request->variable('filenames', array('' => '')));
