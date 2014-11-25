@@ -9,7 +9,7 @@ namespace marttiphpbb\customcode\acp;
 
 class main_module
 {
-	var $u_action;
+	public $u_action;
 	
 	protected $dir = 'store/customcode';
 	
@@ -211,6 +211,7 @@ class main_module
 					$file_comment_ary[$filename] = $comment;
 				}
 				
+				$u_edit = str_replace('mode=files', 'mode=edit', $this->u_action);
 
 				foreach ($filenames as $filename)
 				{
@@ -219,6 +220,7 @@ class main_module
 					$template->assign_block_vars('files', array(
 						'S_DELETABLE'			=> !$is_event,
 						'NAME'					=> $filename . (($is_event) ? ' (E)' : ''),
+						'U_EDIT'				=> $u_edit . '&amp;filename=' . $filename,
 						'SIZE'					=> $file_size_ary[$filename],
 						'COMMENT'				=> $file_comment_ary[$filename],
 						'DELETE_FILE_NAME'		=> sprintf($user->lang('ACP_CUSTOMCODE_DELETE_FILE_NAME'), $filename),
