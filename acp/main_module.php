@@ -27,6 +27,10 @@ class main_module
 		'close'		=> '-->',
 	);
 
+	protected $file_size_scales = ' KMGTP';
+	
+	
+
 	function main($id, $mode)
 	{
 		global $template, $request, $phpbb_root_path, $user, $cache, $config;
@@ -190,7 +194,9 @@ class main_module
 					$path = $phpbb_root_path . $this->dir . '/' . $filename;
 					$comment = '';
 					
-					$file_size_ary[$filename] = $this->humanize_filesize(@filesize($path));
+					$size = @filesize($path);
+					$mul = floor((strlen($size) - 1) / 3);
+					$file_size_ary[$filename] = sprintf('%.0f', $size / pow(1024, $mul)) . @$this->file_size_scales[$mul];
 					
 					$f = fopen($path, 'r');
 					if ($f && ($first_line = @fgets($f))) 
@@ -234,18 +240,5 @@ class main_module
 				
 				break;
 		}
-	}
-	
-	/*
-	 * @param int $bytes
-	 * @param int $decimals
-	 * @return string 
-	 * Adapted from php.net comment of rommel at rommelsantor dot com 
-	 */
-	private function humanize_filesize($bytes, $decimals = 0) 
-	{
-		$sz = ' KMGTP';
-		$factor = floor((strlen($bytes) - 1) / 3);
-		return sprintf('%.' . $decimals . 'f', $bytes / pow(1024, $factor)) . @$sz[$factor];
 	}
 }
