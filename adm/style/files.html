@@ -16,11 +16,11 @@
 		<tbody>
 		<!-- BEGIN files -->
 			<tr>
-				<td><a href="{files.U_EDIT}">{files.NAME}</a></td>
+				<td><a href="{files.U_EDIT}">{files.NAME}</a><!-- IF files.S_IS_EVENT --> {L_ACP_CUSTOMCODE_EVENT_FILE_INDICATOR}<!-- ENDIF --></td>
 				<td>{files.SIZE}</td>
 				<td>{files.COMMENT}</td>				
 				<td>
-				<!-- IF files.S_DELETABLE -->
+				<!-- IF not files.S_IS_EVENT -->
 					<input class="button2" type="submit" name="delete[{files.NAME}]" value="x" title="{files.DELETE_FILE_NAME}"/>
 				<!-- ENDIF -->
 				</td>

@@ -224,8 +224,8 @@ class main_module
 					$is_event = (in_array($filename, $this->events)) ? true : false;
 
 					$template->assign_block_vars('files', array(
-						'S_DELETABLE'			=> !$is_event,
-						'NAME'					=> $filename . (($is_event) ? ' (E)' : ''),
+						'S_IS_EVENT'			=> $is_event,
+						'NAME'					=> $filename,
 						'U_EDIT'				=> $u_edit . '&amp;filename=' . $filename,
 						'SIZE'					=> $file_size_ary[$filename],
 						'COMMENT'				=> $file_comment_ary[$filename],
