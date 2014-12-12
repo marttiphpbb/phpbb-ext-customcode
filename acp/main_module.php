@@ -16,8 +16,10 @@ class main_module
 	protected $events = array(
 		'overall_footer_after.html',
 		'overall_footer_copyright_append.html',
+		'overall_footer_page_body_after.html',
 		'overall_header_content_before.html',		
 		'overall_header_head_append.html',
+		'overall_header_page_body_before.html',
 		'overall_header_stylesheets_after.html',
 		
 	);

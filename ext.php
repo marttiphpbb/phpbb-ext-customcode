@@ -21,9 +21,11 @@ class ext extends \phpbb\extension\base
 		'overall_footer_after.html'				=> '',
 		'overall_footer_copyright_append.html'	=>
 			"<!-- Custom Code Github link -->\r\n<br/><a href='https://github.com/marttiphpbb/phpbb-ext-customcode'>Custom Code</a> extension for phpBB",
+		'overall_footer_page_body_after.html'	=> '',
 		
 		'overall_header_content_before.html'	=> '',
 		'overall_header_head_append.html'		=> '',		
+		'overall_header_page_body_before.html'	=> '',		
 		'overall_header_stylesheets_after.html'	=> '',
 	);
 
