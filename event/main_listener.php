@@ -67,7 +67,7 @@ class main_listener implements EventSubscriberInterface
 	
 	public function core_append_sid($event)
 	{
-		if ($this->request->variable('show_customcode_events', 0))
+		if ($this->request->variable('show_customcode_events', 0) && !$this->request->variable('hide_customcode_events', 0))
 		{
 			$params = $event['params'];
 			if (is_string($params))
@@ -80,7 +80,10 @@ class main_listener implements EventSubscriberInterface
 				{
 					$params = array();
 				}
-				$params['show_customcode_events'] = 1;
+				if (!isset($params['hide_customcode_events']))
+				{
+					$params['show_customcode_events'] = 1;
+				}
 			}
 			$event['params'] = $params;
 		}
