@@ -1,6 +1,9 @@
 services:
     marttiphpbb.customcode.listener:
         class: marttiphpbb\customcode\event\main_listener
+        arguments:
+            - @request
+            - @template
         tags:
             - { name: event.listener }
 
