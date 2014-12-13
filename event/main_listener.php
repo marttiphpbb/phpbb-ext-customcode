@@ -27,17 +27,23 @@ class main_listener implements EventSubscriberInterface
 	/* @var template */
 	protected $template;
 
+	/* @var string */
+	protected $phpbb_root_path;
+
 	/**
 	 * @param request $request
 	 * @param template $template
+	 * @param string $phpbb_root_path 
 	*/
 	public function __construct(
 		request $request,
-		template $template
+		template $template,
+		$phpbb_root_path
 	)
 	{	
 		$this->request = $request;
 		$this->template = $template;
+		$this->phpbb_root_path = $phpbb_root_path;
 	}
 
 	static public function getSubscribedEvents()
@@ -63,6 +69,21 @@ class main_listener implements EventSubscriberInterface
 	{
 		$show_customcode_events = ($this->request->variable('show_customcode_events', 0)) ? true : false;
 		$this->template->assign_var('S_SHOW_CUSTOMCODE_EVENTS', $show_customcode_events);
+		if ($show_customcode_events)
+		{
+			$template_edit_urls = array();
+			$params = array(
+				'i'			=> '-marttiphpbb-customcode-acp-main_module',
+				'mode'		=> 'edit',
+			);
+			
+			
+			
+			
+		}
+		
+		
+		
 	}
 	
 	public function core_append_sid($event)

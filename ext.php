@@ -7,28 +7,12 @@
 
 namespace marttiphpbb\customcode;
 
+use phpbb\extension\base;
+use marttiphpbb\customcode\customcode_directory;
 
 
-class ext extends \phpbb\extension\base
+class ext extends base
 {
-	
-	public $dir = 'store/customcode';
-	
-	private $files = array(
-		'.htaccess'			=> 
-			"<Files *>\r\n    Order Allow, Deny\r\n    Deny from All\r\n</Files>",
-
-		'overall_footer_after.html'				=> '',
-		'overall_footer_copyright_append.html'	=>
-			"<!-- Custom Code Github link -->\r\n<br/><a href='https://github.com/marttiphpbb/phpbb-ext-customcode'>Custom Code</a> extension for phpBB",
-		'overall_footer_page_body_after.html'	=> '',
-		
-		'overall_header_content_before.html'	=> '',
-		'overall_header_head_append.html'		=> '',		
-		'overall_header_page_body_before.html'	=> '',		
-		'overall_header_stylesheets_after.html'	=> '',
-	);
-
 	/**
 	* @param mixed $old_state State returned by previous call of this method
 	* @return mixed Returns false after last step, otherwise temporary state
@@ -38,30 +22,10 @@ class ext extends \phpbb\extension\base
 		switch ($old_state)
 		{
 			case '': // Empty means nothing has run yet
-				// create directory /store/customcode
+				// create directory 
 				$phpbb_root_path = $this->container->getParameter('core.root_path');
-				$dir = $phpbb_root_path . $this->dir;
-				if (!file_exists($dir)) 
-				{
-					@mkdir($dir, 0777);
-					@chmod($dir, 0777);
-					
-					if (!is_dir($dir))
-					{	
-						// translation is not possible here, language files are not yet included
-						trigger_error(sprintf('Failed to create the directory %s', $this->dir), E_USER_WARNING);
-					}
-				}
-				
-				foreach ($this->files as $filename => $content)
-				{
-					$filename = $dir . '/' . $filename;
-					if (!file_exists($filename))
-					{
-						file_put_contents($filename, $content);
-					}
-				}
-
+				$customcode_directory = new customcode_directory($phpbb_root_path);
+				$customcode_directory->create();
 				return '1';
 				break;
 			default:
@@ -80,41 +44,15 @@ class ext extends \phpbb\extension\base
 		switch ($old_state)
 		{
 			case '': // Empty means nothing has run yet
-				$phpbb_root_path = $this->container->getParameter('core.root_path');			
-				$dir = $phpbb_root_path . $this->dir;			
-				$this->remove_directory($dir);
+				$phpbb_root_path = $this->container->getParameter('core.root_path');
+				$customcode_directory = new customcode_directory($phpbb_root_path);
+				$customcode_directory->remove();
 				return '1';
 				break;
 			default:
 				return parent::purge_step($old_state);
 				break;
 		}
-	}
-	
-	private function remove_directory($dir)
-	{
-		if(!is_dir($dir))
-		{
-			return;
-		}
-		$objects = scandir($dir);
-		foreach ($objects as $object)
-		{
-			if ($object == '.' || $object == '..')
-			{
-				continue;
-			}
-			$object = $dir . '/' . $object;
-			if (filetype($object) == 'dir')
-			{
-				$this->remove_directory($object);
-			} 
-			else 
-			{
-				unlink($object);
-			}
-		}
-		rmdir($dir);
 	}
 }	
 
