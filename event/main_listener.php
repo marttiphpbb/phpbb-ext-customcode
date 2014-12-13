@@ -62,7 +62,7 @@ class main_listener implements EventSubscriberInterface
 	public function core_page_footer($event)
 	{
 		$show_customcode_events = ($this->request->variable('show_customcode_events', 0)) ? true : false;
-		$this->template->assign_var('S_SHOW_CUSTOMCODE_EVENTS', $show_customcode_events);		
+		$this->template->assign_var('S_SHOW_CUSTOMCODE_EVENTS', $show_customcode_events);
 	}
 	
 	public function core_append_sid($event)

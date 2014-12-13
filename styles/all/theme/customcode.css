@@ -1,7 +1,17 @@
-a.customcode-event
+a.customcode-event, a.customcode-event-head, a.customcode-event-hide
 {
     background-color: blue;
     color: white;
     font-size: 1.2em;
     border: 1px solid white;
+}
+
+a.customcode-event-head
+{
+	background-color: brown;
+}
+
+a.customcode-event-hide
+{
+	background-color: red;
 }
