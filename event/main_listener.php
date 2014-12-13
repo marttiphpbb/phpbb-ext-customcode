@@ -80,9 +80,13 @@ class main_listener implements EventSubscriberInterface
 				{
 					$params = array();
 				}
-				if (!isset($params['hide_customcode_events']))
+				if (isset($params['hide_customcode_events']))
 				{
-					$params['show_customcode_events'] = 1;
+					unset($params['hide_customcode_events']);
+				} 
+				else
+				{
+					$params['show_customcode_events'] = 1;					
 				}
 			}
 			$event['params'] = $params;
