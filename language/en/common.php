@@ -61,5 +61,6 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST'		=> 'The file %s does not exist.',
 	'ACP_CUSTOMCODE_FILE_NOT_DELETED'			=> 'Failed to delete file %s.',
 	'ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'		=> '(E)',
-
+	'CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'Show template events locations',
+	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Hide template events locations',
 ));

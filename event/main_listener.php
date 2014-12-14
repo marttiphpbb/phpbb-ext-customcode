@@ -67,8 +67,8 @@ class main_listener implements EventSubscriberInterface
 	
 	public function core_page_footer($event)
 	{
-		$show_customcode_events = ($this->request->variable('show_customcode_events', 0)) ? true : false;
-		$this->template->assign_var('S_SHOW_CUSTOMCODE_EVENTS', $show_customcode_events);
+		$show_customcode_events = ($this->request->variable('customcode_show_events', 0)) ? true : false;
+		$this->template->assign_var('S_CUSTOMCODE_SHOW_EVENTS', $show_customcode_events);
 		if ($show_customcode_events)
 		{
 			$template_edit_urls = array();
@@ -88,12 +88,12 @@ class main_listener implements EventSubscriberInterface
 	
 	public function core_append_sid($event)
 	{
-		if ($this->request->variable('show_customcode_events', 0) && !$this->request->variable('hide_customcode_events', 0))
+		if ($this->request->variable('customcode_show_events', 0) && !$this->request->variable('customcode_hide_events', 0))
 		{
 			$params = $event['params'];
 			if (is_string($params))
 			{
-				$params .= '&show_customcode_events=1';
+				$params .= '&customcode_show_events=1';
 			}
 			else
 			{
@@ -101,13 +101,13 @@ class main_listener implements EventSubscriberInterface
 				{
 					$params = array();
 				}
-				if (isset($params['hide_customcode_events']))
+				if (isset($params['customcode_hide_events']))
 				{
-					unset($params['hide_customcode_events']);
+					unset($params['customcode_hide_events']);
 				} 
 				else
 				{
-					$params['show_customcode_events'] = 1;					
+					$params['customcode_show_events'] = 1;					
 				}
 			}
 			$event['params'] = $params;

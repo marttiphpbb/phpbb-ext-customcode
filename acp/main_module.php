@@ -189,7 +189,16 @@ class main_module
 					'U_ACTION'					=> $this->u_action,
 					'NEW_FILE'					=> $new_file,
 					'FILES_EXPLAIN'				=> sprintf($user->lang('ACP_CUSTOMCODE_FILES_EXPLAIN'), $user->lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'), $customcode_directory->get_dir()),
-				));				
+				));	
+				
+				if ($request->variable('customcode_show_events', 0))
+				{
+					$template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', append_sid($phpbb_root_path . 'index.php', array('customcode_hide_events' => 1)));
+				}
+				else
+				{
+					$template->assign_var('U_CUSTOMCODE_SHOW_EVENTS', append_sid($phpbb_root_path . 'index.php', array('customcode_show_events' => 1)));	
+				}			
 				
 				break;
 		}
