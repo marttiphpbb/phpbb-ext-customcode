@@ -53,7 +53,7 @@ class customcode_directory
 	/*
 	 * @return array
 	 */
-	public function get_filenames()
+	public function get_filenames__()
 	{
 		return array_map(function($template_event)
 		{
@@ -77,6 +77,43 @@ class customcode_directory
 	{
 		return (in_array($this->template_events, $template_event)) ? $this->template_events[$template_event] : '';
 	}
+
+
+	/**
+	 * @param string $filename
+	 * @param string $data
+	 * @return bool success
+	 */
+	public function save_to_file($filename, $data)
+	{
+		if (!($f = @fopen($this->phpbb_root_path . $this->dir . '/' . $filename, 'wb')))
+		{
+			return false;
+			trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_NOT_WRITABLE'), $file) . adm_back_link($this->u_action . '&amp;filename=' . $file), E_USER_WARNING);
+		}
+
+		fwrite($f, $data);
+		fclose($f);	
+		return true;		
+	}
+	
+	/*
+	 * @param string $filename
+	 * @return string data
+	 */
+	public function file_get_contents($filename)
+	{
+		return ($filename) ? file_get_contents($this->phpbb_root_path . $this->dir . '/' . $filename) : '';	
+	}
+
+	/**
+	 * @return array
+	 */
+	public function get_filenames()
+	{
+		return array_diff(scandir($this->phpbb_root_path . $this->dir), array('.', '..', '.htaccess'));
+	}
+
 
 	/**
 	 * 

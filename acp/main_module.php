@@ -7,6 +7,8 @@
 
 namespace marttiphpbb\customcode\acp;
 
+use marttiphpbb\customcode\customcode_directory;
+
 class main_module
 {
 	public $u_action;
@@ -40,8 +42,10 @@ class main_module
 
 		$user->add_lang_ext('marttiphpbb/customcode', 'common');
 		add_form_key('marttiphpbb/customcode');
+		
+		$customcode_directory = new customcode_directory($phpbb_root_path);
 			
-		$filenames = array_diff(scandir($phpbb_root_path . $this->dir), array('.', '..', '.htaccess'));
+		$filenames = $customcode_directory->get_filenames();
 	
 		switch($mode)
 		{
@@ -64,13 +68,10 @@ class main_module
 					
 					if (confirm_box(true))
 					{
-						if (!($f = @fopen($phpbb_root_path . $this->dir . '/' . $file, 'wb')))
+						if (!$customcode_directory->save_to_file($file, $data))
 						{
 							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_NOT_WRITABLE'), $file) . adm_back_link($this->u_action . '&amp;filename=' . $file), E_USER_WARNING);
 						}
-			
-						fwrite($f, $data);
-						fclose($f);	
 						
 						if ($save_purge_cache)
 						{
@@ -106,8 +107,7 @@ class main_module
 					$file = ($file == '') ? current($filenames) : $file;
 				}
 
-				$data = ($file) ? file_get_contents($phpbb_root_path . $this->dir . '/' . $file) : '';		
-
+				$data = $customcode_directory->file_get_contents($file);		
 
 				$options = '';
 
