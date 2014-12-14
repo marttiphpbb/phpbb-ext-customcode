@@ -63,4 +63,5 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'		=> '(E)',
 	'CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'Show template events locations',
 	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Hide template events locations',
+	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(inside html head)',
 ));

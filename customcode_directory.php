@@ -28,6 +28,7 @@ class customcode_directory
 			"<!-- Custom Code Github link -->\r\n<br/><a href='https://github.com/marttiphpbb/phpbb-ext-customcode'>Custom Code</a> extension for phpBB",
 		'overall_footer_page_body_after'	=> '',
 		
+		'overall_header_body_before'		=> '',
 		'overall_header_content_before'		=> '',
 		'overall_header_head_append'		=> '',		
 		'overall_header_page_body_before'	=> '',		
@@ -98,13 +99,22 @@ class customcode_directory
 	}
 	
 	/**
-	 * @param string filename
+	 * @param string $filename
 	 * @return bool 
 	 */
 	public function is_event($filename)
 	{
-		$basename = basename($filename, $this->file_extension);
+		$basename = $this->get_basename($filename);
 		return ($filename === $basename . $this->file_extension && isset($this->template_events[$basename])) ? true : false;  
+	}
+	
+	/**
+	 * @param string $filename
+	 * @return string 
+	 */
+	public function get_basename($filename)
+	{
+		return basename($filename, $this->file_extension);
 	}
 
 	/**

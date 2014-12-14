@@ -11,6 +11,8 @@ namespace marttiphpbb\customcode\event;
 use phpbb\request\request;
 use phpbb\template\twig\twig as template;
 
+use marttiphpbb\customcode\customcode_directory;
+
 /**
 * @ignore
 */
@@ -29,6 +31,9 @@ class main_listener implements EventSubscriberInterface
 
 	/* @var string */
 	protected $phpbb_root_path;
+	
+	/* @var string */
+	protected $php_ext;
 
 	/**
 	 * @param request $request
@@ -38,12 +43,14 @@ class main_listener implements EventSubscriberInterface
 	public function __construct(
 		request $request,
 		template $template,
-		$phpbb_root_path
+		$phpbb_root_path,
+		$php_ext
 	)
 	{	
 		$this->request = $request;
 		$this->template = $template;
 		$this->phpbb_root_path = $phpbb_root_path;
+		$this->php_ext = $php_ext;
 	}
 
 	static public function getSubscribedEvents()
@@ -71,19 +78,24 @@ class main_listener implements EventSubscriberInterface
 		$this->template->assign_var('S_CUSTOMCODE_SHOW_EVENTS', $show_customcode_events);
 		if ($show_customcode_events)
 		{
+			$customcode_directory = new customcode_directory($this->phpbb_root_path);
+			$filenames = $customcode_directory->get_filenames();
+			
 			$template_edit_urls = array();
 			$params = array(
 				'i'			=> '-marttiphpbb-customcode-acp-main_module',
 				'mode'		=> 'edit',
 			);
 			
-			
-			
-			
+			foreach ($filenames as $filename)
+			{
+				$params['filename'] = $filename;
+				$this->template->assign_var(
+					'U_CUSTOMCODE_' . strtoupper($customcode_directory->get_basename($filename)),
+					append_sid($this->phpbb_root_path . 'adm/index.' . $this->php_ext, $params)
+				);
+			}
 		}
-		
-		
-		
 	}
 	
 	public function core_append_sid($event)

@@ -15,7 +15,7 @@ class main_module
 	
 	function main($id, $mode)
 	{
-		global $template, $request, $phpbb_root_path, $user, $cache, $config;
+		global $template, $request, $phpbb_root_path, $user, $cache, $config, $phpEx;
 		
 
 		$user->add_lang_ext('marttiphpbb/customcode', 'common');
@@ -193,11 +193,11 @@ class main_module
 				
 				if ($request->variable('customcode_show_events', 0))
 				{
-					$template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', append_sid($phpbb_root_path . 'index.php', array('customcode_hide_events' => 1)));
+					$template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', append_sid($phpbb_root_path . 'index.' . $phpEx, array('customcode_hide_events' => 1)));
 				}
 				else
 				{
-					$template->assign_var('U_CUSTOMCODE_SHOW_EVENTS', append_sid($phpbb_root_path . 'index.php', array('customcode_show_events' => 1)));	
+					$template->assign_var('U_CUSTOMCODE_SHOW_EVENTS', append_sid($phpbb_root_path . 'index.' . $phpEx, array('customcode_show_events' => 1)));	
 				}			
 				
 				break;
