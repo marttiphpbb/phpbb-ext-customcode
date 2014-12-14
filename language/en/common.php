@@ -34,11 +34,11 @@ $lang = array_merge($lang, array(
 
 	'ACP_CUSTOMCODE'							=> 'Custom Code',
 	'ACP_CUSTOMCODE_EDIT'						=> 'Edit',
-	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'To include your own created files, prepend the filename with <code>../../../../../../store/customcode/</code><p><code>&lt;!-- INCLUDE ../../../../../../store/customcode/my_file.html --></code></p>',
+	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'To include your own created files, prepend the filename with <code>../../../../../../%1$s/</code><p><code>&lt;!-- INCLUDE ../../../../../../%1$s/my_file.html --></code></p>',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Create file',
 	'ACP_CUSTOMCODE_DELETE'						=> 'Delete',
 	'ACP_CUSTOMCODE_DELETE_FILE_NAME'			=> 'Delete %s',
-	'ACP_CUSTOMCODE_FILES_EXPLAIN'				=> 'Files directly included with template events (E) cannot be deleted. All files reside at directory store/customcode.',
+	'ACP_CUSTOMCODE_FILES_EXPLAIN'				=> 'Files directly included with template events %1$s cannot be deleted. All files reside at directory %2$s.',
 	'ACP_CUSTOMCODE_FILE_SIZE'					=> 'Size',
 	'ACP_CUSTOMCODE_FILE_NAME'					=> 'Name',
 	'ACP_CUSTOMCODE_FILE_COMMENT'				=> 'Comment',

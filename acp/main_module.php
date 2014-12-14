@@ -107,6 +107,7 @@ class main_module
 					'S_IS_EVENT'				=> $customcode_directory->is_event($file),
 					'FILE_DATA'					=> utf8_htmlspecialchars($data),
 					'S_FILENAMES'				=> $options,
+					'INCLUDE_EXAMPLE'		=> sprintf($user->lang('ACP_CUSTOMCODE_INCLUDE_EXAMPLE', $customcode_directory->get_dir())),
 				));
 
 				break;
@@ -187,6 +188,7 @@ class main_module
 				$template->assign_vars(array(
 					'U_ACTION'					=> $this->u_action,
 					'NEW_FILE'					=> $new_file,
+					'FILES_EXPLAIN'				=> sprintf($user->lang('ACP_CUSTOMCODE_FILES_EXPLAIN'), $user->lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'), $customcode_directory->get_dir()),
 				));				
 				
 				break;
