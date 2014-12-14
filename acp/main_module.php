@@ -13,28 +13,6 @@ class main_module
 {
 	public $u_action;
 	
-	protected $dir = 'store/customcode';
-	
-	protected $events = array(
-		'overall_footer_after.html',
-		'overall_footer_copyright_append.html',
-		'overall_footer_page_body_after.html',
-		'overall_header_content_before.html',		
-		'overall_header_head_append.html',
-		'overall_header_page_body_before.html',
-		'overall_header_stylesheets_after.html',
-		
-	);
-	
-	protected $comment_tag = array(
-		'open'		=> '<!--',
-		'close'		=> '-->',
-	);
-
-	protected $file_size_scales = ' KMGTP';
-	
-	
-
 	function main($id, $mode)
 	{
 		global $template, $request, $phpbb_root_path, $user, $cache, $config;
@@ -111,19 +89,22 @@ class main_module
 
 				$options = '';
 
+				$event_file_indicator = $user->lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR');
+
 				foreach($filenames as $filename)
 				{
 					$options .= '<option value="' . $filename . '"';
 					$options .= ($filename == $file) ? ' selected="selected"' : '';
 					$options .= '>' . $filename;
-					$options .= (in_array($filename, $this->events)) ? ' (E)' : '';
+					$options .= ($customcode_directory->is_event($filename)) ? ' ' . $event_file_indicator : '';
 					$options .= '</option>';	
 				}
 				
 				$template->assign_vars(array(
 					'U_ACTION'					=> $this->u_action,
 					'EDITOR_ROWS'				=> $editor_rows,
-					'FILENAME'					=> $file . (in_array($file, $this->events) ? ' (E)' : ''),
+					'FILENAME'					=> $file,
+					'S_IS_EVENT'				=> $customcode_directory->is_event($file),
 					'FILE_DATA'					=> utf8_htmlspecialchars($data),
 					'S_FILENAMES'				=> $options,
 				));
@@ -156,7 +137,7 @@ class main_module
 						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_ALREADY_EXISTS'), $new_file) . adm_back_link($this->u_action), E_USER_WARNING);
 					}
 					
-					if (!touch($phpbb_root_path . $this->dir . '/' . $new_file))
+					if (!$customcode_directory->create_file($new_file))
 					{
 						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_NOT_CREATED'), $new_file) . adm_back_link($this->u_action), E_USER_WARNING);
 					}					
@@ -173,7 +154,7 @@ class main_module
 					
 					if (confirm_box(true))
 					{			
-						if (!unlink($phpbb_root_path . $this->dir . '/' . $file_to_delete))
+						if (!$customcode_directory->delete_file($file_to_delete))
 						{
 							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_NOT_DELETED'), $file_to_delete) . adm_back_link($this->u_action), E_USER_WARNING);
 						}
@@ -187,50 +168,18 @@ class main_module
 					);					
 					
 					confirm_box(false, sprintf($user->lang('ACP_CUSTOMCODE_DELETE_FILE_CONFIRM'), $file_to_delete), build_hidden_fields($s_hidden_fields));				
-				}				
-
-				$file_size_ary = $file_comment_ary = array();
-
-				foreach ($filenames as $filename)
-				{
-					$path = $phpbb_root_path . $this->dir . '/' . $filename;
-					$comment = '';
-					
-					$size = @filesize($path);
-					$mul = floor((strlen($size) - 1) / 3);
-					$file_size_ary[$filename] = sprintf('%.0f', $size / pow(1024, $mul)) . @$this->file_size_scales[$mul];
-					
-					$f = fopen($path, 'r');
-					if ($f && ($first_line = @fgets($f))) 
-					{
-						$start = strpos($first_line, $this->comment_tag['open']);
-						if ($start !== false)
-						{
-							$start += strlen($this->comment_tag['open']);
-							$end = strpos($first_line, $this->comment_tag['close'], $start);
-							if ($end !== false)
-							{
-								$comment = trim(substr($first_line, $start, $end - $start));
-							}
-						}
-						
-					}
-					fclose($f);
-					$file_comment_ary[$filename] = $comment;
 				}
 				
 				$u_edit = str_replace('mode=files', 'mode=edit', $this->u_action);
 
 				foreach ($filenames as $filename)
 				{
-					$is_event = (in_array($filename, $this->events)) ? true : false;
-
 					$template->assign_block_vars('files', array(
-						'S_IS_EVENT'			=> $is_event,
+						'S_IS_EVENT'			=> $customcode_directory->is_event($filename),
 						'NAME'					=> $filename,
 						'U_EDIT'				=> $u_edit . '&amp;filename=' . $filename,
-						'SIZE'					=> $file_size_ary[$filename],
-						'COMMENT'				=> $file_comment_ary[$filename],
+						'SIZE'					=> $customcode_directory->get_filesize($filename),
+						'COMMENT'				=> $customcode_directory->get_comment($filename),
 						'DELETE_FILE_NAME'		=> sprintf($user->lang('ACP_CUSTOMCODE_DELETE_FILE_NAME'), $filename),
 					));
 				}

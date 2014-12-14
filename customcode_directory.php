@@ -37,6 +37,14 @@ class customcode_directory
 	/* @var string */
 	private $file_extension = '.html';
 
+	protected $comment_tag = array(
+		'open'		=> '<!--',
+		'close'		=> '-->',
+	);
+
+	protected $file_size_scales = ' KMGTP';
+
+
 	public function __construct($phpbb_root_path)
 	{
 		$this->phpbb_root_path = $phpbb_root_path;
@@ -51,33 +59,71 @@ class customcode_directory
 	}
 	
 	/*
-	 * @return array
+	 * @param string
+	 * @return string
 	 */
-	public function get_filenames__()
+	public function get_comment($filename)
 	{
-		return array_map(function($template_event)
+		$comment = '';
+		$path = $this->phpbb_root_path . $this->dir . '/' . $filename;		
+		$f = fopen($path, 'r');
+		if ($f && ($first_line = @fgets($f))) 
 		{
-			return $template_event . $this->file_extension;
-		}, array_keys($this->template_events));
-	}
-	
-	/*
-	 * @return array
-	 */
-	public function get_events()
-	{
-		return array_keys($this->template_events);
+			$start = strpos($first_line, $this->comment_tag['open']);
+			if ($start !== false)
+			{
+				$start += strlen($this->comment_tag['open']);
+				$end = strpos($first_line, $this->comment_tag['close'], $start);
+				if ($end !== false)
+				{
+					$comment = trim(substr($first_line, $start, $end - $start));
+				}
+			}
+			
+		}
+		fclose($f);		
+		return $comment;
 	}
 	
 	/*
 	 * @param string
 	 * @return string
 	 */
-	public function get_initial_content($template_event)
+	public function get_filesize($filename)
 	{
-		return (in_array($this->template_events, $template_event)) ? $this->template_events[$template_event] : '';
+		$path = $this->phpbb_root_path . $this->dir . '/' . $filename;		
+		$size = @filesize($path);
+		$mul = floor((strlen($size) - 1) / 3);
+		return sprintf('%.0f', $size / pow(1024, $mul)) . @$this->file_size_scales[$mul];
+	}
+	
+	/**
+	 * @param string filename
+	 * @return bool 
+	 */
+	public function is_event($filename)
+	{
+		$basename = basename($filename, $this->file_extension);
+		return ($filename === $basename . $this->file_extension && isset($this->template_events[$basename])) ? true : false;  
 	}
 
+	/**
+	 * @param string $filename
+	 * @return bool success
+	 */
+	public function delete_file($filename)
+	{
+		return (unlink($this->phpbb_root_path . $this->dir . '/' . $filename)) ? true : false;
+	}
+
+	/**
+	 * @param string $filename
+	 * @return bool success
+	 */
+	public function create_file($filename)
+	{
+		return (touch($this->phpbb_root_path . $this->dir . '/' . $filename)) ? true : false;		
+	}
 
 	/**
 	 * @param string $filename
