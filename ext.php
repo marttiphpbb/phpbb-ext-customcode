@@ -8,7 +8,7 @@
 namespace marttiphpbb\customcode;
 
 use phpbb\extension\base;
-use marttiphpbb\customcode\customcode_directory;
+use marttiphpbb\customcode\model\customcode_directory;
 
 
 class ext extends base

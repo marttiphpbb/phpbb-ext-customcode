@@ -5,7 +5,7 @@
 * @license http://opensource.org/licenses/MIT
 */
 
-namespace marttiphpbb\customcode;
+namespace marttiphpbb\customcode\model;
 
 
 

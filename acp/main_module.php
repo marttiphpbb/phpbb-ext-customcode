@@ -7,7 +7,7 @@
 
 namespace marttiphpbb\customcode\acp;
 
-use marttiphpbb\customcode\customcode_directory;
+use marttiphpbb\customcode\model\customcode_directory;
 
 class main_module
 {

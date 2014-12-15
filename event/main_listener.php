@@ -12,7 +12,7 @@ use phpbb\request\request;
 use phpbb\template\twig\twig as template;
 use phpbb\user;
 
-use marttiphpbb\customcode\customcode_directory;
+use marttiphpbb\customcode\model\customcode_directory;
 
 /**
 * @ignore
