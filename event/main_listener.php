@@ -83,12 +83,13 @@ class main_listener implements EventSubscriberInterface
 	public function core_page_footer($event)
 	{
 		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
-		
-		
+
 		$show_customcode_events = ($this->request->variable('customcode_show_events', 0)) ? true : false;
-		$this->template->assign_var('S_CUSTOMCODE_SHOW_EVENTS', $show_customcode_events);
+
 		if ($show_customcode_events)
-		{
+		{		
+			$this->template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', append_sid($this->phpbb_root_path . 'index.' . $this->php_ext, array('customcode_hide_events' => 1)));
+			
 			$customcode_directory = new customcode_directory($this->phpbb_root_path);
 			$filenames = $customcode_directory->get_filenames();
 			
@@ -114,7 +115,7 @@ class main_listener implements EventSubscriberInterface
 		if ($this->request->variable('customcode_show_events', 0) && !$this->request->variable('customcode_hide_events', 0))
 		{
 			$params = $event['params'];
-			if (is_string($params))
+			if (is_string($params) && $params != '')
 			{
 				$params .= '&customcode_show_events=1';
 			}
@@ -126,7 +127,7 @@ class main_listener implements EventSubscriberInterface
 				}
 				if (isset($params['customcode_hide_events']))
 				{
-					unset($params['customcode_hide_events']);
+					$params = false;
 				} 
 				else
 				{
