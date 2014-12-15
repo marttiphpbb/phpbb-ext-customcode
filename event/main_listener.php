@@ -10,6 +10,7 @@ namespace marttiphpbb\customcode\event;
 
 use phpbb\request\request;
 use phpbb\template\twig\twig as template;
+use phpbb\user;
 
 use marttiphpbb\customcode\customcode_directory;
 
@@ -28,6 +29,9 @@ class main_listener implements EventSubscriberInterface
 	
 	/* @var template */
 	protected $template;
+	
+	/* @var user */
+	protected $user;	
 
 	/* @var string */
 	protected $phpbb_root_path;
@@ -38,17 +42,21 @@ class main_listener implements EventSubscriberInterface
 	/**
 	 * @param request $request
 	 * @param template $template
-	 * @param string $phpbb_root_path 
+	 * @param user $user
+	 * @param string $phpbb_root_path
+	 * @param string $php_ext
 	*/
 	public function __construct(
 		request $request,
 		template $template,
+		user $user,
 		$phpbb_root_path,
 		$php_ext
 	)
 	{	
 		$this->request = $request;
 		$this->template = $template;
+		$this->user = $user;
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->php_ext = $php_ext;
 	}
@@ -74,6 +82,9 @@ class main_listener implements EventSubscriberInterface
 	
 	public function core_page_footer($event)
 	{
+		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
+		
+		
 		$show_customcode_events = ($this->request->variable('customcode_show_events', 0)) ? true : false;
 		$this->template->assign_var('S_CUSTOMCODE_SHOW_EVENTS', $show_customcode_events);
 		if ($show_customcode_events)
@@ -92,7 +103,7 @@ class main_listener implements EventSubscriberInterface
 				$params['filename'] = $filename;
 				$this->template->assign_var(
 					'U_CUSTOMCODE_' . strtoupper($customcode_directory->get_basename($filename)),
-					append_sid($this->phpbb_root_path . 'adm/index.' . $this->php_ext, $params)
+					append_sid($phpbb_admin_path . 'index.' . $this->php_ext, $params, true, $this->user->session_id)
 				);
 			}
 		}
