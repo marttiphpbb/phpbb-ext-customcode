@@ -7,7 +7,7 @@
 
 namespace marttiphpbb\customcode\event;
 
-
+use phpbb\auth\auth;
 use phpbb\request\request;
 use phpbb\template\twig\twig as template;
 use phpbb\user;
@@ -24,6 +24,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 */
 class main_listener implements EventSubscriberInterface
 {
+	/* @var auth */
+	protected $auth;
+
 	/* @var request */
 	protected $request;
 	
@@ -40,6 +43,7 @@ class main_listener implements EventSubscriberInterface
 	protected $php_ext;
 
 	/**
+	 * @param auth $auth
 	 * @param request $request
 	 * @param template $template
 	 * @param user $user
@@ -47,6 +51,7 @@ class main_listener implements EventSubscriberInterface
 	 * @param string $php_ext
 	*/
 	public function __construct(
+		auth $auth,
 		request $request,
 		template $template,
 		user $user,
@@ -54,6 +59,7 @@ class main_listener implements EventSubscriberInterface
 		$php_ext
 	)
 	{	
+		$this->auth = $auth;
 		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
@@ -86,7 +92,7 @@ class main_listener implements EventSubscriberInterface
 
 		$show_customcode_events = ($this->request->variable('customcode_show_events', 0)) ? true : false;
 
-		if ($show_customcode_events)
+		if ($show_customcode_events && $this->auth->acl_get('a_board'))
 		{		
 			$this->template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', append_sid($this->phpbb_root_path . 'index.' . $this->php_ext, array('customcode_hide_events' => 1)));
 			
@@ -112,7 +118,9 @@ class main_listener implements EventSubscriberInterface
 	
 	public function core_append_sid($event)
 	{
-		if ($this->request->variable('customcode_show_events', 0) && !$this->request->variable('customcode_hide_events', 0))
+		if ($this->request->variable('customcode_show_events', 0) 
+			&& !$this->request->variable('customcode_hide_events', 0) 
+			&& $this->auth->acl_get('a_board'))
 		{
 			$params = $event['params'];
 			if (is_string($params) && $params != '')
