@@ -90,11 +90,17 @@ class main_listener implements EventSubscriberInterface
 	{
 		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
 
-		$show_customcode_events = ($this->request->variable('customcode_show_events', 0)) ? true : false;
+		$show_events = ($this->request->variable('customcode_show_events', 0)) ? true : false;
 
-		if ($show_customcode_events && $this->auth->acl_get('a_board'))
-		{		
-			$this->template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', append_sid($this->phpbb_root_path . 'index.' . $this->php_ext, array('customcode_hide_events' => 1)));
+		if ($show_events && $this->auth->acl_get('a_'))
+		{	
+			$page_name = $this->user->page['page_name'];
+			$query_string = $this->user->page['query_string'];
+
+			$query_string = str_replace('&customcode_show_events=1', '&customcode_show_events=0', $query_string);
+			$query_string = str_replace('customcode_show_events=1', 'customcode_show_events=0', $query_string);
+			
+			$this->template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', append_sid($page_name, $query_string));
 			
 			$customcode_directory = new customcode_directory($this->phpbb_root_path);
 			$filenames = $customcode_directory->get_filenames();
@@ -118,11 +124,19 @@ class main_listener implements EventSubscriberInterface
 	
 	public function core_append_sid($event)
 	{
-		if ($this->request->variable('customcode_show_events', 0) 
-			&& !$this->request->variable('customcode_hide_events', 0) 
-			&& $this->auth->acl_get('a_board'))
+		$params = $event['params'];
+		
+		if (is_string($params))
 		{
-			$params = $event['params'];
+			if (strpos($params, 'customcode_show_events=0') !== false)
+			{
+				return;
+			}
+		}		
+
+		if ($this->request->variable('customcode_show_events', 0) 
+			&& $this->auth->acl_get('a_'))
+		{
 			if (is_string($params) && $params != '')
 			{
 				$params .= '&customcode_show_events=1';
