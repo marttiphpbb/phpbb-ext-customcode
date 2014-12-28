@@ -33,6 +33,8 @@ class customcode_directory
 		'overall_header_head_append'		=> '',		
 		'overall_header_page_body_before'	=> '',		
 		'overall_header_stylesheets_after'	=> '',
+		'topiclist_row_append'				=> '',
+		'viewtopic_body_postrow_post_after' => '',
 	);
 	
 	/* @var string */
