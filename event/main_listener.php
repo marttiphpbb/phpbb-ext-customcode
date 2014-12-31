@@ -91,9 +91,6 @@ class main_listener implements EventSubscriberInterface
 		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
 
 		$show_events = ($this->request->variable('customcode_show_events', 0)) ? true : false;
-		$page_name = $this->user->page['page_name'];
-		
-		$this->template->assign_var('CUSTOMCODE_PAGE_NAME', $page_name);
 
 		if ($show_events && $this->auth->acl_get('a_'))
 		{	
@@ -123,6 +120,21 @@ class main_listener implements EventSubscriberInterface
 				);
 			}
 		}
+
+		$template_vars = array(
+			'CUSTOMCODE_PAGE_NAME' 	=> $this->user->page['page_name'],
+			'CUSTOMCODE_LANG_NAME'	=> $this->user->lang_name,		
+		);
+		
+		$params = array();
+		parse_str($this->user->page['query_string'], $params);
+
+		foreach ($params as $name => $value)
+		{
+			$template_vars['CUSTOMCODE_PARAM_' . strtoupper($name)] = $value;
+		}
+
+		$this->template->assign_vars($template_vars);
 	}
 	
 	public function core_append_sid($event)
