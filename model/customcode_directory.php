@@ -23,18 +23,19 @@ class customcode_directory
 
 	/* @var array */
 	private $template_events = array(
-		'overall_footer_after'				=> '',
-		'overall_footer_copyright_append'	=>
+		'forumlist_body_category_header_before'	=> '',
+		'overall_footer_after'					=> '',
+		'overall_footer_copyright_append'		=>
 			"<!-- Custom Code Github link -->\r\n<br/><a href='https://github.com/marttiphpbb/phpbb-ext-customcode'>Custom Code</a> extension for phpBB",
-		'overall_footer_page_body_after'	=> '',
+		'overall_footer_page_body_after'		=> '',
 		
-		'overall_header_body_before'		=> '',
-		'overall_header_content_before'		=> '',
-		'overall_header_head_append'		=> '',		
-		'overall_header_page_body_before'	=> '',		
-		'overall_header_stylesheets_after'	=> '',
-		'topiclist_row_append'				=> '',
-		'viewtopic_body_postrow_post_after' => '',
+		'overall_header_body_before'			=> '',
+		'overall_header_content_before'			=> '',
+		'overall_header_head_append'			=> '',		
+		'overall_header_page_body_before'		=> '',		
+		'overall_header_stylesheets_after'		=> '',
+		'topiclist_row_append'					=> '',
+		'viewtopic_body_postrow_post_after' 	=> '',
 	);
 	
 	/* @var string */
