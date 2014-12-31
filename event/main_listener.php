@@ -76,6 +76,7 @@ class main_listener implements EventSubscriberInterface
 		);
 	}
 
+
 	public function load_language_on_setup($event)
 	{
 		$lang_set_ext = $event['lang_set_ext'];
@@ -86,6 +87,7 @@ class main_listener implements EventSubscriberInterface
 		$event['lang_set_ext'] = $lang_set_ext;
 	}
 	
+
 	public function core_page_footer($event)
 	{
 		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
@@ -137,6 +139,8 @@ class main_listener implements EventSubscriberInterface
 		$this->template->assign_vars($template_vars);
 	}
 	
+
+
 	public function core_append_sid($event)
 	{
 		$params = $event['params'];
