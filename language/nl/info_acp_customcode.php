@@ -1,23 +1,21 @@
 <?php
-
 /**
 *  phpBB Extension - marttiphpbb customcode
 * @copyright (c) 2014 marttiphpbb <info@martti.be>
 * @license http://opensource.org/licenses/MIT
-*
-* Translated By : Basil Taha Alhitary - www.alhitary.net
+* 
+* // TO DO: add translation credits
 */
 
 if (!defined('IN_PHPBB'))
 {
-	exit;
+   exit;
 }
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+   $lang = array();
 }
-
 
 // DEVELOPERS PLEASE NOTE
 //
@@ -33,9 +31,9 @@ if (empty($lang) || !is_array($lang))
 
 
 $lang = array_merge($lang, array(
-	s
-	// TO DO: translate in Arabic
-	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Hide Custom Code template events locations',
-	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(inside html head)',
+ 
+    'ACP_CUSTOMCODE'							=> 'Aangepaste Code',
+	'ACP_CUSTOMCODE_EDIT'						=> 'Bewerk',
+	'ACP_CUSTOMCODE_FILES'						=> 'Bestanden',
 
 ));
