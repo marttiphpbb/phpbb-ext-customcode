@@ -81,10 +81,14 @@ class listener implements EventSubscriberInterface
 		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
 
 		$page_name = $this->user->page['page_name'];
+		
+		$rand_100 = mt_rand(1, 100);
 
 		$template_vars = array(
-			'CUSTOMCODE_PAGE' 	=> $page_name,
-			'CUSTOMCODE_LANG'	=> $this->user->lang_name,		
+			'CUSTOMCODE_PAGE' 		=> $page_name,
+			'CUSTOMCODE_LANG'		=> $this->user->lang_name,
+			'CUSTOMCODE_RAND_100'	=> $rand_100,
+			'CUSTOMCODE_RAND_10'	=> ceil($rand_100 / 10),		
 		);
 		
 		$params = array();
