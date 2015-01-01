@@ -83,8 +83,8 @@ class listener implements EventSubscriberInterface
 		$page_name = $this->user->page['page_name'];
 
 		$template_vars = array(
-			'CUSTOMCODE_PAGE_NAME' 	=> $page_name,
-			'CUSTOMCODE_LANG_NAME'	=> $this->user->lang_name,		
+			'CUSTOMCODE_PAGE' 	=> $page_name,
+			'CUSTOMCODE_LANG'	=> $this->user->lang_name,		
 		);
 		
 		$params = array();
