@@ -1,6 +1,6 @@
 services:
     marttiphpbb.customcode.listener:
-        class: marttiphpbb\customcode\event\main_listener
+        class: marttiphpbb\customcode\event\listener
         arguments:
             - @auth
             - @request
