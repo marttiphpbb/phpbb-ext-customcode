@@ -83,12 +83,24 @@ class listener implements EventSubscriberInterface
 		$page_name = $this->user->page['page_name'];
 		
 		$rand_100 = mt_rand(1, 100);
+		
+		$now = $this->user->create_datetime();
+		$time_offset = $now->getOffset();
+		$now = phpbb_gmgetdate($now->getTimestamp() + $time_offset);
 
 		$template_vars = array(
-			'CUSTOMCODE_PAGE' 		=> $page_name,
-			'CUSTOMCODE_LANG'		=> $this->user->lang_name,
-			'CUSTOMCODE_RAND_100'	=> $rand_100,
-			'CUSTOMCODE_RAND_10'	=> ceil($rand_100 / 10),		
+			'CUSTOMCODE_PAGE' 			=> $page_name,
+			'CUSTOMCODE_LANG'			=> $this->user->lang_name,
+			'CUSTOMCODE_RAND_100'		=> $rand_100,
+			'CUSTOMCODE_RAND_10'		=> ceil($rand_100 / 10),
+			'CUSTOMCODE_TIME_OFFSET'	=> $time_offset,
+			'CUSTOMCODE_YEAR'			=> $now['year'],
+			'CUSTOMCODE_MONTH'			=> $now['mon'],
+			'CUSTOMCODE_MONTHDAY'		=> $now['mday'],
+			'CUSTOMCODE_WEEKDAY'		=> $now['wday'],
+			'CUSTOMCODE_YEARDAY'		=> $now['yday'],
+			'CUSTOMCODE_HOURS'			=> $now['hours'],
+			'CUSTOMCODE_MINUTES'		=> $now['minutes'],	
 		);
 		
 		$params = array();
