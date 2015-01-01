@@ -91,8 +91,8 @@ class listener implements EventSubscriberInterface
 		$template_vars = array(
 			'CUSTOMCODE_PAGE' 			=> $page_name,
 			'CUSTOMCODE_LANG'			=> $this->user->lang_name,
-			'CUSTOMCODE_RAND_100'		=> $rand_100,
-			'CUSTOMCODE_RAND_10'		=> ceil($rand_100 / 10),
+			'CUSTOMCODE_RAND_100'		=> mt_rand(1, 100),
+			'CUSTOMCODE_RAND_10'		=> mt_rand(1, 10),
 			'CUSTOMCODE_TIME_OFFSET'	=> $time_offset,
 			'CUSTOMCODE_YEAR'			=> $now['year'],
 			'CUSTOMCODE_MONTH'			=> $now['mon'],
