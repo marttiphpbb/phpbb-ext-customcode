@@ -70,27 +70,32 @@ class main_listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.user_setup'		=> 'load_language_on_setup',
 			'core.page_footer'		=> 'core_page_footer',
 			'core.append_sid'		=> 'core_append_sid',
 		);
-	}
-
-
-	public function load_language_on_setup($event)
-	{
-		$lang_set_ext = $event['lang_set_ext'];
-		$lang_set_ext[] = array(
-			'ext_name' => 'marttiphpbb/customcode',
-			'lang_set' => 'common',
-		);
-		$event['lang_set_ext'] = $lang_set_ext;
 	}
 	
 
 	public function core_page_footer($event)
 	{
 		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
+
+		$page_name = $this->user->page['page_name'];
+
+		$template_vars = array(
+			'CUSTOMCODE_PAGE_NAME' 	=> $page_name,
+			'CUSTOMCODE_LANG_NAME'	=> $this->user->lang_name,		
+		);
+		
+		$params = array();
+		parse_str($this->user->page['query_string'], $params);
+
+		foreach ($params as $name => $value)
+		{
+			$template_vars['CUSTOMCODE_PARAM_' . strtoupper($name)] = $value;
+		}
+
+		$this->template->assign_vars($template_vars);
 
 		$show_events = ($this->request->variable('customcode_show_events', 0)) ? true : false;
 
@@ -121,22 +126,9 @@ class main_listener implements EventSubscriberInterface
 					append_sid($phpbb_admin_path . 'index.' . $this->php_ext, $params, true, $this->user->session_id)
 				);
 			}
+			
+			$this->user->add_lang_ext('marttiphpbb/customcode', 'common');
 		}
-
-		$template_vars = array(
-			'CUSTOMCODE_PAGE_NAME' 	=> $this->user->page['page_name'],
-			'CUSTOMCODE_LANG_NAME'	=> $this->user->lang_name,		
-		);
-		
-		$params = array();
-		parse_str($this->user->page['query_string'], $params);
-
-		foreach ($params as $name => $value)
-		{
-			$template_vars['CUSTOMCODE_PARAM_' . strtoupper($name)] = $value;
-		}
-
-		$this->template->assign_vars($template_vars);
 	}
 	
 

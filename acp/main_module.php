@@ -18,7 +18,7 @@ class main_module
 		global $template, $request, $phpbb_root_path, $user, $cache, $config, $phpEx;
 		
 
-		$user->add_lang_ext('marttiphpbb/customcode', 'common');
+		$user->add_lang_ext('marttiphpbb/customcode', 'acp');
 		add_form_key('marttiphpbb/customcode');
 		
 		$customcode_directory = new customcode_directory($phpbb_root_path);
