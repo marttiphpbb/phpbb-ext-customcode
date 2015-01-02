@@ -82,8 +82,6 @@ class listener implements EventSubscriberInterface
 
 		$page_name = $this->user->page['page_name'];
 		
-		$rand_100 = mt_rand(1, 100);
-		
 		$now = $this->user->create_datetime();
 		$time_offset = $now->getOffset();
 		$now = phpbb_gmgetdate($now->getTimestamp() + $time_offset);
@@ -101,6 +99,7 @@ class listener implements EventSubscriberInterface
 			'CUSTOMCODE_YEARDAY'		=> $now['yday'],
 			'CUSTOMCODE_HOURS'			=> $now['hours'],
 			'CUSTOMCODE_MINUTES'		=> $now['minutes'],	
+			'CUSTOMCODE_SECONDS'		=> $now['seconds'],	
 		);
 		
 		$params = array();
