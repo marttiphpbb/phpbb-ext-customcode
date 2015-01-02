@@ -3,7 +3,7 @@
 *  phpBB Extension - marttiphpbb customcode
 * @copyright (c) 2014 marttiphpbb <info@martti.be>
 * @license http://opensource.org/licenses/MIT
-* 
+*
 * // TO DO: add translation credits
 */
 
@@ -31,7 +31,7 @@ if (empty($lang) || !is_array($lang))
 
 
 $lang = array_merge($lang, array(
- 
+
     'ACP_CUSTOMCODE'							=> 'Aangepaste Code',
 	'ACP_CUSTOMCODE_EDIT'						=> 'Bewerk',
 	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'Om je zelf gemaakte bestand in te sluiten, gebruik <code>../../../../../../store/customcode/</code><p><code>&lt;!-- INCLUDE ../../../../../../store/customcode/my_file.html --></code></p>',
@@ -60,7 +60,7 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_FILE_DELETED'				=> 'Bestand %s is verwijderd.',
 	'ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST'		=> 'Bestand %s bestaat niet.',
 	'ACP_CUSTOMCODE_FILE_NOT_DELETED'			=> 'Verwijderen van bestand %s is mislukt.',
-   
+
 	// TO DO : translate in Dutch
 	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Hide Custom Code template events locations',
 	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Show Custom Code template events locations',

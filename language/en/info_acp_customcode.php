@@ -1,4 +1,4 @@
-<?php
+s<?php
 
 /**
 *  phpBB Extension - marttiphpbb customcode
@@ -35,5 +35,5 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE'							=> 'Custom Code',
 	'ACP_CUSTOMCODE_EDIT'						=> 'Edit',
 	'ACP_CUSTOMCODE_FILES'						=> 'Files',
-		
+
 ));

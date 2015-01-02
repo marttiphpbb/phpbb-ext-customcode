@@ -34,5 +34,5 @@ $lang = array_merge($lang, array(
 
 	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Hide Custom Code template events locations',
 	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(inside html head)',
-	
+
 ));

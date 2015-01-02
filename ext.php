@@ -22,7 +22,7 @@ class ext extends base
 		switch ($old_state)
 		{
 			case '': // Empty means nothing has run yet
-				// create directory 
+				// create directory
 				$phpbb_root_path = $this->container->getParameter('core.root_path');
 				$customcode_directory = new customcode_directory($phpbb_root_path);
 				$customcode_directory->create();
@@ -33,7 +33,7 @@ class ext extends base
 			break;
 		}
 	}
-	
+
 
 	/**
 	* @param mixed $old_state State returned by previous call of this method
@@ -54,5 +54,5 @@ class ext extends base
 				break;
 		}
 	}
-}	
+}
 

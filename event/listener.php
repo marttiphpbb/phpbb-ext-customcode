@@ -29,16 +29,16 @@ class listener implements EventSubscriberInterface
 
 	/* @var request */
 	protected $request;
-	
+
 	/* @var template */
 	protected $template;
-	
+
 	/* @var user */
-	protected $user;	
+	protected $user;
 
 	/* @var string */
 	protected $phpbb_root_path;
-	
+
 	/* @var string */
 	protected $php_ext;
 
@@ -58,7 +58,7 @@ class listener implements EventSubscriberInterface
 		$phpbb_root_path,
 		$php_ext
 	)
-	{	
+	{
 		$this->auth = $auth;
 		$this->request = $request;
 		$this->template = $template;
@@ -74,34 +74,19 @@ class listener implements EventSubscriberInterface
 			'core.append_sid'		=> 'core_append_sid',
 		);
 	}
-	
+
 
 	public function core_page_footer($event)
 	{
 		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
 
 		$page_name = $this->user->page['page_name'];
-		
-		$now = $this->user->create_datetime();
-		$time_offset = $now->getOffset();
-		$now = phpbb_gmgetdate($now->getTimestamp() + $time_offset);
 
 		$template_vars = array(
 			'CUSTOMCODE_PAGE' 			=> $page_name,
 			'CUSTOMCODE_LANG'			=> $this->user->lang_name,
-			'CUSTOMCODE_RAND_100'		=> mt_rand(1, 100),
-			'CUSTOMCODE_RAND_10'		=> mt_rand(1, 10),
-			'CUSTOMCODE_TIME_OFFSET'	=> $time_offset,
-			'CUSTOMCODE_YEAR'			=> $now['year'],
-			'CUSTOMCODE_MONTH'			=> $now['mon'],
-			'CUSTOMCODE_MONTHDAY'		=> $now['mday'],
-			'CUSTOMCODE_WEEKDAY'		=> $now['wday'],
-			'CUSTOMCODE_YEARDAY'		=> $now['yday'],
-			'CUSTOMCODE_HOURS'			=> $now['hours'],
-			'CUSTOMCODE_MINUTES'		=> $now['minutes'],	
-			'CUSTOMCODE_SECONDS'		=> $now['seconds'],	
 		);
-		
+
 		$params = array();
 		parse_str($this->user->page['query_string'], $params);
 
@@ -115,24 +100,24 @@ class listener implements EventSubscriberInterface
 		$show_events = ($this->request->variable('customcode_show_events', 0)) ? true : false;
 
 		if ($show_events && $this->auth->acl_get('a_'))
-		{	
-			
+		{
+
 			$query_string = $this->user->page['query_string'];
 
 			$query_string = str_replace('&customcode_show_events=1', '&customcode_show_events=0', $query_string);
 			$query_string = str_replace('customcode_show_events=1', 'customcode_show_events=0', $query_string);
-			
+
 			$this->template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', append_sid($page_name, $query_string));
-			
+
 			$customcode_directory = new customcode_directory($this->phpbb_root_path);
 			$filenames = $customcode_directory->get_filenames();
-			
+
 			$template_edit_urls = array();
 			$params = array(
 				'i'			=> '-marttiphpbb-customcode-acp-main_module',
 				'mode'		=> 'edit',
 			);
-			
+
 			foreach ($filenames as $filename)
 			{
 				$params['filename'] = $filename;
@@ -141,26 +126,26 @@ class listener implements EventSubscriberInterface
 					append_sid($phpbb_admin_path . 'index.' . $this->php_ext, $params, true, $this->user->session_id)
 				);
 			}
-			
+
 			$this->user->add_lang_ext('marttiphpbb/customcode', 'common');
 		}
 	}
-	
+
 
 
 	public function core_append_sid($event)
 	{
 		$params = $event['params'];
-		
+
 		if (is_string($params))
 		{
 			if (strpos($params, 'customcode_show_events=0') !== false)
 			{
 				return;
 			}
-		}		
+		}
 
-		if ($this->request->variable('customcode_show_events', 0) 
+		if ($this->request->variable('customcode_show_events', 0)
 			&& $this->auth->acl_get('a_'))
 		{
 			if (is_string($params) && $params != '')
@@ -176,10 +161,10 @@ class listener implements EventSubscriberInterface
 				if (isset($params['customcode_hide_events']))
 				{
 					$params = false;
-				} 
+				}
 				else
 				{
-					$params['customcode_show_events'] = 1;					
+					$params['customcode_show_events'] = 1;
 				}
 			}
 			$event['params'] = $params;

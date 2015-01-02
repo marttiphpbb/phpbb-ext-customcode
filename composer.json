@@ -18,7 +18,7 @@
 	},
 	"require-dev": {
 		"phpbb/epv": "dev-master"
-	},	
+	},
 	"extra": {
 		"display-name": "Custom Code",
 		"soft-require": {
@@ -28,6 +28,6 @@
 			"host": "marttiphpbb.github.io",
 			"directory": "/version",
 			"filename": "customcode.json"
-		}	
-	}	
+		}
+	}
 }
