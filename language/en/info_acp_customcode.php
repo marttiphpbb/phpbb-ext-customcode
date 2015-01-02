@@ -1,4 +1,4 @@
-s<?php
+<?php
 
 /**
 *  phpBB Extension - marttiphpbb customcode

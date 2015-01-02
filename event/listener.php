@@ -131,8 +131,9 @@ class listener implements EventSubscriberInterface
 		}
 	}
 
-
-
+	/**
+	 *
+	 */
 	public function core_append_sid($event)
 	{
 		$params = $event['params'];

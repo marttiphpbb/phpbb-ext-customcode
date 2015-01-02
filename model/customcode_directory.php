@@ -7,7 +7,6 @@
 
 namespace marttiphpbb\customcode\model;
 
-
 class customcode_directory
 {
 
@@ -27,7 +26,6 @@ class customcode_directory
 		'overall_footer_copyright_append'		=>
 			"<!-- Custom Code Github link -->\r\n<br/><a href='https://github.com/marttiphpbb/phpbb-ext-customcode'>Custom Code</a> extension for phpBB",
 		'overall_footer_page_body_after'		=> '',
-
 		'overall_header_body_before'			=> '',
 		'overall_header_content_before'			=> '',
 		'overall_header_head_append'			=> '',
@@ -47,7 +45,10 @@ class customcode_directory
 
 	protected $file_size_scales = ' KMGTP';
 
-
+	/**
+	 * @param string $phpbb_root_path
+	 * @return customcode_directory
+	 */
 	public function __construct($phpbb_root_path)
 	{
 		$this->phpbb_root_path = $phpbb_root_path;
@@ -172,7 +173,6 @@ class customcode_directory
 		return array_diff(scandir($this->phpbb_root_path . $this->dir), array('.', '..', '.htaccess'));
 	}
 
-
 	/**
 	 *
 	 */
@@ -201,8 +201,6 @@ class customcode_directory
 				file_put_contents($filename, $content);
 			}
 		}
-
-
 	}
 
 	/**
@@ -242,4 +240,3 @@ class customcode_directory
 		rmdir($dir);
 	}
 }
-
