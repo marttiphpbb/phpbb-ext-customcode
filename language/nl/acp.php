@@ -31,7 +31,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 
-    'ACP_CUSTOMCODE'							=> 'Aangepaste Code',
+	'ACP_CUSTOMCODE'							=> 'Aangepaste Code',
 	'ACP_CUSTOMCODE_EDIT'						=> 'Bewerk',
 	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'Om je zelf gemaakte bestand in te sluiten, gebruik <code>../../../../../../store/customcode/</code><p><code>&lt;!-- INCLUDE ../../../../../../store/customcode/my_file.html --></code></p>',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Maak bestand',
