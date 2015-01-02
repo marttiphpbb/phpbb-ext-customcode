@@ -18,7 +18,6 @@ if (empty($lang) || !is_array($lang))
 	$lang = array();
 }
 
-
 // DEVELOPERS PLEASE NOTE
 //
 // All language files should use UTF-8 as their encoding and the files must not contain a BOM.
@@ -31,9 +30,7 @@ if (empty($lang) || !is_array($lang))
 // equally where a string contains only two placeholders which are used to wrap text
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 
-
 $lang = array_merge($lang, array(
-
 
 	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'لإضافة الملفات الخاصة بك , يجب أن يحتوي الملف على <code>../../../../../../store/customcode/</code><p>مثال : <code>&lt;!-- INCLUDE ../../../../../../store/customcode/my_file.html --></code></p>',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'إنشاء ملف',
@@ -65,6 +62,5 @@ $lang = array_merge($lang, array(
 	// TO DO : translate in Arabic
 	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Hide Custom Code template events locations',
 	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Show Custom Code template events locations',
-
 
 ));

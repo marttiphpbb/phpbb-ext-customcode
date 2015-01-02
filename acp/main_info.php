@@ -17,15 +17,15 @@ class main_info
 			'version'	=> '1.0.0',
 			'modes'		=> array(
 				'files'	=> array(
-					'title' => 'ACP_CUSTOMCODE_FILES', 
-					'auth' => 'ext_marttiphpbb/customcode && acl_a_board', 
+					'title' => 'ACP_CUSTOMCODE_FILES',
+					'auth' => 'ext_marttiphpbb/customcode && acl_a_board',
 					'cat' => array('ACP_CUSTOMCODE'),
-				),				
+				),
 				'edit'	=> array(
-					'title' => 'ACP_CUSTOMCODE_EDIT', 
-					'auth' => 'ext_marttiphpbb/customcode && acl_a_board', 
+					'title' => 'ACP_CUSTOMCODE_EDIT',
+					'auth' => 'ext_marttiphpbb/customcode && acl_a_board',
 					'cat' => array('ACP_CUSTOMCODE'),
-				),			
+				),
 			),
 		);
 	}

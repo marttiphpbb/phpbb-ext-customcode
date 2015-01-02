@@ -8,11 +8,11 @@
 		$('select#filename').change(function () {
 			$('form#file_edit').submit();
 		});
-		
+
 		$('input#new_file').keydown(function(e) {
 			if (e.which == 13) {
 				$('input#create').focus();
-			}	
+			}
 		});
 	});
 })(jQuery, window, document);

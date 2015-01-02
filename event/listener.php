@@ -75,7 +75,6 @@ class listener implements EventSubscriberInterface
 		);
 	}
 
-
 	public function core_page_footer($event)
 	{
 		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.

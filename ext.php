@@ -10,7 +10,6 @@ namespace marttiphpbb\customcode;
 use phpbb\extension\base;
 use marttiphpbb\customcode\model\customcode_directory;
 
-
 class ext extends base
 {
 	/**
@@ -34,7 +33,6 @@ class ext extends base
 		}
 	}
 
-
 	/**
 	* @param mixed $old_state State returned by previous call of this method
 	* @return mixed Returns false after last step, otherwise temporary state
@@ -55,4 +53,3 @@ class ext extends base
 		}
 	}
 }
-

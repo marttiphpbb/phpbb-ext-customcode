@@ -12,22 +12,21 @@ use marttiphpbb\customcode\model\customcode_directory;
 class main_module
 {
 	public $u_action;
-	
+
 	function main($id, $mode)
 	{
 		global $template, $request, $phpbb_root_path, $user, $cache, $config, $phpEx;
-		
 
 		$user->add_lang_ext('marttiphpbb/customcode', 'acp');
 		add_form_key('marttiphpbb/customcode');
-		
+
 		$customcode_directory = new customcode_directory($phpbb_root_path);
-			
+
 		$filenames = $customcode_directory->get_filenames();
-	
+
 		switch($mode)
 		{
-			case 'edit': 
+			case 'edit':
 				$this->tpl_name = 'edit';
 				$this->page_title = $user->lang('ACP_CUSTOMCODE_EDIT');
 
@@ -39,25 +38,24 @@ class main_module
 
 				if ($save || $save_purge_cache)
 				{
-					
+
 					$data	= utf8_normalize_nfc($request->variable('file_data', '', true));
-					$data	= htmlspecialchars_decode($data);					
-					
-					
+					$data	= htmlspecialchars_decode($data);
+
 					if (confirm_box(true))
 					{
 						if (!$customcode_directory->save_to_file($file, $data))
 						{
 							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_NOT_WRITABLE'), $file) . adm_back_link($this->u_action . '&amp;filename=' . $file), E_USER_WARNING);
 						}
-						
+
 						if ($save_purge_cache)
 						{
 							$config->increment('assets_version', 1);
-							$cache->purge();								
-							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_SAVED_CACHE_PURGED'), $file) . adm_back_link($this->u_action . '&amp;filename='. $file));			
+							$cache->purge();
+							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_SAVED_CACHE_PURGED'), $file) . adm_back_link($this->u_action . '&amp;filename='. $file));
 						}
-						
+
 						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_SAVED'), $file) . adm_back_link($this->u_action . '&amp;filename=' . $file));
 					}
 
@@ -65,18 +63,18 @@ class main_module
 					{
 						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST'), $file) . adm_back_link($this->u_action), E_USER_WARNING);
 					}
-					
+
 					$confirm_message = ($save_purge_cache) ? 'ACP_CUSTOMCODE_SAVE_PURGE_CACHE_CONFIRM' : 'ACP_CUSTOMCODE_SAVE_CONFIRM';
-					
+
 					$s_hidden_fields = array(
 						'filename'			=> $file,
 						'file_data' 		=> utf8_htmlspecialchars($data),
-						'mode'				=> 'edit',					
+						'mode'				=> 'edit',
 					);
-					
+
 					$submit_field = ($save_purge_cache) ? 'save_purge_cache' : 'save';
 					$s_hidden_fields[$submit_field] = 1;
-	
+
 					confirm_box(false, sprintf($user->lang($confirm_message), $file), build_hidden_fields($s_hidden_fields));
 				}
 				else
@@ -85,7 +83,7 @@ class main_module
 					$file = ($file == '') ? current($filenames) : $file;
 				}
 
-				$data = $customcode_directory->file_get_contents($file);		
+				$data = $customcode_directory->file_get_contents($file);
 
 				$options = '';
 
@@ -97,9 +95,9 @@ class main_module
 					$options .= ($filename == $file) ? ' selected="selected"' : '';
 					$options .= '>' . $filename;
 					$options .= ($customcode_directory->is_event($filename)) ? ' ' . $event_file_indicator : '';
-					$options .= '</option>';	
+					$options .= '</option>';
 				}
-				
+
 				$template->assign_vars(array(
 					'U_ACTION'					=> $this->u_action,
 					'EDITOR_ROWS'				=> $editor_rows,
@@ -111,66 +109,66 @@ class main_module
 				));
 
 				break;
-				
+
 			case 'files':
-			
+
 				$this->tpl_name = 'files';
 				$this->page_title = $user->lang('ACP_CUSTOMCODE_FILES');
-				
+
 				$new_file = $request->variable('new_file', '');
 				$file_to_delete = array_keys($request->variable('delete', array('' => '')));
-				$file_to_delete = (sizeof($file_to_delete)) ? $file_to_delete[0] : false; 
-	
+				$file_to_delete = (sizeof($file_to_delete)) ? $file_to_delete[0] : false;
+
 				if ($request->is_set_post('create'))
 				{
 					if (!check_form_key('marttiphpbb/customcode'))
 					{
 						trigger_error('FORM_INVALID');
 					}
-					
+
 					if (!$new_file)
 					{
 						trigger_error($user->lang('ACP_CUSTOMCODE_FILENAME_EMPTY') . adm_back_link($this->u_action), E_USER_WARNING);
-					}					
-					
+					}
+
 					if (in_array($new_file, $filenames))
 					{
 						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_ALREADY_EXISTS'), $new_file) . adm_back_link($this->u_action), E_USER_WARNING);
 					}
-					
+
 					if (!$customcode_directory->create_file($new_file))
 					{
 						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_NOT_CREATED'), $new_file) . adm_back_link($this->u_action), E_USER_WARNING);
-					}					
+					}
 
 					trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_CREATED'), $new_file) . adm_back_link($this->u_action));
-				}	
-				
+				}
+
 				if ($request->is_set_post('delete'))
 				{
 					if (!in_array($file_to_delete, $filenames))
 					{
 						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST'), $file_to_delete) . adm_back_link($this->u_action), E_USER_WARNING);
 					}
-					
+
 					if (confirm_box(true))
-					{			
+					{
 						if (!$customcode_directory->delete_file($file_to_delete))
 						{
 							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_NOT_DELETED'), $file_to_delete) . adm_back_link($this->u_action), E_USER_WARNING);
 						}
 
-						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_DELETED'), $file_to_delete) . adm_back_link($this->u_action));	
-					}					
-					
+						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_DELETED'), $file_to_delete) . adm_back_link($this->u_action));
+					}
+
 					$s_hidden_fields = array(
 						'mode'		=> 'files',
 						'delete'	=> array($file_to_delete => 1),
-					);					
-					
-					confirm_box(false, sprintf($user->lang('ACP_CUSTOMCODE_DELETE_FILE_CONFIRM'), $file_to_delete), build_hidden_fields($s_hidden_fields));				
+					);
+
+					confirm_box(false, sprintf($user->lang('ACP_CUSTOMCODE_DELETE_FILE_CONFIRM'), $file_to_delete), build_hidden_fields($s_hidden_fields));
 				}
-				
+
 				$u_edit = str_replace('mode=files', 'mode=edit', $this->u_action);
 
 				foreach ($filenames as $filename)
@@ -189,17 +187,17 @@ class main_module
 					'U_ACTION'					=> $this->u_action,
 					'NEW_FILE'					=> $new_file,
 					'FILES_EXPLAIN'				=> sprintf($user->lang('ACP_CUSTOMCODE_FILES_EXPLAIN'), $user->lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'), $customcode_directory->get_dir()),
-				));	
-				
+				));
+
 				if ($request->variable('customcode_show_events', 0))
 				{
 					$template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', append_sid($phpbb_root_path . 'index.' . $phpEx, array('customcode_hide_events' => 1)));
 				}
 				else
 				{
-					$template->assign_var('U_CUSTOMCODE_SHOW_EVENTS', append_sid($phpbb_root_path . 'index.' . $phpEx, array('customcode_show_events' => 1)));	
-				}			
-				
+					$template->assign_var('U_CUSTOMCODE_SHOW_EVENTS', append_sid($phpbb_root_path . 'index.' . $phpEx, array('customcode_show_events' => 1)));
+				}
+
 				break;
 		}
 	}
