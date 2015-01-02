@@ -81,25 +81,10 @@ class listener implements EventSubscriberInterface
 		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
 
 		$page_name = $this->user->page['page_name'];
-		
-		$now = $this->user->create_datetime();
-		$time_offset = $now->getOffset();
-		$now = phpbb_gmgetdate($now->getTimestamp() + $time_offset);
 
 		$template_vars = array(
 			'CUSTOMCODE_PAGE' 			=> $page_name,
 			'CUSTOMCODE_LANG'			=> $this->user->lang_name,
-			'CUSTOMCODE_RAND_100'		=> mt_rand(1, 100),
-			'CUSTOMCODE_RAND_10'		=> mt_rand(1, 10),
-			'CUSTOMCODE_TIME_OFFSET'	=> $time_offset,
-			'CUSTOMCODE_YEAR'			=> $now['year'],
-			'CUSTOMCODE_MONTH'			=> $now['mon'],
-			'CUSTOMCODE_MONTHDAY'		=> $now['mday'],
-			'CUSTOMCODE_WEEKDAY'		=> $now['wday'],
-			'CUSTOMCODE_YEARDAY'		=> $now['yday'],
-			'CUSTOMCODE_HOURS'			=> $now['hours'],
-			'CUSTOMCODE_MINUTES'		=> $now['minutes'],	
-			'CUSTOMCODE_SECONDS'		=> $now['seconds'],	
 		);
 		
 		$params = array();
