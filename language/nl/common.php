@@ -1,10 +1,8 @@
 <?php
 /**
-*  phpBB Extension - marttiphpbb customcode
+* phpBB Extension - marttiphpbb customcode
 * @copyright (c) 2014 marttiphpbb <info@martti.be>
 * @license http://opensource.org/licenses/MIT
-*
-* // TO DO: add translation credits
 */
 
 if (!defined('IN_PHPBB'))
@@ -31,7 +29,6 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 
-	// TO DO : translate in Dutch
 	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Verberg de Custom Code locaties',
 	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(binnen html header)',
 
