@@ -32,7 +32,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 
 	// TO DO : translate in Dutch
-	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Hide Custom Code template events locations',
-	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(inside html head)',
+	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Verberg de Custom Code locaties',
+	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(binnen html header)',
 
 ));
