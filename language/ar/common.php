@@ -33,7 +33,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	s
 	// TO DO: translate in Arabic
-	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Hide Custom Code template events locations',
-	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(inside html head)',
+	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'إخفاء الأماكن لقوالب إنشاء الأكواد',
+	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(داخل ترويسة الـ html)',
 
 ));
