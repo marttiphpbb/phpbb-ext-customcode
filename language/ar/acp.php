@@ -58,9 +58,7 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST'		=> 'الملف %s غير موجود.',
 	'ACP_CUSTOMCODE_FILE_NOT_DELETED'			=> 'لم يتم حذف الملف %s.',
 	'ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'		=> '(انجليزي)',
-
-	// TO DO : translate in Arabic
-	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Hide Custom Code template events locations',
-	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Show Custom Code template events locations',
+	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'إخفاء الأماكن لقوالب إنشاء الأكواد',
+	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'إظهار الأماكن قوالب إنشاء الأكواد',
 
 ));
