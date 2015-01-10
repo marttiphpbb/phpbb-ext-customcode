@@ -79,34 +79,29 @@ class listener implements EventSubscriberInterface
 	{
 		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
 
-		$page_name = $this->user->page['page_name'];
+		$query_string = $this->user->page['query_string'];
 
-		$template_vars = array(
-			'CUSTOMCODE_PAGE' 			=> $page_name,
-			'CUSTOMCODE_LANG'			=> $this->user->lang_name,
-		);
-
-		$params = array();
-		parse_str($this->user->page['query_string'], $params);
+		$params = $template_vars = array();
+		parse_str($query_string, $params);
 
 		foreach ($params as $name => $value)
 		{
 			$template_vars['CUSTOMCODE_PARAM_' . strtoupper($name)] = $value;
 		}
 
-		$this->template->assign_vars($template_vars);
+		if (sizeof($template_vars))
+		{
+			$this->template->assign_vars($template_vars);
+		}
 
 		$show_events = ($this->request->variable('customcode_show_events', 0)) ? true : false;
 
 		if ($show_events && $this->auth->acl_get('a_'))
 		{
-
-			$query_string = $this->user->page['query_string'];
-
 			$query_string = str_replace('&customcode_show_events=1', '&customcode_show_events=0', $query_string);
 			$query_string = str_replace('customcode_show_events=1', 'customcode_show_events=0', $query_string);
 
-			$this->template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', append_sid($page_name, $query_string));
+			$this->template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', append_sid($this->user->page['page_name'], $query_string));
 
 			$customcode_directory = new customcode_directory($this->phpbb_root_path);
 			$filenames = $customcode_directory->get_filenames();
