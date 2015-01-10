@@ -148,7 +148,6 @@ class customcode_directory
 		if (!($f = @fopen($this->phpbb_root_path . $this->dir . '/' . $filename, 'wb')))
 		{
 			return false;
-			trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_NOT_WRITABLE'), $file) . adm_back_link($this->u_action . '&amp;filename=' . $file), E_USER_WARNING);
 		}
 
 		fwrite($f, $data);
