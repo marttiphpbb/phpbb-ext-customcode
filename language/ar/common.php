@@ -31,9 +31,8 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 
 $lang = array_merge($lang, array(
-	s
-	// TO DO: translate in Arabic
-	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'إخفاء الأماكن لقوالب إنشاء الأكواد',
+
+	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'اخفاء أماكن قالب الأحداث',
 	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(داخل ترويسة الـ html)',
 
 ));
