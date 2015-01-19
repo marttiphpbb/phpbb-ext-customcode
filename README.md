@@ -22,4 +22,4 @@ You can install this on the latest release of phpBB 3.1 by following the steps b
 
 #### License
 
-[MIT](LICENSE)
+[GPL-2.0](license.txt)
