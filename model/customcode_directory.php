@@ -7,11 +7,16 @@
 
 namespace marttiphpbb\customcode\model;
 
+use phpbb\user;
+
 class customcode_directory
 {
 
 	/* @var string */
 	private $phpbb_root_path;
+
+	/* @var user */
+	private $user;
 
 	/* @var string */
 	private $dir = 'store/customcode';
@@ -49,8 +54,12 @@ class customcode_directory
 	 * @param string $phpbb_root_path
 	 * @return customcode_directory
 	 */
-	public function __construct($phpbb_root_path)
+	public function __construct(
+		user $user,
+		$phpbb_root_path
+	)
 	{
+		$this->user = $user;
 		$this->phpbb_root_path = $phpbb_root_path;
 	}
 
@@ -70,7 +79,7 @@ class customcode_directory
 	{
 		$comment = '';
 		$path = $this->phpbb_root_path . $this->dir . '/' . $filename;
-		$f = fopen($path, 'r');
+		$f = @fopen($path, 'r');
 		if ($f && ($first_line = @fgets($f)))
 		{
 			$start = strpos($first_line, $this->comment_tag['open']);
@@ -185,8 +194,8 @@ class customcode_directory
 
 			if (!is_dir($dir))
 			{
-				// translation is not possible here, language files are not yet included
-				trigger_error(sprintf('Failed to create the directory %s', $this->dir), E_USER_WARNING);
+				$this->user->add_lang_ext('marttiphpbb/customcode', 'acp');
+				trigger_error(sprintf($this->user->lang('ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'), $this->dir), E_USER_WARNING);
 			}
 		}
 

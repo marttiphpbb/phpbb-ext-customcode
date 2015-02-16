@@ -20,7 +20,7 @@ class main_module
 		$user->add_lang_ext('marttiphpbb/customcode', 'acp');
 		add_form_key('marttiphpbb/customcode');
 
-		$customcode_directory = new customcode_directory($phpbb_root_path);
+		$customcode_directory = new customcode_directory($user, $phpbb_root_path);
 
 		$filenames = $customcode_directory->get_filenames();
 

@@ -23,7 +23,8 @@ class ext extends base
 			case '': // Empty means nothing has run yet
 				// create directory
 				$phpbb_root_path = $this->container->getParameter('core.root_path');
-				$customcode_directory = new customcode_directory($phpbb_root_path);
+				$user = $this->container->get('user');
+				$customcode_directory = new customcode_directory($user, $phpbb_root_path);
 				$customcode_directory->create();
 				return '1';
 				break;
@@ -43,7 +44,8 @@ class ext extends base
 		{
 			case '': // Empty means nothing has run yet
 				$phpbb_root_path = $this->container->getParameter('core.root_path');
-				$customcode_directory = new customcode_directory($phpbb_root_path);
+				$user = $this->container->get('user');
+				$customcode_directory = new customcode_directory($user, $phpbb_root_path);
 				$customcode_directory->remove();
 				return '1';
 				break;
