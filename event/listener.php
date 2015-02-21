@@ -103,7 +103,7 @@ class listener implements EventSubscriberInterface
 
 			$this->template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', append_sid($this->user->page['page_name'], $query_string));
 
-			$customcode_directory = new customcode_directory($this->phpbb_root_path);
+			$customcode_directory = new customcode_directory($this->user, $this->phpbb_root_path);
 			$filenames = $customcode_directory->get_filenames();
 
 			$template_edit_urls = array();
