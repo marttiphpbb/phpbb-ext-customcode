@@ -61,5 +61,5 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'=> '(E)',
 	'ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'Özel kod şablon olayı konumlarını göster',
 	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Özel kod şablon olayı konumlarını gizle',
-
+	'ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'	=> '%s dizini oluşturulamadı',
 ));
