@@ -34,7 +34,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 
-	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Cacher le coder personnalisé dans les emplacements des events du template',
+	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Masquer le code personnalisé dans les emplacements des évènements du template',
 	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(A l’intérieur de l’en-tête HTML)',
 
 ));
