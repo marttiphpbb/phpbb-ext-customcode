@@ -61,5 +61,6 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'		=> '(E)',
 	'ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'Mostrar código personalizado de las ubicaciones de eventos de plantilla',
 	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Ocultar código personalizado de las ubicaciones de eventos de plantilla',
+	'ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'	=> 'Error al crear el directorio %s',
 
 ));
