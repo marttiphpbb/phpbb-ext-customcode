@@ -62,5 +62,6 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'Show Custom Code template events locations',
 	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Hide Custom Code template events locations',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'		=> 'Failed to create the directory %s',
-
+	'ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'	=> 'File extension %s is not allowed for security.',
+	'ACP_CUSTOMCODE_PHP_NOT_ALLOWED'			=> 'Inclusion of php is not allowed for security.',
 ));

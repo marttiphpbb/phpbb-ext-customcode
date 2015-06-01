@@ -48,6 +48,25 @@ class customcode_directory
 		'close'		=> '-->',
 	);
 
+	/* @var array */
+	private $disallowed_file_extensions = array(
+		'php',
+		'php3',
+		'php4',
+		'php5',
+		'php6',
+		'phtml',
+	);
+
+	/* @var array */
+	private $disallowed_tags = array(
+		'<!-- PHP',
+		'<!-- INCLUDEPHP',
+		'{% PHP',
+		'{% INCLUDEPHP',
+		'<?',
+	);
+
 	protected $file_size_scales = ' KMGTP';
 
 	/**
@@ -144,6 +163,13 @@ class customcode_directory
 	 */
 	public function create_file($filename)
 	{
+		$file_extension = pathinfo($filename, PATHINFO_EXTENSION);
+		if (in_array(strtolower($file_extension), $this->disallowed_file_extensions))
+		{
+			$this->user->add_lang_ext('marttiphpbb/customcode', 'acp');
+			trigger_error(sprintf($this->user->lang('ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'), $file_extension), E_USER_WARNING);
+		}
+
 		return (touch($this->phpbb_root_path . $this->dir . '/' . $filename)) ? true : false;
 	}
 
@@ -154,6 +180,15 @@ class customcode_directory
 	 */
 	public function save_to_file($filename, $data)
 	{
+		foreach ($this->disallowed_tags as $disallowed_tag)
+		{
+			if (strpos($data, $disallowed_tag) !== false)
+			{
+				$this->user->add_lang_ext('marttiphpbb/customcode', 'acp');
+				trigger_error(sprintf($this->user->lang('ACP_CUSTOMCODE_PHP_NOT_ALLOWED')), E_USER_WARNING);
+			}
+		}
+
 		if (!($f = @fopen($this->phpbb_root_path . $this->dir . '/' . $filename, 'wb')))
 		{
 			return false;
