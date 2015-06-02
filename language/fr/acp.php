@@ -1,12 +1,18 @@
 <?php
 
 /**
-* phpBB Extension - marttiphpbb customcode
-* @copyright (c) 2014 marttiphpbb <info@martti.be>
-* @license GNU General Public License, version 2 (GPL-2.0)
+*
+* Custom Code extension for the phpBB Forum Software package.
 * French translation by Galixte (http://www.galixte.com)
+*
+* @copyright (c) 2015 marttiphpbb <info@martti.be>
+* @license GNU General Public License, version 2 (GPL-2.0)
+*
 */
 
+/**
+* DO NOT CHANGE
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -30,10 +36,10 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 //
 // Some characters you may want to copy&paste:
-// ’ » “ ” …
+// ’ « » “ ” …
+//
 
 $lang = array_merge($lang, array(
-
 	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'Pour inclure vos propres fichiers, ajoutez aux noms des fichiers <code>../../../../../../%1$s/</code><p><code>&lt;!-- INCLUDE ../../../../../../%1$s/mon_fichier.html --></code></p>',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Créer un fichier',
 	'ACP_CUSTOMCODE_DELETE'						=> 'Supprimer',
@@ -50,7 +56,6 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_SAVE_PURGE_CACHE_CONFIRM'	=> 'Voulez-vous sauvegarder le fichier %s et vider le cache ?',
 	'ACP_CUSTOMCODE_FILE_SAVED'					=> 'Le fichier %s a été sauvegardé avec succès !',
 	'ACP_CUSTOMCODE_FILE_SAVED_CACHE_PURGED'	=> 'Le fichier %s a été sauvegardé et le cache a été vidé avec succès !',
-	'ACP_CUSTOMCODE_NOT_WRITABLE'				=> 'Le fichier %s n’est pas accessible en écriture.',
 	'ACP_CUSTOMCODE_FILE_CREATED'				=> 'Le fichier %s a été créé.',
 	'ACP_CUSTOMCODE_FILENAME_EMPTY'				=> 'Le nom du fichier était vide.',
 	'ACP_CUSTOMCODE_FILE_NOT_CREATED'			=> 'Le fichier %s n’a pas pu être créé.',
@@ -59,10 +64,18 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_FILE_DELETED'				=> 'Le fichier %s a été supprimé.',
 	'ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST'		=> 'Le fichier %s n’existe pas.',
 	'ACP_CUSTOMCODE_FILE_NOT_DELETED'			=> 'Impossible de supprimer le fichier %s.',
+	'ACP_CUSTOMCODE_FILE_NOT_OPENED'			=> 'Erreur d’ouverture du fichier %s.',
+	'ACP_CUSTOMCODE_FILE_NOT_CLOSED'			=> 'Erreur de fermeture du fichier %s.',
+	'ACP_CUSTOMCODE_FILE_WRITE_FAIL'			=> 'Erreur d’écriture du fichier %s.',
+	'ACP_CUSTOMCODE_FILE_READ_FAIL'				=> 'Erreur de lecture du fichier %s.',
+	'ACP_CUSTOMCODE_FILE_TYPE_FAIL'				=> 'Erreur pour déterminer le type de fichier de %s.',
+	'ACP_CUSTOMCODE_FILE_SIZE_FAIL'				=> 'Erreur pour déterminer la taille du fichier %s.',
 	'ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'		=> '(E)',
 	'ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'Afficher le code personnalisé dans les emplacements des évènements du template',
 	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Masquer le code personnalisé dans les emplacements des évènements du template',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'		=> 'Impossible de créer le répertoire %s',
+	'ACP_CUSTOMCODE_DIRECTORY_NOT_DELETED'		=> 'Erreur de suppression du répertoire %s',
+	'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'		=> 'Erreur pour lister le contenu du répertoire %s',
 	'ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'	=> 'L’extension de fichier %s n’est pas autorisée pour des raisons de sécurité.',
 	'ACP_CUSTOMCODE_PHP_NOT_ALLOWED'			=> 'L’inclusion du language PHP n’est pas autorisé pour des raisons de sécurité.',
 ));
