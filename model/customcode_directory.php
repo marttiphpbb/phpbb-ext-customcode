@@ -28,8 +28,7 @@ class customcode_directory
 	private $template_events = array(
 		'forumlist_body_category_header_before'	=> '',
 		'overall_footer_after'					=> '',
-		'overall_footer_copyright_append'		=>
-			"<!-- Custom Code Github link -->\r\n<br/><a href='https://github.com/marttiphpbb/phpbb-ext-customcode'>Custom Code</a> extension for phpBB",
+		'overall_footer_copyright_append'		=> 'CUSTOMCODE_GITHUB_LINK',
 		'overall_footer_page_body_after'		=> '',
 		'overall_header_body_before'			=> '',
 		'overall_header_content_before'			=> '',
@@ -265,6 +264,8 @@ class customcode_directory
 	 */
 	public function create()
 	{
+		$this->user->add_lang_ext('marttiphpbb/customcode', 'common');
+
 		$dir = $this->phpbb_root_path . $this->dir;
 
 		if (!file_exists($dir))
@@ -291,6 +292,11 @@ class customcode_directory
 
 			if (!file_exists($filename))
 			{
+				if ($content)
+				{
+					$content = sprintf($this->user->lang($content), '<!-- ', " -->\r\n<br/>", '<a href="https://github.com/marttiphpbb/phpbb-ext-customcode">', '</a>', $template_event);
+				}
+
 				if (@file_put_contents($filename, $content) === false)
 				{
 					trigger_error(sprintf($this->user->lang('ACP_CUSTOMCODE_FILE_WRITE_FAIL'), $filename), E_USER_WARNING);
