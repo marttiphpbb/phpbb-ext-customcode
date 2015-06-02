@@ -42,6 +42,7 @@ branches:
     - /^develop-.*$/
 
 install:
+  - travis_retry composer install --dev --no-interaction --prefer-source
   - travis/prepare-phpbb.sh $EXTNAME $PHPBB_BRANCH
   - cd ../../phpBB3
   - travis/prepare-extension.sh $EXTNAME $PHPBB_BRANCH
