@@ -44,10 +44,7 @@ class main_module
 
 					if (confirm_box(true))
 					{
-						if (!$customcode_directory->save_to_file($file, $data))
-						{
-							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_NOT_WRITABLE'), $file) . adm_back_link($this->u_action . '&amp;filename=' . $file), E_USER_WARNING);
-						}
+						$customcode_directory->save_to_file($file, $data);
 
 						if ($save_purge_cache)
 						{
@@ -99,12 +96,12 @@ class main_module
 				}
 
 				$template->assign_vars(array(
-					'U_ACTION'					=> $this->u_action,
-					'EDITOR_ROWS'				=> $editor_rows,
-					'FILENAME'					=> $file,
-					'S_IS_EVENT'				=> $customcode_directory->is_event($file),
-					'FILE_DATA'					=> utf8_htmlspecialchars($data),
-					'S_FILENAMES'				=> $options,
+					'U_ACTION'				=> $this->u_action,
+					'EDITOR_ROWS'			=> $editor_rows,
+					'FILENAME'				=> $file,
+					'S_IS_EVENT'			=> $customcode_directory->is_event($file),
+					'FILE_DATA'				=> utf8_htmlspecialchars($data),
+					'S_FILENAMES'			=> $options,
 					'INCLUDE_EXAMPLE'		=> sprintf($user->lang('ACP_CUSTOMCODE_INCLUDE_EXAMPLE', $customcode_directory->get_dir())),
 				));
 
@@ -136,10 +133,7 @@ class main_module
 						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_ALREADY_EXISTS'), $new_file) . adm_back_link($this->u_action), E_USER_WARNING);
 					}
 
-					if (!$customcode_directory->create_file($new_file))
-					{
-						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_NOT_CREATED'), $new_file) . adm_back_link($this->u_action), E_USER_WARNING);
-					}
+					$customcode_directory->create_file($new_file);
 
 					trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_CREATED'), $new_file) . adm_back_link($this->u_action));
 				}
@@ -153,10 +147,7 @@ class main_module
 
 					if (confirm_box(true))
 					{
-						if (!$customcode_directory->delete_file($file_to_delete))
-						{
-							trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_NOT_DELETED'), $file_to_delete) . adm_back_link($this->u_action), E_USER_WARNING);
-						}
+						$customcode_directory->delete_file($file_to_delete);
 
 						trigger_error(sprintf($user->lang('ACP_CUSTOMCODE_FILE_DELETED'), $file_to_delete) . adm_back_link($this->u_action));
 					}
