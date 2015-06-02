@@ -175,7 +175,7 @@ class customcode_directory
 		if (!@unlink($this->phpbb_root_path . $this->dir . '/' . $filename))
 		{
 			trigger_error(sprintf($this->user->lang('ACP_CUSTOMCODE_FILE_NOT_DELETED'), $filename), E_USER_WARNING);
-		} 
+		}
 	}
 
 	/**
