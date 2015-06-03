@@ -37,7 +37,7 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Crea file',
 	'ACP_CUSTOMCODE_DELETE'						=> 'Rimuovi',
 	'ACP_CUSTOMCODE_DELETE_FILE_NAME'			=> 'Rimuovi %s',
-	'ACP_CUSTOMCODE_FILES_EXPLAIN'				=> 'I file direttamente inclusi con l'evento template %1$s non possono essere rimossi. Tutti i file risiedono nella cartella %2$s.',
+	'ACP_CUSTOMCODE_FILES_EXPLAIN'				=> 'I file direttamente inclusi con l’evento template %1$s non possono essere rimossi. Tutti i file risiedono nella cartella %2$s.',
 	'ACP_CUSTOMCODE_FILE_SIZE'					=> 'Dimensione',
 	'ACP_CUSTOMCODE_FILE_NAME'					=> 'Nome',
 	'ACP_CUSTOMCODE_FILE_COMMENT'				=> 'Commento',
@@ -69,6 +69,6 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'		=> 'Impossibile creare la cartella %s',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_DELETED'		=> 'Impossibile rimuovere la cartella %s',
 	'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'		=> 'Impossibile elencare il contenuto della cartella %s',
-	'ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'	=> 'Per motivi di sicurezza, l'estensione file %s non è permessa.',
-	'ACP_CUSTOMCODE_PHP_NOT_ALLOWED'			=> 'Per motivi di sicurezza, l'inclusione di php non è permessa.',
+	'ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'	=> 'Per motivi di sicurezza, l’estensione file %s non è permessa.',
+	'ACP_CUSTOMCODE_PHP_NOT_ALLOWED'			=> 'Per motivi di sicurezza, l’inclusione di php non è permessa.',
 ));
