@@ -1,12 +1,18 @@
 <?php
 
 /**
-* phpBB Extension - marttiphpbb customcode
-* @copyright (c) 2014 marttiphpbb <info@martti.be>
-* @license GNU General Public License, version 2 (GPL-2.0)
+*
+* Custom Code extension for the phpBB Forum Software package.
 * French translation by Galixte (http://www.galixte.com)
+*
+* @copyright (c) 2015 marttiphpbb <info@martti.be>
+* @license GNU General Public License, version 2 (GPL-2.0)
+*
 */
 
+/**
+* DO NOT CHANGE
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -30,12 +36,11 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 //
 // Some characters you may want to copy&paste:
-// ’ » “ ” …
+// ’ « » “ ” …
+//
 
 $lang = array_merge($lang, array(
-
 	'ACP_CUSTOMCODE'							=> 'Code personnalisé',
 	'ACP_CUSTOMCODE_EDIT'						=> 'Modifier',
 	'ACP_CUSTOMCODE_FILES'						=> 'Fichiers',
-
 ));
