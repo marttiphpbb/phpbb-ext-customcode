@@ -42,6 +42,7 @@ class customcode_directory
 	/* @var string */
 	private $file_extension = '.html';
 
+	/* @var array */
 	protected $comment_tag = array(
 		'open'		=> '<!--',
 		'close'		=> '-->',
@@ -66,6 +67,7 @@ class customcode_directory
 		'<?',
 	);
 
+	/* @var string */
 	protected $file_size_scales = ' KMGTP';
 
 	/**
