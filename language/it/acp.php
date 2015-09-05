@@ -71,4 +71,5 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'		=> 'Impossibile elencare il contenuto della cartella %s',
 	'ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'	=> 'Per motivi di sicurezza, l’estensione file %s non è permessa.',
 	'ACP_CUSTOMCODE_PHP_NOT_ALLOWED'			=> 'Per motivi di sicurezza, l’inclusione di php non è permessa.',
+	'ACP_CUSTOMCODE_INCLUDEPHP_WARNING'			=> 'Attenzione! Per motivi di sicurezza, il codice personalizzato non sarà incluso nei template se è attiva nella board l’inclusione di codice PHP con le istruzioni PHP e INCLUDEPHP. Controllare le proprie %simpostazioni di sicurezza%s per disattivare le istruzioni PHP e INCLUDEPHP.',
 ));
