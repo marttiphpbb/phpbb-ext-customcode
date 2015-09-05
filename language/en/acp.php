@@ -71,5 +71,5 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'		=> 'Failed to list content of directory %s',
 	'ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'	=> 'File extension %s is not allowed for security.',
 	'ACP_CUSTOMCODE_PHP_NOT_ALLOWED'			=> 'Inclusion of php is not allowed for security.',
-	'ACP_CUSTOMCODE_INCLUDEPHP_WARNING'			=> 'Warning! For security, your custom code will not be included in the templates when PHP inclusion with the INCLUDEPHP tag is allowed on your board. See %ssecurity settings%s to switch off the INCLUDEPHP tag.',		
+	'ACP_CUSTOMCODE_INCLUDEPHP_WARNING'			=> 'Warning! For security, your custom code will not be included in templates when PHP code inclusion with PHP and INCLUDEPHP statements is enabled on your board. See %ssecurity settings%s to switch off PHP and INCLUDEPHP statements.',		
 ));
