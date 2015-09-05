@@ -28,6 +28,7 @@ class customcode_directory
 	private $template_events = array(
 		'forumlist_body_category_header_before'	=> '',
 		'overall_footer_after'					=> '',
+		'overall_footer_body_after'				=> '',
 		'overall_footer_copyright_append'		=> 'CUSTOMCODE_GITHUB_LINK',
 		'overall_footer_page_body_after'		=> '',
 		'overall_header_body_before'			=> '',
