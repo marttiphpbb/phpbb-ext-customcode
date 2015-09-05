@@ -8,6 +8,7 @@
 namespace marttiphpbb\customcode\event;
 
 use phpbb\auth\auth;
+use phpbb\config\config;
 use phpbb\request\request;
 use phpbb\template\twig\twig as template;
 use phpbb\user;
@@ -27,6 +28,9 @@ class listener implements EventSubscriberInterface
 	/* @var auth */
 	protected $auth;
 
+	/* @var config */
+	protected $config;
+
 	/* @var request */
 	protected $request;
 
@@ -44,6 +48,7 @@ class listener implements EventSubscriberInterface
 
 	/**
 	 * @param auth $auth
+	 * @param config $config
 	 * @param request $request
 	 * @param template $template
 	 * @param user $user
@@ -52,6 +57,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function __construct(
 		auth $auth,
+		config $config,
 		request $request,
 		template $template,
 		user $user,
@@ -60,6 +66,7 @@ class listener implements EventSubscriberInterface
 	)
 	{
 		$this->auth = $auth;
+		$this->config = $config;
 		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
@@ -70,9 +77,15 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
+			'core.page_header'		=> 'core_page_header',
 			'core.page_footer'		=> 'core_page_footer',
 			'core.append_sid'		=> 'core_append_sid',
 		);
+	}
+
+	public function core_page_header($event)
+	{
+		$this->template->assign_var('S_CUSTOMCODE', ($this->config['tpl_allow_php']) ? false : true);
 	}
 
 	public function core_page_footer($event)

@@ -3,6 +3,7 @@ services:
         class: marttiphpbb\customcode\event\listener
         arguments:
             - @auth
+            - @config
             - @request
             - @template
             - @user
