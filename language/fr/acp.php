@@ -78,4 +78,5 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'		=> 'Erreur pour lister le contenu du répertoire %s',
 	'ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'	=> 'L’extension de fichier %s n’est pas autorisée pour des raisons de sécurité.',
 	'ACP_CUSTOMCODE_PHP_NOT_ALLOWED'			=> 'L’inclusion du language PHP n’est pas autorisé pour des raisons de sécurité.',
+	'ACP_CUSTOMCODE_INCLUDEPHP_WARNING'			=> 'Attention ! Pour des raisons de sécurité, les codes personnalisés ne seront pas inclus dans les templates lorsque l’analyse du code PHP (via les instructions PHP et INCLUDEPHP) est activée sur le forum. Merci de consulter les %sParamètres de sécurité%s pour désactiver l’option : « Autoriser le PHP dans les templates ».',		
 ));
