@@ -15,7 +15,7 @@ class main_module
 
 	function main($id, $mode)
 	{
-		global $template, $request, $phpbb_root_path, $user, $cache, $config, $phpEx;
+		global $template, $request, $phpbb_root_path, $phpbb_admin_path, $user, $cache, $config, $phpEx;
 
 		$user->add_lang_ext('marttiphpbb/customcode', 'acp');
 		add_form_key('marttiphpbb/customcode');
@@ -23,6 +23,17 @@ class main_module
 		$customcode_directory = new customcode_directory($user, $phpbb_root_path);
 
 		$filenames = $customcode_directory->get_filenames();
+
+		if ($config['tpl_allow_php'])
+		{
+			$params = array(
+				'i'		=> 'acp_board',
+				'mode'	=> 'security',
+			);
+			$link = append_sid($phpbb_admin_path . 'index.' . $phpEx, $params, true, $user->session_id) . '#tpl_allow_php';
+			$template->assign_var('ACP_CUSTOMCODE_INCLUDEPHP_WARNING', sprintf($user->lang('ACP_CUSTOMCODE_INCLUDEPHP_WARNING'),
+				'<a href="' . $link . '">', '</a>'));
+		}
 
 		switch($mode)
 		{
