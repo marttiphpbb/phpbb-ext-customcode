@@ -7,11 +7,13 @@
 
 namespace marttiphpbb\customcode\event;
 
+use phpbb\event\data as event;
 use phpbb\auth\auth;
 use phpbb\config\config;
 use phpbb\request\request;
 use phpbb\template\twig\twig as template;
 use phpbb\user;
+use phpbb\template\twig\loader;
 
 use marttiphpbb\customcode\model\customcode_directory;
 
@@ -40,6 +42,9 @@ class listener implements EventSubscriberInterface
 	/* @var user */
 	protected $user;
 
+	/** @var loader */
+	protected $loader;
+
 	/* @var string */
 	protected $phpbb_root_path;
 
@@ -52,6 +57,7 @@ class listener implements EventSubscriberInterface
 	 * @param request $request
 	 * @param template $template
 	 * @param user $user
+	 * @param loader $loader
 	 * @param string $phpbb_root_path
 	 * @param string $php_ext
 	*/
@@ -61,8 +67,9 @@ class listener implements EventSubscriberInterface
 		request $request,
 		template $template,
 		user $user,
-		$phpbb_root_path,
-		$php_ext
+		loader $loader,
+		string $phpbb_root_path,
+		string $php_ext
 	)
 	{
 		$this->auth = $auth;
@@ -70,6 +77,7 @@ class listener implements EventSubscriberInterface
 		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
+		$this->loader = $loader;
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->php_ext = $php_ext;
 	}
@@ -83,12 +91,14 @@ class listener implements EventSubscriberInterface
 		);
 	}
 
-	public function core_page_header($event)
+	public function core_page_header(event $event)
 	{
-		$this->template->assign_var('S_CUSTOMCODE', ($this->config['tpl_allow_php']) ? false : true);
+		$path = $this->phpbb_root_path . 'store/customcode';
+		$this->loader->addSafeDirectory($path);
+		$this->template->assign_var('S_CUSTOMCODE', $this->config['tpl_allow_php'] ? false : true);
 	}
 
-	public function core_page_footer($event)
+	public function core_page_footer(event $event)
 	{
 		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
 
@@ -141,7 +151,7 @@ class listener implements EventSubscriberInterface
 	/**
 	 *
 	 */
-	public function core_append_sid($event)
+	public function core_append_sid(event $event)
 	{
 		$params = $event['params'];
 

@@ -2,12 +2,13 @@ services:
     marttiphpbb.customcode.listener:
         class: marttiphpbb\customcode\event\listener
         arguments:
-            - @auth
-            - @config
-            - @request
-            - @template
-            - @user
-            - %core.root_path%
-            - %core.php_ext%
+            - '@auth'
+            - '@config'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '@template.twig.loader'
+            - '%core.root_path%'
+            - '%core.php_ext%'
         tags:
             - { name: event.listener }

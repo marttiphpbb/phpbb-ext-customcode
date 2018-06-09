@@ -78,7 +78,7 @@ class customcode_directory
 	 */
 	public function __construct(
 		user $user,
-		$phpbb_root_path
+		string $phpbb_root_path
 	)
 	{
 		$this->user = $user;
