@@ -1,7 +1,7 @@
 <?php
 /**
 * phpBB Extension - marttiphpbb customcode
-* @copyright (c) 2014 marttiphpbb <info@martti.be>
+* @copyright (c) 2014 - 2018 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
@@ -17,6 +17,7 @@ use phpbb\language\language;
 use phpbb\template\twig\loader;
 
 use marttiphpbb\customcode\model\customcode_directory;
+use marttiphpbb\customcode\util\cnst;
 
 /**
 * @ignore
@@ -100,7 +101,7 @@ class listener implements EventSubscriberInterface
 
 	public function core_page_header(event $event)
 	{
-		$path = $this->phpbb_root_path . 'store/customcode';
+		$path = $this->phpbb_root_path . cnst::FOLDER;
 		$this->loader->addSafeDirectory($path);
 		$this->template->assign_var('S_CUSTOMCODE', $this->config['tpl_allow_php'] ? false : true);
 	}
@@ -133,7 +134,7 @@ class listener implements EventSubscriberInterface
 
 			$this->template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', append_sid($this->user->page['page_name'], $query_string));
 
-			$customcode_directory = new customcode_directory($this->user, $this->phpbb_root_path);
+			$customcode_directory = new customcode_directory($this->language, $this->phpbb_root_path);
 			$filenames = $customcode_directory->get_filenames();
 
 			$template_edit_urls = array();
@@ -155,9 +156,6 @@ class listener implements EventSubscriberInterface
 		}
 	}
 
-	/**
-	 *
-	 */
 	public function core_append_sid(event $event)
 	{
 		$params = $event['params'];
