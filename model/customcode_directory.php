@@ -12,7 +12,6 @@ use marttiphpbb\customcode\util\cnst;
 
 class customcode_directory
 {
-
 	/* @var string */
 	private $phpbb_root_path;
 
@@ -47,26 +46,23 @@ class customcode_directory
 		'close'		=> '-->',
 	);
 
-	/* @var array */
-	private $disallowed_file_extensions = array(
+	private $disallowed_file_extensions = [
 		'php',
 		'php3',
 		'php4',
 		'php5',
 		'php6',
 		'phtml',
-	);
+	];
 
-	/* @var array */
-	private $disallowed_tags = array(
+	private $disallowed_tags = [
 		'<!-- PHP',
 		'<!-- INCLUDEPHP',
 		'{% PHP',
 		'{% INCLUDEPHP',
 		'<?',
-	);
+	];
 
-	/* @var string */
 	protected $file_size_scales = ' KMGTP';
 
 	/**
@@ -86,13 +82,13 @@ class customcode_directory
 
 	public function get_dir():string
 	{
-		return cnst::FOLDER;
+		return cnst::DIR;
 	}
 
 	public function get_comment(string $filename):string
 	{
 		$comment = '';
-		$path = $this->phpbb_root_path . cnst::FOLDER . '/' . $filename;
+		$path = $this->phpbb_root_path . cnst::DIR . '/' . $filename;
 
 		$f = @fopen($path, 'r');
 
@@ -129,7 +125,7 @@ class customcode_directory
 	 */
 	public function get_filesize($filename)
 	{
-		$path = $this->phpbb_root_path . cnst::FOLDER . '/' . $filename;
+		$path = $this->phpbb_root_path . cnst::DIR . '/' . $filename;
 		$size = @filesize($path);
 
 		if ($size === false)
@@ -165,7 +161,7 @@ class customcode_directory
 	 */
 	public function delete_file($filename)
 	{
-		if (!@unlink($this->phpbb_root_path . cnst::FOLDER . '/' . $filename))
+		if (!@unlink($this->phpbb_root_path . cnst::DIR . '/' . $filename))
 		{
 			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_NOT_DELETED'), $filename), E_USER_WARNING);
 		}
@@ -183,7 +179,7 @@ class customcode_directory
 			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'), $file_extension), E_USER_WARNING);
 		}
 
-		if (!@touch($this->phpbb_root_path . cnst::FOLDER . '/' . $filename))
+		if (!@touch($this->phpbb_root_path . cnst::DIR . '/' . $filename))
 		{
 			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_NOT_CREATED'), $filename), E_USER_WARNING);
 		}
@@ -206,7 +202,7 @@ class customcode_directory
 			}
 		}
 
-		if (!($f = @fopen($this->phpbb_root_path . cnst::FOLDER . '/' . $filename, 'wb')))
+		if (!($f = @fopen($this->phpbb_root_path . cnst::DIR . '/' . $filename, 'wb')))
 		{
 			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_NOT_OPENED'), $filename), E_USER_WARNING);
 		}
@@ -227,11 +223,11 @@ class customcode_directory
 	 */
 	public function file_get_contents($filename)
 	{
-		$content = @file_get_contents($this->phpbb_root_path . cnst::FOLDER . '/' . $filename);
+		$content = @file_get_contents($this->phpbb_root_path . cnst::DIR . '/' . $filename);
 
 		if ($content === false)
 		{
-			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_READ_FAIL'), cnst::FOLDER), E_USER_WARNING);
+			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_READ_FAIL'), cnst::DIR), E_USER_WARNING);
 		}
 
 		return $content;
@@ -242,11 +238,11 @@ class customcode_directory
 	 */
 	public function get_filenames()
 	{
-		$list = @scandir($this->phpbb_root_path . cnst::FOLDER);
+		$list = @scandir($this->phpbb_root_path . cnst::DIR);
 
 		if ($list === false)
 		{
-			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'), cnst::FOLDER), E_USER_WARNING);
+			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'), cnst::DIR), E_USER_WARNING);
 		}
 
 		return array_diff($list, array('.', '..', '.htaccess'));
@@ -259,7 +255,7 @@ class customcode_directory
 	{
 		$this->language->add_lang('common', 'marttiphpbb/customcode');
 
-		$dir = $this->phpbb_root_path . cnst::FOLDER;
+		$dir = $this->phpbb_root_path . cnst::DIR;
 
 		if (!file_exists($dir))
 		{
@@ -268,7 +264,7 @@ class customcode_directory
 
 			if (!is_dir($dir))
 			{
-				trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'), cnst::FOLDER), E_USER_WARNING);
+				trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'), cnst::DIR), E_USER_WARNING);
 			}
 		}
 
@@ -300,7 +296,7 @@ class customcode_directory
 
 	public function remove()
 	{
-		$this->remove_directory($this->phpbb_root_path . cnst::FOLDER);
+		$this->remove_directory($this->phpbb_root_path . cnst::DIR);
 	}
 
 	private function remove_directory($dir)

@@ -101,8 +101,7 @@ class listener implements EventSubscriberInterface
 
 	public function core_page_header(event $event)
 	{
-		error_log($this->phpbb_root_path . cnst::FOLDER);
-		$this->loader->addSafeDirectory($this->phpbb_root_path . cnst::FOLDER);
+		$this->loader->addSafeDirectory($this->phpbb_root_path . cnst::DIR);
 		$this->template->assign_var('S_CUSTOMCODE', $this->config['tpl_allow_php'] ? false : true);
 	}
 

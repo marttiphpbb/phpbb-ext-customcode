@@ -9,6 +9,7 @@ namespace marttiphpbb\customcode\util;
 
 class cnst
 {
+	const DIR = 'store/customcode';
 	const FOLDER = 'marttiphpbb/customcode';
 	const ID = 'marttiphpbb_customcode';
 	const PREFIX = self::ID . '_';
