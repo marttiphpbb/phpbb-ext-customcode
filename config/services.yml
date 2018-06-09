@@ -7,6 +7,7 @@ services:
             - '@request'
             - '@template'
             - '@user'
+            - '@language'
             - '@template.twig.loader'
             - '%core.root_path%'
             - '%core.php_ext%'

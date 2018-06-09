@@ -13,6 +13,7 @@ use phpbb\config\config;
 use phpbb\request\request;
 use phpbb\template\twig\twig as template;
 use phpbb\user;
+use phpbb\language\language;
 use phpbb\template\twig\loader;
 
 use marttiphpbb\customcode\model\customcode_directory;
@@ -27,28 +28,31 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 */
 class listener implements EventSubscriberInterface
 {
-	/* @var auth */
+	/** @var auth */
 	protected $auth;
 
-	/* @var config */
+	/** @var config */
 	protected $config;
 
-	/* @var request */
+	/** @var request */
 	protected $request;
 
-	/* @var template */
+	/** @var template */
 	protected $template;
 
-	/* @var user */
+	/** @var user */
 	protected $user;
+
+	/** @var language */
+	protected $language;
 
 	/** @var loader */
 	protected $loader;
 
-	/* @var string */
+	/** @var string */
 	protected $phpbb_root_path;
 
-	/* @var string */
+	/** @var string */
 	protected $php_ext;
 
 	/**
@@ -57,6 +61,7 @@ class listener implements EventSubscriberInterface
 	 * @param request $request
 	 * @param template $template
 	 * @param user $user
+	 * @param language $language
 	 * @param loader $loader
 	 * @param string $phpbb_root_path
 	 * @param string $php_ext
@@ -67,6 +72,7 @@ class listener implements EventSubscriberInterface
 		request $request,
 		template $template,
 		user $user,
+		language $language,
 		loader $loader,
 		string $phpbb_root_path,
 		string $php_ext
@@ -77,6 +83,7 @@ class listener implements EventSubscriberInterface
 		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
+		$this->language = $language;
 		$this->loader = $loader;
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->php_ext = $php_ext;
@@ -144,7 +151,7 @@ class listener implements EventSubscriberInterface
 				);
 			}
 
-			$this->user->add_lang_ext('marttiphpbb/customcode', 'common');
+			$this->language->add_lang('common', 'marttiphpbb/customcode');
 		}
 	}
 

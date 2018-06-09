@@ -1,16 +1,18 @@
 a.customcode-event, a.customcode-event-head, a.customcode-event-hide
 {
-    background-color: blue;
+    background-color: rgb(28, 46, 46);
     color: white;
     border: 1px solid white;
+    border-radius: 4px;
+    padding: 2px;
 }
 
 a.customcode-event-head
 {
-	background-color: green;
+	background-color: rgb(61, 102, 102);
 }
 
 a.customcode-event-hide
 {
-	background-color: red;
+	background-color: rgb(199, 0, 0);
 }
