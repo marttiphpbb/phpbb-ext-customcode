@@ -13,10 +13,10 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 
 $lang = array_merge($lang, array(
-	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'=> 'Özel kod şablon olayı konumlarını gizle',
-	'CUSTOMCODE_INSIDE_HTML_HEAD'							=> '(html head içinde)',
+	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS' => 'Özel kod şablon olayı konumlarını gizle',
+	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(html head içinde)',
 ));

@@ -92,17 +92,17 @@ class listener implements EventSubscriberInterface
 
 	static public function getSubscribedEvents()
 	{
-		return array(
+		return [
 			'core.page_header'		=> 'core_page_header',
 			'core.page_footer'		=> 'core_page_footer',
 			'core.append_sid'		=> 'core_append_sid',
-		);
+		];
 	}
 
 	public function core_page_header(event $event)
 	{
-		$path = $this->phpbb_root_path . cnst::FOLDER;
-		$this->loader->addSafeDirectory($path);
+		error_log($this->phpbb_root_path . cnst::FOLDER);
+		$this->loader->addSafeDirectory($this->phpbb_root_path . cnst::FOLDER);
 		$this->template->assign_var('S_CUSTOMCODE', $this->config['tpl_allow_php'] ? false : true);
 	}
 
@@ -112,7 +112,7 @@ class listener implements EventSubscriberInterface
 
 		$query_string = $this->user->page['query_string'];
 
-		$params = $template_vars = array();
+		$params = $template_vars = [];
 		parse_str($query_string, $params);
 
 		foreach ($params as $name => $value)
@@ -137,7 +137,7 @@ class listener implements EventSubscriberInterface
 			$customcode_directory = new customcode_directory($this->language, $this->phpbb_root_path);
 			$filenames = $customcode_directory->get_filenames();
 
-			$template_edit_urls = array();
+			$template_edit_urls = [];
 			$params = array(
 				'i'			=> '-marttiphpbb-customcode-acp-main_module',
 				'mode'		=> 'edit',
@@ -179,7 +179,7 @@ class listener implements EventSubscriberInterface
 			{
 				if ($params === false)
 				{
-					$params = array();
+					$params = [];
 				}
 				if (isset($params['customcode_hide_events']))
 				{

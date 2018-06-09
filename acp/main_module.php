@@ -22,7 +22,7 @@ class main_module
 		$template = $phpbb_container->get('template');
 		$request = $phpbb_container->get('request');
 		$cache = $phpbb_container->get('cache');
-		 = $phpbb_container->get('user');
+		$user = $phpbb_container->get('user');
 
 		$language->add_lang('acp', 'marttiphpbb/customcode');
 		add_form_key('marttiphpbb/customcode');
@@ -37,7 +37,7 @@ class main_module
 				'i'		=> 'acp_board',
 				'mode'	=> 'security',
 			);
-			$link = append_sid($phpbb_admin_path . 'index.' . $phpEx, $params, true, ->session_id) . '#tpl_allow_php';
+			$link = append_sid($phpbb_admin_path . 'index.' . $phpEx, $params, true, $user->session_id) . '#tpl_allow_php';
 			$template->assign_var(
 				'ACP_CUSTOMCODE_INCLUDEPHP_WARNING', 
 				sprintf($language->lang('ACP_CUSTOMCODE_INCLUDEPHP_WARNING'),
