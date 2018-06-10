@@ -102,59 +102,19 @@ class listener implements EventSubscriberInterface
 	}
 
 	public function core_page_header(event $event)
-	{
+	{	
+		if ($this->config['tpl_allow_php'])
+		{
+			return;
+		}
+
 		$this->loader->addSafeDirectory($this->phpbb_root_path . cnst::DIR);
-		$this->template->assign_var('S_CUSTOMCODE', $this->config['tpl_allow_php'] ? false : true);
+		$this->template->assign_var('CUSTOMCODE_PATH', cnst::PATH . '/');
 	}
 
 	public function core_page_footer(event $event)
 	{
-		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
 
-		$query_string = $this->user->page['query_string'];
-
-		$params = $template_vars = [];
-		parse_str($query_string, $params);
-
-		foreach ($params as $name => $value)
-		{
-			$template_vars['CUSTOMCODE_PARAM_' . strtoupper($name)] = $value;
-		}
-
-		if (sizeof($template_vars))
-		{
-			$this->template->assign_vars($template_vars);
-		}
-
-		$show_events = ($this->request->variable('customcode_show_events', 0)) ? true : false;
-
-		if ($show_events && $this->auth->acl_get('a_'))
-		{
-			$query_string = str_replace('&customcode_show_events=1', '&customcode_show_events=0', $query_string);
-			$query_string = str_replace('customcode_show_events=1', 'customcode_show_events=0', $query_string);
-
-			$this->template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', append_sid($this->user->page['page_name'], $query_string));
-
-			$customcode_directory = new customcode_directory($this->language, $this->phpbb_root_path);
-			$filenames = $customcode_directory->get_filenames();
-
-			$template_edit_urls = [];
-			$params = array(
-				'i'			=> '-marttiphpbb-customcode-acp-main_module',
-				'mode'		=> 'edit',
-			);
-
-			foreach ($filenames as $filename)
-			{
-				$params['filename'] = $filename;
-				$this->template->assign_var(
-					'U_CUSTOMCODE_' . strtoupper($customcode_directory->get_basename($filename)),
-					append_sid($phpbb_admin_path . 'index.' . $this->php_ext, $params, true, $this->user->session_id)
-				);
-			}
-
-			$this->language->add_lang('common', 'marttiphpbb/customcode');
-		}
 	}
 
 	public function core_append_sid(event $event)
@@ -169,12 +129,16 @@ class listener implements EventSubscriberInterface
 			}
 		}
 
-		if ($this->request->variable('customcode_show_events', 0)
-			&& $this->auth->acl_get('a_'))
+		if ($this->request->variable('customcode_show_events', 0))
 		{
-			if (is_string($params) && $params != '')
+			if (is_string($params))
 			{
-				$params .= '&customcode_show_events=1';
+				if ($params !== '')
+				{
+					$params .= '&';
+				}
+
+				$params .= 'customcode_show_events=1';
 			}
 			else
 			{
@@ -182,21 +146,65 @@ class listener implements EventSubscriberInterface
 				{
 					$params = [];
 				}
-				if (isset($params['customcode_hide_events']))
-				{
-					$params = false;
-				}
-				else
-				{
-					$params['customcode_show_events'] = 1;
-				}
+
+				$params['customcode_show_events'] = 1;
 			}
+
 			$event['params'] = $params;
 		}
 	}
 
 	public function core_twig_environment_render_template_before(event $event)
 	{
+		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
+
+		$show_events = $this->request->variable('customcode_show_events', 0) ? true : false;
+		$show_events = $show_events && $show_events && $this->auth->acl_get('a_');
+		$show_events = $show_events && !$this->config['tpl_allow_php'];
+
+		if (!$show_events)
+		{
+			return;
+		}
+
+		$this->language->add_lang('common', 'marttiphpbb/customcode');
+
+		$context = $event['context'];
+
+		$page = $this->user->page['script_path'] . $this->user->page['page_name'];
+		$query_string = $this->user->page['query_string'];
+		$query_string = str_replace([
+			'&customcode_show_events=1', 
+			'&customcode_show_events=0',
+		], '', $query_string);
+		$query_string = str_replace([
+			'customcode_show_events=1', 
+			'customcode_show_events=0',
+		], '', $query_string);
+		$query_string = trim($query_string, '&');
+		$query_string .= $query_string ? '&' : '';
+
+		$u_edit_events = [];
+		$params = [
+			'i'			=> '-marttiphpbb-customcode-acp-main_module',
+			'mode'		=> 'edit',
+		];
+
+		foreach (customcode_directory::TEMPLATE_EVENTS as $event_name => $str)
+		{
+			$params['filename'] = $event_name . '.html';
+
+			$u_edit_events[$event_name] = append_sid(
+				$phpbb_admin_path . 'index.' . $this->php_ext, 
+				$params, true, $this->user->session_id);
+		}		
+
+		$context['marttiphpbb_customcode'] = [
+			'show_events'	=> true,
+			'u_hide'		=> append_sid($page, $query_string . 'customcode_show_events=0'),
+			'u_edit_events'	=> $u_edit_events,
+		];
 		
+		$event['context'] = $context;
 	}
 }

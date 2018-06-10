@@ -1,3 +1,5 @@
-<!-- IF false and S_CUSTOMCODE -->
-<!-- INCLUDE ../../../../../../store/customcode/overall_header_stylesheets_after.html -->
-<!-- ENDIF -->
+{%- embed '@marttiphpbb_customcode/include_file.html' -%}
+    {%- block event_name -%}
+        overall_header_stylesheets_after     
+    {%- endblock event_name -%}
+{%- endembed -%}

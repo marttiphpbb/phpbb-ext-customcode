@@ -1,0 +1,3 @@
+{%- if CUSTOMCODE_PATH -%}
+    {%- include CUSTOMCODE_PATH ~ block('event_name') ~ '.html' -%} 
+{%- endif -%}

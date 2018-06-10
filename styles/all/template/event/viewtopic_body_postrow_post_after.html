@@ -1,6 +1,5 @@
-<!-- IF U_CUSTOMCODE_VIEWTOPIC_BODY_POSTROW_POST_AFTER -->
-<a class="customcode-event" href="{U_CUSTOMCODE_VIEWTOPIC_BODY_POSTROW_POST_AFTER}">viewtopic_body_postrow_post_after</a>
-<!-- ENDIF -->
-<!-- IF S_CUSTOMCODE -->
-<!-- INCLUDE ../../../../../../store/customcode/viewtopic_body_postrow_post_after.html -->
-<!-- ENDIF -->
+{%- embed '@marttiphpbb_customcode/event.html' -%}
+    {%- block event_name -%}
+        viewtopic_body_postrow_post_after           
+    {%- endblock event_name -%}
+{%- endembed -%}

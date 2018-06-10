@@ -1,6 +1,5 @@
-<!-- IF U_CUSTOMCODE_HIDE_EVENTS -->
-<a class="customcode-event" href="{U_CUSTOMCODE_FORUMLIST_BODY_CATEGORY_HEADER_BEFORE}">forumlist_body_category_header_before</a>
-<!-- ENDIF -->
-<!-- IF S_CUSTOMCODE -->
-<!-- INCLUDE ../../../../../../store/customcode/forumlist_body_category_header_before.html -->
-<!-- ENDIF -->
+{%- embed '@marttiphpbb_customcode/event.html' -%}
+    {%- block event_name -%}
+        forumlist_body_category_header_before
+    {%- endblock event_name -%}
+{%- endembed -%}

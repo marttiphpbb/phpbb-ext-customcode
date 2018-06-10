@@ -121,7 +121,7 @@ class main_module
 					'FILENAME'				=> $file,
 					'S_IS_EVENT'			=> $customcode_directory->is_event($file),
 					'FILE_DATA'				=> utf8_htmlspecialchars($data),
-					'INCLUDE_EXAMPLE'		=> sprintf($language->lang(cnst::L_ACP . '_INCLUDE_EXAMPLE', $customcode_directory->get_dir())),
+					'INCLUDE_EXAMPLE'		=> $language->lang(cnst::L_ACP . '_INCLUDE_EXAMPLE'),
 				]);
 
 				break;

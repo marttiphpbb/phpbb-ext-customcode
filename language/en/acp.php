@@ -18,7 +18,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 
-	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'To include your own created files, prepend the filename with <code>../../../../../../%1$s/</code><p><code>&lt;!-- INCLUDE ../../../../../../%1$s/my_file.html --></code></p>',
+	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'To include your own created files, prefix the filename with the variable <code>CUSTOMCODE_PATH</code> like this:<p><code>{%- include CUSTOMCODE_PATH ~ \'my_file.html\' -%}</code></p>',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Create file',
 	'ACP_CUSTOMCODE_DELETE'						=> 'Delete',
 	'ACP_CUSTOMCODE_DELETE_FILE_NAME'			=> 'Delete %s',
@@ -56,5 +56,9 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'		=> 'Failed to list content of directory %s',
 	'ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'	=> 'File extension %s is not allowed for security.',
 	'ACP_CUSTOMCODE_PHP_NOT_ALLOWED'			=> 'Inclusion of php is not allowed for security.',
-	'ACP_CUSTOMCODE_INCLUDEPHP_WARNING'			=> 'Warning! For security, your custom code will not be included in templates when PHP code inclusion with PHP and INCLUDEPHP statements is enabled on your board. See %ssecurity settings%s to switch off PHP inclusion in templates.',		
+	'ACP_CUSTOMCODE_INCLUDEPHP_WARNING'			
+		=> 'Warning! For security, your custom code will not be included 
+		in templates when PHP code inclusion with PHP and INCLUDEPHP 
+		statements is enabled on your board. See %ssecurity settings%s 
+		to switch off PHP inclusion in templates.',		
 ));

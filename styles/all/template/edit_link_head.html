@@ -1,0 +1,5 @@
+{%- if marttiphpbb_customcode.show_events -%}
+    <a class="customcode-event-head" href="{{- marttiphpbb_customcode.u_edit_events[block('event_name')] -}}" title="{{- lang('CUSTOMCODE_LINK_EDIT_TITLE') -}}">
+        {%- block event_name -%}{%- endblock -%}&nbsp;{{- lang('CUSTOMCODE_INSIDE_HTML_HEAD') -}}
+    </a>
+{%- endif -%}

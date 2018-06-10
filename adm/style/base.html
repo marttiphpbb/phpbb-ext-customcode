@@ -1,0 +1,22 @@
+{%- include 'overall_header.html' -%}
+
+<h1>{%- block heading -%}{%- endblock -%}</h1>
+{%- block explain -%}{%- endblock -%}
+
+{%- if ACP_CUSTOMCODE_INCLUDEPHP_WARNING -%}
+    <div class="errorbox">
+        <p>
+            {{- ACP_CUSTOMCODE_INCLUDEPHP_WARNING -}}
+        </p>
+    </div>
+{%- endif -%}
+
+<form method="post" action="{{- U_ACTION -}}">
+    {%- block form_content -%}{%- endblock -%}
+    {{- S_FORM_TOKEN -}}
+</form>
+
+{%- block footnote -%}{%- endblock -%}
+
+{%- INCLUDEJS '@marttiphpbb_customcode/customcode.js' -%}
+{%- include 'overall_footer.html' -%}
