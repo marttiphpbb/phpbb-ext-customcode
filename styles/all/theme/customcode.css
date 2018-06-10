@@ -5,6 +5,7 @@ a.customcode-event, a.customcode-event-head, a.customcode-event-hide
     border: 1px solid white;
     border-radius: 4px;
     padding: 2px;
+    margin-right: 2px;
 }
 
 a.customcode-event-head

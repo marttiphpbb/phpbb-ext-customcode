@@ -221,10 +221,9 @@ class main_module
 					]);
 				}
 
-				$u_show = $template->assign_var('U_CUSTOMCODE_SHOW_EVENTS', 
-					append_sid($phpbb_root_path . 'index.' . $php_ext, [
+				$u_show = append_sid($phpbb_root_path . 'index.' . $php_ext, [
 						'customcode_show_events' => 1,
-					]));
+					]);
 
 				$template->assign_vars([
 					'U_ACTION'					=> $this->u_action,
