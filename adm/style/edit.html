@@ -23,7 +23,8 @@
 				{%- for f in filenames -%}
 					<option value="{{- f.NAME -}}"{%- if f.S_IS_SELECTED %} selected="selected"{%- endif -%}>
 						{{- f.NAME -}}
-						{%- if f.S_IS_EVENT %} {{ lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR') -}}{%- endif -%}
+						{%- if f.S_IS_EVENT %} {{ lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR') -}}
+						{%- endif -%}
 					</option>
 				{%- endfor -%}
 			</select>

@@ -1,12 +1,17 @@
-<!-- INCLUDE overall_header.html -->
+{%- extends '@marttiphpbb_customcode/base.html' -%}
 
-<h1>{{- lang('ACP_CUSTOMCODE_FILES') -}}</h1>
-<p>{{- lang('ACP_CUSTOMCODE_FILES_EXPLAIN', lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'), constant('marttiphpbb\\customcode\\util\\cnst::FOLDER')) -}}</p>
-{%- if ACP_CUSTOMCODE_INCLUDEPHP_WARNING -%}
-<div class="errorbox"><p>{ACP_CUSTOMCODE_INCLUDEPHP_WARNING}</p></div>
-{%- endif -%}
+{%- block heading -%}
+	{{- lang('ACP_CUSTOMCODE_FILES') -}}
+{%- endblock heading -%}
 
-<form method="post" action="{{- U_ACTION -}}">
+{%- block explain -%}
+	<p>
+		{{- lang('ACP_CUSTOMCODE_FILES_EXPLAIN', lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'), constant('marttiphpbb\\customcode\\util\\cnst::FOLDER')) -}}
+	</p>
+{%- endblock explain -%}
+
+{%- block form_content -%}
+
 	<fieldset>
 		<table class="table1 zebra-table">
 		<thead>
@@ -51,18 +56,10 @@
 			<input class="button2" type="submit" id="create" name="create" value="{{- lang('ACP_CUSTOMCODE_CREATE_FILE') -}}">
  		</dl>
 		</p>
-		{%- if U_CUSTOMCODE_HIDE_EVENTS -%}
-			<a href="{{- U_CUSTOMCODE_HIDE_EVENTS -}}">
-				{{- lang('ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS') -}}
-			</a>
-		{%- else -%}
-			<a href="{{- U_CUSTOMCODE_SHOW_EVENTS -}}">
-				{{- lang('ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS') -}}
-			</a>
-		{%- endif -%}
-	</fieldset>
-{{- S_FORM_TOKEN -}}
-</form>
 
-<!-- INCLUDEJS customcode.js -->
-<!-- INCLUDE overall_footer.html -->
+		<a href="{{- U_CUSTOMCODE_SHOW_EVENTS -}}">
+			{{- lang('ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS') -}}
+		</a>
+
+	</fieldset>
+{%- endblock form_content -%}

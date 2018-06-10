@@ -221,30 +221,17 @@ class main_module
 					]);
 				}
 
+				$u_show = $template->assign_var('U_CUSTOMCODE_SHOW_EVENTS', 
+					append_sid($phpbb_root_path . 'index.' . $php_ext, [
+						'customcode_show_events' => 1,
+					]));
+
 				$template->assign_vars([
 					'U_ACTION'					=> $this->u_action,
 					'NEW_FILE'					=> $new_file,
-					'FILES_EXPLAIN'				=> sprintf($language->lang(
-						cnst::L_ACP . '_FILES_EXPLAIN'), 
-						$language->lang(cnst::L_ACP . '_EVENT_FILE_INDICATOR'), 
-						$customcode_directory->get_dir()),
+					'U_CUSTOMCODE_SHOW_EVENTS'	=> $u_show,
 				]);
-
-				if ($request->variable('customcode_show_events', 0))
-				{
-					$template->assign_var('U_CUSTOMCODE_HIDE_EVENTS', 
-						append_sid($phpbb_root_path . 'index.' . $php_ext, [
-							'customcode_hide_events' => 1,
-						]));
-				}
-				else
-				{
-					$template->assign_var('U_CUSTOMCODE_SHOW_EVENTS', 
-						append_sid($phpbb_root_path . 'index.' . $php_ext, [
-							'customcode_show_events' => 1,
-						]));
-				}
-
+		
 				break;
 		}
 	}
