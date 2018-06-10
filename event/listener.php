@@ -94,7 +94,6 @@ class listener implements EventSubscriberInterface
 	{
 		return [
 			'core.page_header'		=> 'core_page_header',
-			'core.page_footer'		=> 'core_page_footer',
 			'core.append_sid'		=> 'core_append_sid',
 			'core.twig_environment_render_template_before'
 				=> 'core_twig_environment_render_template_before',
@@ -112,15 +111,21 @@ class listener implements EventSubscriberInterface
 		$this->template->assign_var('CUSTOMCODE_PATH', cnst::PATH . '/');
 	}
 
-	public function core_page_footer(event $event)
-	{
-
-	}
-
 	public function core_append_sid(event $event)
 	{
+		$url = $event['url'];
 		$params = $event['params'];
 
+		if (!$this->auth->acl_get('a_'))
+		{
+			return;
+		}
+
+		if (strpos($url, './adm/index') === 0)
+		{
+			return;
+		}
+	
 		if (is_string($params))
 		{
 			if (strpos($params, 'customcode_show_events=0') !== false)
