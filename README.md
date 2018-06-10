@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* phpBB 3.2+
+* phpBB 3.2.1+
 * PHP 7+
 
 ## Quick Install
