@@ -96,6 +96,8 @@ class listener implements EventSubscriberInterface
 			'core.page_header'		=> 'core_page_header',
 			'core.page_footer'		=> 'core_page_footer',
 			'core.append_sid'		=> 'core_append_sid',
+			'core.twig_environment_render_template_before'
+				=> 'core_twig_environment_render_template_before',
 		];
 	}
 
@@ -191,5 +193,10 @@ class listener implements EventSubscriberInterface
 			}
 			$event['params'] = $params;
 		}
+	}
+
+	public function core_twig_environment_render_template_before(event $event)
+	{
+		
 	}
 }

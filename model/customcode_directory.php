@@ -38,10 +38,10 @@ class customcode_directory
 	const FILE_EXTENSION = '.html';
 
 	const COMMENT_TAGS = [
-		['{#', '#}'],
 		['{#-', '-#}'],
 		['{#-', '#}'],
 		['{#', '-#}'],
+		['{#', '#}'],
 		['<!--', '-->'],		
 	];
 
@@ -254,7 +254,7 @@ class customcode_directory
 
 			if (!file_exists($filename))
 			{
-				if ($content)
+				if ($content === 'CUSTOMCODE_GITHUB_LINK')
 				{
 					$content = sprintf($this->language->lang($content), 
 						'{# ', 
