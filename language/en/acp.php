@@ -18,11 +18,16 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
-	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'To include your own created files, prefix the filename with the variable <code>CUSTOMCODE_PATH</code> like this:<p><code>{%- include CUSTOMCODE_PATH ~ \'my_file.html\' -%}</code></p>',
+	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 
+		'To include your own created files, 
+		prefix the filename with the variable <code>CUSTOM_CODE</code> like this:',
+	'ACP_CUSTOMCODE_EXAMPLE_FILE'				=> 'my_file.html',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Create file',
 	'ACP_CUSTOMCODE_DELETE'						=> 'Delete',
 	'ACP_CUSTOMCODE_DELETE_FILE_NAME'			=> 'Delete %s',
-	'ACP_CUSTOMCODE_FILES_EXPLAIN'				=> 'Files directly included with template events %1$s cannot be deleted. All files reside at directory %2$s.',
+	'ACP_CUSTOMCODE_FILES_EXPLAIN'				
+		=> 'Files directly included with template events <code>%1$s</code> cannot be deleted. 
+		All files reside in the directory <code>%2$s</code>.',
 	'ACP_CUSTOMCODE_FILE_SIZE'					=> 'Size',
 	'ACP_CUSTOMCODE_FILE_NAME'					=> 'Name',
 	'ACP_CUSTOMCODE_FILE_COMMENT'				=> 'Comment',
@@ -50,7 +55,6 @@ $lang = array_merge($lang, [
 	'ACP_CUSTOMCODE_FILE_SIZE_FAIL'				=> 'Failed to get the file size of %s.',
 	'ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'		=> '(E)',
 	'ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'Show Custom Code template events locations',
-	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Hide Custom Code template events locations',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'		=> 'Failed to create the directory %s',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_DELETED'		=> 'Failed to delete the directory %s',
 	'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'		=> 'Failed to list content of directory %s',

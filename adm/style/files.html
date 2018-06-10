@@ -1,7 +1,7 @@
 <!-- INCLUDE overall_header.html -->
 
 <h1>{{- lang('ACP_CUSTOMCODE_FILES') -}}</h1>
-<p>{{- FILES_EXPLAIN -}}</p>
+<p>{{- lang('ACP_CUSTOMCODE_FILES_EXPLAIN', lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'), constant('marttiphpbb\\customcode\\util\\cnst::FOLDER')) -}}</p>
 {%- if ACP_CUSTOMCODE_INCLUDEPHP_WARNING -%}
 <div class="errorbox"><p>{ACP_CUSTOMCODE_INCLUDEPHP_WARNING}</p></div>
 {%- endif -%}
@@ -32,7 +32,7 @@
 				<td>{{- f.COMMENT -}}</td>
 				<td>
 				{%- if not f.S_IS_EVENT -%}
-					<input class="button2" type="submit" name="delete[{{- f.NAME -}}]" value="x" title="{{- f.DELETE_FILE_NAME -}}">
+					<input class="button2" type="submit" name="delete[{{- f.NAME -}}]" value="x" title="{{- lang('ACP_CUSTOMCODE_DELETE_FILE_NAME', f.NAME) -}}">
 				{%- endif -%}
 				</td>
 			</tr>

@@ -18,7 +18,8 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
-	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'Para incluir sus propios archivos, anteponga el nombre del archivo con <code>../../../../../../%1$s/</code><p><code>&lt;!-- INCLUDE ../../../../../../%1$s/mi_archivo.html --></code></p>',
+	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'Para incluir sus propios archivos, anteponga el nombre del archivo con (fix this)',
+	'ACP_CUSTOMCODE_EXAMPLE_FILE'				=> 'my_file.html',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Crear archivo',
 	'ACP_CUSTOMCODE_DELETE'						=> 'Borrar',
 	'ACP_CUSTOMCODE_DELETE_FILE_NAME'			=> 'Borrar %s',
@@ -50,7 +51,6 @@ $lang = array_merge($lang, [
 	'ACP_CUSTOMCODE_FILE_SIZE_FAIL'				=> 'No se pudo obtener el tamaño del archivo %s.',
 	'ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'		=> '(E)',
 	'ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'Mostrar código personalizado de las ubicaciones de eventos de plantilla',
-	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Ocultar código personalizado de las ubicaciones de eventos de plantilla',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'	=> 'Error al crear el directorio %s',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_DELETED'		=> 'Error al borrar el directorio %s',
 	'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'		=> 'Error al mostrar el contenido del directorio %s',

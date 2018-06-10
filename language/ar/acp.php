@@ -20,7 +20,8 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
-	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'لإضافة الملفات الخاصة بك , يجب أن يحتوي الملف على <code>../../../../../../%1$s/</code><p><code>&lt;!-- INCLUDE ../../../../../../%1$s/my_file.html --></code></p>',
+	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'لإضافة الملفات الخاصة بك , يجب أن يحتوي الملف على (fix this)',
+	'ACP_CUSTOMCODE_EXAMPLE_FILE'				=> 'my_file.html',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'إنشاء ملف',
 	'ACP_CUSTOMCODE_DELETE'						=> 'حذف',
 	'ACP_CUSTOMCODE_DELETE_FILE_NAME'			=> 'حذف %s',
@@ -52,7 +53,6 @@ $lang = array_merge($lang, [
 	'ACP_CUSTOMCODE_FILE_SIZE_FAIL'				=> 'فشل في الحصول على حجم الملف من %s.',
 	'ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'		=> '(انجليزي)',
 	'ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'إظهار أماكن أحداث القالب',
-	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'إخفاء أماكن أحداث القالب',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'		=> 'فشل في إنشاء المجلد %s',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_DELETED'		=> 'فشل في حذف المجلد %s',
 	'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'		=> 'فشل في عرض محتوى المجلد %s',

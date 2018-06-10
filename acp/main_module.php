@@ -76,18 +76,25 @@ class main_module
 						{
 							$config->increment('assets_version', 1);
 							$cache->purge();
-							trigger_error(sprintf($language->lang(cnst::L_ACP . '_FILE_SAVED_CACHE_PURGED'), $file) . adm_back_link($this->u_action . '&amp;filename='. $file));
+							trigger_error(sprintf($language->lang(
+								cnst::L_ACP . '_FILE_SAVED_CACHE_PURGED'), 
+								$file) . adm_back_link($this->u_action . '&amp;filename='. $file));
 						}
 
-						trigger_error(sprintf($language->lang(cnst::L_ACP . '_FILE_SAVED'), $file) . adm_back_link($this->u_action . '&amp;filename=' . $file));
+						trigger_error(sprintf($language->lang(
+							cnst::L_ACP . '_FILE_SAVED'), 
+							$file) . adm_back_link($this->u_action . '&amp;filename=' . $file));
 					}
 
 					if (!in_array($file, $filenames))
 					{
-						trigger_error(sprintf($language->lang(cnst::L_ACP . '_FILE_DOES_NOT_EXIST'), $file) . adm_back_link($this->u_action), E_USER_WARNING);
+						trigger_error(sprintf($language->lang(
+							cnst::L_ACP . '_FILE_DOES_NOT_EXIST'), 
+							$file) . adm_back_link($this->u_action), E_USER_WARNING);
 					}
 
-					$confirm_message = ($save_purge_cache) ? cnst::L_ACP . '_SAVE_PURGE_CACHE_CONFIRM' : cnst::L_ACP . '_SAVE_CONFIRM';
+					$confirm_message = cnst::L_ACP;
+					$confirm_message .= $save_purge_cache ? '_SAVE_PURGE_CACHE_CONFIRM' : '_SAVE_CONFIRM';
 
 					$s_hidden_fields = [
 						'filename'			=> $file,
@@ -103,7 +110,7 @@ class main_module
 				else
 				{
 					reset($filenames);
-					$file = ($file == '') ? current($filenames) : $file;
+					$file = $file === '' ? current($filenames) : $file;
 				}
 
 				if ($ext_manager->is_enabled('marttiphpbb/codemirror'))
@@ -128,7 +135,6 @@ class main_module
 					'FILENAME'				=> $file,
 					'S_IS_EVENT'			=> $customcode_directory->is_event($file),
 					'FILE_DATA'				=> utf8_htmlspecialchars($data),
-					'INCLUDE_EXAMPLE'		=> $language->lang(cnst::L_ACP . '_INCLUDE_EXAMPLE'),
 				]);
 
 				break;
@@ -151,31 +157,43 @@ class main_module
 
 					if (!$new_file)
 					{
-						trigger_error($language->lang(cnst::L_ACP . '_FILENAME_EMPTY') . adm_back_link($this->u_action), E_USER_WARNING);
+						trigger_error($language->lang(
+							cnst::L_ACP . '_FILENAME_EMPTY') . adm_back_link($this->u_action), 
+							E_USER_WARNING);
 					}
 
 					if (in_array($new_file, $filenames))
 					{
-						trigger_error(sprintf($language->lang(cnst::L_ACP . '_FILE_ALREADY_EXISTS'), $new_file) . adm_back_link($this->u_action), E_USER_WARNING);
+						trigger_error(sprintf($language->lang(
+							cnst::L_ACP . '_FILE_ALREADY_EXISTS'), 
+							$new_file) . adm_back_link($this->u_action), 
+							E_USER_WARNING);
 					}
 
 					$customcode_directory->create_file($new_file);
 
-					trigger_error(sprintf($language->lang(cnst::L_ACP . '_FILE_CREATED'), $new_file) . adm_back_link($this->u_action));
+					trigger_error(sprintf($language->lang(
+						cnst::L_ACP . '_FILE_CREATED'), 
+						$new_file) . adm_back_link($this->u_action));
 				}
 
 				if ($request->is_set_post('delete'))
 				{
 					if (!in_array($file_to_delete, $filenames))
 					{
-						trigger_error(sprintf($language->lang(cnst::L_ACP . '_FILE_DOES_NOT_EXIST'), $file_to_delete) . adm_back_link($this->u_action), E_USER_WARNING);
+						trigger_error(sprintf($language->lang(
+							cnst::L_ACP . '_FILE_DOES_NOT_EXIST'), 
+							$file_to_delete) . adm_back_link($this->u_action), 
+							E_USER_WARNING);
 					}
 
 					if (confirm_box(true))
 					{
 						$customcode_directory->delete_file($file_to_delete);
 
-						trigger_error(sprintf($language->lang(cnst::L_ACP . '_FILE_DELETED'), $file_to_delete) . adm_back_link($this->u_action));
+						trigger_error(sprintf($language->lang(
+							cnst::L_ACP . '_FILE_DELETED'), 
+							$file_to_delete) . adm_back_link($this->u_action));
 					}
 
 					$s_hidden_fields = [
@@ -200,7 +218,6 @@ class main_module
 						'U_EDIT'				=> $u_edit . '&amp;filename=' . $filename,
 						'SIZE'					=> $customcode_directory->get_filesize($filename),
 						'COMMENT'				=> $customcode_directory->get_comment($filename),
-						'DELETE_FILE_NAME'		=> sprintf($language->lang(cnst::L_ACP . '_DELETE_FILE_NAME'), $filename),
 					]);
 				}
 

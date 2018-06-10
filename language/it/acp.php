@@ -18,7 +18,8 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
-	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'Per includere i propri file aggiungere prima del nome file  <code>../../../../../../%1$s/</code><p><code>&lt;!-- INCLUDE ../../../../../../%1$s/mio_file.html --></code></p>',
+	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'Per includere i propri file aggiungere prima del nome file (fix this)',
+	'ACP_CUSTOMCODE_EXAMPLE_FILE'				=> 'my_file.html',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Crea file',
 	'ACP_CUSTOMCODE_DELETE'						=> 'Rimuovi',
 	'ACP_CUSTOMCODE_DELETE_FILE_NAME'			=> 'Rimuovi %s',
@@ -50,7 +51,6 @@ $lang = array_merge($lang, [
 	'ACP_CUSTOMCODE_FILE_SIZE_FAIL'				=> 'Impossibile ottenere la dimensione del file %s.',
 	'ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'		=> '(E)',
 	'ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'Mostra le posizioni degli eventi template di Custom code',
-	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Nascondi le posizioni degli eventi di Custom code',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'		=> 'Impossibile creare la cartella %s',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_DELETED'		=> 'Impossibile rimuovere la cartella %s',
 	'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'		=> 'Impossibile elencare il contenuto della cartella %s',

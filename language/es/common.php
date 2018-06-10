@@ -18,6 +18,8 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
+	'CUSTOMCODE_LINK_EDIT_TITLE'				=> 'Edit custom code for this location.',
+	'CUSTOMCODE_HIDE'							=> 'Hide',	
 	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Ocultar código personalizado de las ubicaciones de eventos de plantilla',
 	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(interior del encabezado html)',
 	'CUSTOMCODE_GITHUB_LINK'					=> '%1$sEnlace a Custom Code en GitHub%2$s%3$sCustom Code%4$s extensión para phpBB',

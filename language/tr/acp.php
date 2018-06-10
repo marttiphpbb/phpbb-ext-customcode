@@ -18,7 +18,8 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
-	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'	=> 'Özel dosya eklemek için kullanın <code>../../../../../../%1$s/</code><p><code>&lt;!-- INCLUDE ../../../../../../%1$s/my_file.html --></code></p>',
+	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'	=> 'Özel dosya eklemek için kullanın (fix this)',
+	'ACP_CUSTOMCODE_EXAMPLE_FILE'				=> 'my_file.html',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Dosya oluştur',
 	'ACP_CUSTOMCODE_DELETE'						=> 'Sil',
 	'ACP_CUSTOMCODE_DELETE_FILE_NAME'	=> 'Sil %s',
@@ -45,6 +46,5 @@ $lang = array_merge($lang, [
 	'ACP_CUSTOMCODE_FILE_NOT_DELETED'		=> '%s Dosyası silinirken bir hata oluştu.',
 	'ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'=> '(E)',
 	'ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'Özel kod şablon olayı konumlarını göster',
-	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Özel kod şablon olayı konumlarını gizle',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'	=> '%s dizini oluşturulamadı',
 ]);

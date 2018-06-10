@@ -17,9 +17,10 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
+	'ACP_CUSTOMCODE_EXAMPLE_FILE'				=> 'my_file.html',
 	'ACP_CUSTOMCODE'							=> 'Aangepaste Code',
 	'ACP_CUSTOMCODE_EDIT'						=> 'Bewerk',
-	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'Om je zelf gemaakte bestand in te sluiten, gebruik <code>../../../../../../store/customcode/</code><p><code>&lt;!-- INCLUDE ../../../../../../store/customcode/my_file.html --></code></p>',
+	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'Om je zelf gemaakte bestand in te sluiten, gebruik (fix this)',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Maak bestand',
 	'ACP_CUSTOMCODE_DELETE'						=> 'Verwijder',
 	'ACP_CUSTOMCODE_DELETE_FILE_NAME'			=> 'Verwijder %s',
@@ -46,7 +47,6 @@ $lang = array_merge($lang, [
 	'ACP_CUSTOMCODE_FILE_DOES_NOT_EXIST'		=> 'Bestand %s bestaat niet.',
 	'ACP_CUSTOMCODE_FILE_NOT_DELETED'			=> 'Verwijderen van bestand %s is mislukt.',
 	'ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'		=> '(E)',
-	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Verberg de Custom Code locaties',
 	'ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'Toon de Custom Code locaties',
 
 ]);

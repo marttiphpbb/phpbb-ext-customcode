@@ -48,6 +48,19 @@
 
 {%- block footnote -%}
 	<fieldset>
-		<p>{{- INCLUDE_EXAMPLE -}}</p>
+		<p>
+			{{- lang('ACP_CUSTOMCODE_INCLUDE_EXAMPLE', 'CUSTOMCODE_PATH') -}}
+		</p>
+		<p>
+			<code>
+				{%- verbatim -%}
+				{%- include CUSTOMCODE_PATH ~ '
+				{%- endverbatim -%}
+				{{- lang('ACP_CUSTOMCODE_EXAMPLE_FILE') -}}
+				{%- verbatim -%}
+				' -%}
+				{%- endverbatim -%}
+			</code>
+		</p>
 	</fieldset>
 {%- endblock footnote -%}

@@ -21,7 +21,8 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, [
-	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'Pour inclure ses propres fichiers, ajouter aux noms des fichiers <code>../../../../../../%1$s/</code><p><code>&lt;!-- INCLUDE ../../../../../../%1$s/mon_fichier.html --></code></p>',
+	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'Pour inclure ses propres fichiers, ajouter aux noms des fichiers (fix this)',
+	'ACP_CUSTOMCODE_EXAMPLE_FILE'				=> 'my_file.html',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Créer un fichier',
 	'ACP_CUSTOMCODE_DELETE'						=> 'Supprimer',
 	'ACP_CUSTOMCODE_DELETE_FILE_NAME'			=> 'Supprimer %s',
@@ -53,7 +54,6 @@ $lang = array_merge($lang, [
 	'ACP_CUSTOMCODE_FILE_SIZE_FAIL'				=> 'Erreur pour déterminer la taille du fichier %s.',
 	'ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'		=> '(E)',
 	'ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'Afficher les emplacements des évènements du template disponibles dans l’extension Custom Code',
-	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Masquer les emplacements des évènements du template disponibles dans l’extension Custom Code',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'		=> 'Impossible de créer le répertoire %s',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_DELETED'		=> 'Erreur de suppression du répertoire %s',
 	'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'		=> 'Erreur pour lister le contenu du répertoire %s',
