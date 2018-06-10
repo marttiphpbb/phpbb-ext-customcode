@@ -4,6 +4,8 @@
 
 * phpBB 3.2.1+
 * PHP 7+
+* The [Codemirror helper extension](https://github.com/marttiphpbb/phpbb-ext-codemirror)
+* Disabled PHP in templates
 
 ## Quick Install
 

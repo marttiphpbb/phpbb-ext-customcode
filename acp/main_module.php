@@ -24,6 +24,7 @@ class main_module
 		$request = $phpbb_container->get('request');
 		$cache = $phpbb_container->get('cache');
 		$user = $phpbb_container->get('user');
+		$ext_manager = $phpbb_container->get('ext.manager');
 
 		$phpbb_root_path = $phpbb_container->getParameter('core.root_path');
 		$php_ext = $phpbb_container->getParameter('core.php_ext');
@@ -104,6 +105,12 @@ class main_module
 					reset($filenames);
 					$file = ($file == '') ? current($filenames) : $file;
 				}
+
+				if ($ext_manager->is_enabled('marttiphpbb/codemirror'))
+				{
+					$load = $phpbb_container->get('marttiphpbb.codemirror.load');
+					$load->set_mode('html');
+				}				
 
 				$data = $customcode_directory->file_get_contents($file);
 
