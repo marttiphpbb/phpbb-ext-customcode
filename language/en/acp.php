@@ -16,7 +16,7 @@ if (empty($lang) || !is_array($lang))
 	$lang = [];
 }
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 
 	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'To include your own created files, prefix the filename with the variable <code>CUSTOMCODE_PATH</code> like this:<p><code>{%- include CUSTOMCODE_PATH ~ \'my_file.html\' -%}</code></p>',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Create file',
@@ -61,4 +61,4 @@ $lang = array_merge($lang, array(
 		in templates when PHP code inclusion with PHP and INCLUDEPHP 
 		statements is enabled on your board. See %ssecurity settings%s 
 		to switch off PHP inclusion in templates.',		
-));
+]);

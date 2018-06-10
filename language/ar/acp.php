@@ -18,7 +18,7 @@ if (empty($lang) || !is_array($lang))
 	$lang = [];
 }
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 
 	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'لإضافة الملفات الخاصة بك , يجب أن يحتوي الملف على <code>../../../../../../%1$s/</code><p><code>&lt;!-- INCLUDE ../../../../../../%1$s/my_file.html --></code></p>',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'إنشاء ملف',
@@ -58,4 +58,4 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'		=> 'فشل في عرض محتوى المجلد %s',
 	'ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'	=> 'نوع الملف %s الذي تريد إنشائه غير مسموح به لدواعي أمنية.',
 	'ACP_CUSTOMCODE_PHP_NOT_ALLOWED'			=> 'غير مسموح بأن يحتوي الملف على لغة الـ php لدواعي أمنية.',
-));
+]);

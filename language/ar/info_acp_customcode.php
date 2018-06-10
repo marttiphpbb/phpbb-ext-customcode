@@ -18,10 +18,10 @@ if (empty($lang) || !is_array($lang))
 	$lang = [];
 }
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 
 	'ACP_CUSTOMCODE'							=> 'إنشاء الأكواد',
 	'ACP_CUSTOMCODE_EDIT'						=> 'التعديل',
 	'ACP_CUSTOMCODE_FILES'						=> 'الملفات',
 
-));
+]);

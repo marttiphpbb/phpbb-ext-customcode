@@ -16,7 +16,7 @@ if (empty($lang) || !is_array($lang))
 	$lang = [];
 }
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 
 	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'Para incluir sus propios archivos, anteponga el nombre del archivo con <code>../../../../../../%1$s/</code><p><code>&lt;!-- INCLUDE ../../../../../../%1$s/mi_archivo.html --></code></p>',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Crear archivo',
@@ -56,4 +56,4 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'		=> 'Error al mostrar el contenido del directorio %s',
 	'ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'	=> 'La extensión de archivo %s no se permite por seguridad.',
 	'ACP_CUSTOMCODE_PHP_NOT_ALLOWED'			=> 'La inclusión de PHP no está permitido por seguridad.',
-));
+]);

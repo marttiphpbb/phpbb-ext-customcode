@@ -15,7 +15,7 @@ if (empty($lang) || !is_array($lang))
 	$lang = [];
 }
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 
 	'ACP_CUSTOMCODE'							=> 'Aangepaste Code',
 	'ACP_CUSTOMCODE_EDIT'						=> 'Bewerk',
@@ -49,4 +49,4 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Verberg de Custom Code locaties',
 	'ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'Toon de Custom Code locaties',
 
-));
+]);

@@ -16,7 +16,7 @@ if (empty($lang) || !is_array($lang))
 	$lang = [];
 }
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 
 	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'	=> 'Özel dosya eklemek için kullanın <code>../../../../../../%1$s/</code><p><code>&lt;!-- INCLUDE ../../../../../../%1$s/my_file.html --></code></p>',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Dosya oluştur',
@@ -47,4 +47,4 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS'	=> 'Özel kod şablon olayı konumlarını göster',
 	'ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Özel kod şablon olayı konumlarını gizle',
 	'ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'	=> '%s dizini oluşturulamadı',
-));
+]);

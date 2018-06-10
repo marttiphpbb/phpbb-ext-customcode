@@ -20,7 +20,7 @@ if (empty($lang) || !is_array($lang))
 	$lang = [];
 }
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 'Pour inclure ses propres fichiers, ajouter aux noms des fichiers <code>../../../../../../%1$s/</code><p><code>&lt;!-- INCLUDE ../../../../../../%1$s/mon_fichier.html --></code></p>',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Créer un fichier',
 	'ACP_CUSTOMCODE_DELETE'						=> 'Supprimer',
@@ -60,4 +60,4 @@ $lang = array_merge($lang, array(
 	'ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'	=> 'L’extension de fichier %s n’est pas autorisée pour des raisons de sécurité.',
 	'ACP_CUSTOMCODE_PHP_NOT_ALLOWED'			=> 'L’inclusion du language PHP n’est pas autorisé pour des raisons de sécurité.',
 	'ACP_CUSTOMCODE_INCLUDEPHP_WARNING'			=> 'Attention ! Pour des raisons de sécurité, les codes personnalisés ne seront pas inclus dans les templates lorsque l’analyse du code PHP (via les instructions PHP et INCLUDEPHP) est activée sur le forum. Merci de consulter les %sParamètres de sécurité%s pour désactiver l’option : « Autoriser le PHP dans les templates ».',		
-));
+]);

@@ -15,9 +15,9 @@ if (empty($lang) || !is_array($lang))
 	$lang = [];
 }
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 
 	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Verberg de Custom Code locaties',
 	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(binnen html header)',
 
-));
+]);

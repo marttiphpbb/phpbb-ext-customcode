@@ -217,7 +217,7 @@ class customcode_directory
 				cnst::DIR), E_USER_WARNING);
 		}
 
-		return array_diff($list, array('.', '..', '.htaccess'));
+		return array_diff($list, ['.', '..', '.htaccess']);
 	}
 
 	public function create()
