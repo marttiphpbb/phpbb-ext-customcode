@@ -1,5 +1,7 @@
 # phpBB 3.2 PhpBB Extension - marttiphpbb Custom Code
 
+[Topic on phpBB.com](https://www.phpbb.com/community/viewtopic.php?f=456&t=2275361)
+
 ## Requirements
 
 * phpBB 3.2.1+
