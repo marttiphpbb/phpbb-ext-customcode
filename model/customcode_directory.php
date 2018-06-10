@@ -12,17 +12,15 @@ use marttiphpbb\customcode\util\cnst;
 
 class customcode_directory
 {
-	/* @var string */
+	/** @var string */
 	private $phpbb_root_path;
 
-	/* @var language */
+	/** @var language */
 	private $language;
 
-	/* @var string */
-	private $htaccess_content = "<Files *>\r\n    Order Allow, Deny\r\n    Deny from All\r\n</Files>";
+	const HTACCESS = "<Files *>\r\n    Order Allow, Deny\r\n    Deny from All\r\n</Files>";
 
-	/* @var array */
-	private $template_events = array(
+	const TEMPLATE_EVENTS = [
 		'forumlist_body_category_header_before'	=> '',
 		'overall_footer_after'					=> '',
 		'overall_footer_body_after'				=> '',
@@ -35,35 +33,37 @@ class customcode_directory
 		'overall_header_stylesheets_after'		=> '',
 		'topiclist_row_append'					=> '',
 		'viewtopic_body_postrow_post_after' 	=> '',
-	);
-
-	/* @var string */
-	private $file_extension = '.html';
-
-	/* @var array */
-	protected $comment_tag = array(
-		'open'		=> '<!--',
-		'close'		=> '-->',
-	);
-
-	private $disallowed_file_extensions = [
-		'php',
-		'php3',
-		'php4',
-		'php5',
-		'php6',
-		'phtml',
 	];
 
-	private $disallowed_tags = [
-		'<!-- PHP',
-		'<!-- INCLUDEPHP',
-		'{% PHP',
-		'{% INCLUDEPHP',
-		'<?',
+	const FILE_EXTENSION = '.html';
+
+	const COMMENT_TAGS = [
+		['{#', '#}'],
+		['{#-', '-#}'],
+		['{#-', '#}'],
+		['{#', '-#}'],
+		['<!--', '-->'],		
 	];
 
-	protected $file_size_scales = ' KMGTP';
+	const DISALLOWED = [
+		'file_extensions'	=> [
+			'php',
+			'php3',
+			'php4',
+			'php5',
+			'php6',
+			'phtml',
+		],
+		'tags'	=> [
+			'<!-- PHP',
+			'<!-- INCLUDEPHP',
+			'{% PHP',
+			'{% INCLUDEPHP',
+			'<?',
+		],
+	];
+
+	const FILE_SIZE_SCALES = ' KMGTP';
 
 	/**
 	 * @param  language $language
@@ -99,19 +99,7 @@ class customcode_directory
 
 		if ($first_line = @fgets($f))
 		{
-			$start = strpos($first_line, $this->comment_tag['open']);
-
-			if ($start !== false)
-			{
-				$start += strlen($this->comment_tag['open']);
-				$end = strpos($first_line, $this->comment_tag['close'], $start);
-
-				if ($end !== false)
-				{
-					$comment = trim(substr($first_line, $start, $end - $start));
-				}
-			}
-
+			$comment = $this->get_comment_from_line($first_line);
 		}
 
 		fclose($f);
@@ -119,47 +107,34 @@ class customcode_directory
 		return $comment;
 	}
 
-	/*
-	 * @param string
-	 * @return string
-	 */
-	public function get_filesize($filename)
+	public function get_filesize(string $filename):string
 	{
 		$path = $this->phpbb_root_path . cnst::DIR . '/' . $filename;
 		$size = @filesize($path);
 
 		if ($size === false)
 		{
-			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_SIZE_FAIL'), $filename), E_USER_WARNING);
+			trigger_error(sprintf($this->language->lang(
+				'ACP_CUSTOMCODE_FILE_SIZE_FAIL'), 
+				$filename), E_USER_WARNING);
 		}
 
 		$mul = floor((strlen($size) - 1) / 3);
-		return sprintf('%.0f', $size / pow(1024, $mul)) . @$this->file_size_scales[$mul];
+		return sprintf('%.0f', $size / pow(1024, $mul)) . @self::FILE_SIZE_SCALES[$mul];
 	}
 
-	/**
-	 * @param string $filename
-	 * @return bool
-	 */
-	public function is_event($filename)
+	public function is_event(string $filename):bool
 	{
 		$basename = $this->get_basename($filename);
-		return ($filename === $basename . $this->file_extension && isset($this->template_events[$basename])) ? true : false;
+		return ($filename === $basename . self::FILE_EXTENSION) && isset(self::TEMPLATE_EVENTS[$basename]);
 	}
 
-	/**
-	 * @param string $filename
-	 * @return string
-	 */
-	public function get_basename($filename)
+	public function get_basename(string $filename):string
 	{
-		return basename($filename, $this->file_extension);
+		return basename($filename, self::FILE_EXTENSION);
 	}
 
-	/**
-	 * @param string $filename
-	 */
-	public function delete_file($filename)
+	public function delete_file(string $filename)
 	{
 		if (!@unlink($this->phpbb_root_path . cnst::DIR . '/' . $filename))
 		{
@@ -167,49 +142,51 @@ class customcode_directory
 		}
 	}
 
-	/**
-	 * @param string $filename
-	 */
-	public function create_file($filename)
+	public function create_file(string $filename)
 	{
 		$file_extension = pathinfo($filename, PATHINFO_EXTENSION);
 
-		if (in_array(strtolower($file_extension), $this->disallowed_file_extensions))
+		if (in_array(strtolower($file_extension), self::DISALLOWED['file_extensions']))
 		{
-			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'), $file_extension), E_USER_WARNING);
+			trigger_error(sprintf($this->language->lang(
+				'ACP_CUSTOMCODE_FILE_EXTENSION_NOT_ALLOWED'), 
+				$file_extension), E_USER_WARNING);
 		}
 
 		if (!@touch($this->phpbb_root_path . cnst::DIR . '/' . $filename))
 		{
-			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_NOT_CREATED'), $filename), E_USER_WARNING);
+			trigger_error(sprintf($this->language->lang(
+				'ACP_CUSTOMCODE_FILE_NOT_CREATED'), 
+				$filename), E_USER_WARNING);
 		}
 
 		return;
 	}
 
-	/**
-	 * @param string $filename
-	 * @param string $data
-	 * @return bool success
-	 */
-	public function save_to_file($filename, $data)
+	public function save_to_file(string $filename, string $data)
 	{
-		foreach ($this->disallowed_tags as $disallowed_tag)
+		foreach (self::DISALLOWED['tags'] as $disallowed_tag)
 		{
-			if (strpos($data, $disallowed_tag) !== false)
+			if (stripos($data, $disallowed_tag) !== false)
 			{
-				trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_PHP_NOT_ALLOWED')), E_USER_WARNING);
+				trigger_error(sprintf($this->language->lang(
+					'ACP_CUSTOMCODE_PHP_NOT_ALLOWED')), 
+						E_USER_WARNING);
 			}
 		}
 
 		if (!($f = @fopen($this->phpbb_root_path . cnst::DIR . '/' . $filename, 'wb')))
 		{
-			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_NOT_OPENED'), $filename), E_USER_WARNING);
+			trigger_error(sprintf($this->language->lang(
+				'ACP_CUSTOMCODE_FILE_NOT_OPENED'), 
+				$filename), E_USER_WARNING);
 		}
 
 		if (@fwrite($f, $data) === false)
 		{
-			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_WRITE_FAIL'), $filename), E_USER_WARNING);
+			trigger_error(sprintf($this->language->lang(
+				'ACP_CUSTOMCODE_FILE_WRITE_FAIL'), 
+				$filename), E_USER_WARNING);
 		}
 
 		fclose($f);
@@ -217,11 +194,7 @@ class customcode_directory
 		return;
 	}
 
-	/*
-	 * @param string $filename
-	 * @return string data
-	 */
-	public function file_get_contents($filename)
+	public function file_get_contents(string $filename):string
 	{
 		$content = @file_get_contents($this->phpbb_root_path . cnst::DIR . '/' . $filename);
 
@@ -233,27 +206,23 @@ class customcode_directory
 		return $content;
 	}
 
-	/**
-	 * @return array
-	 */
-	public function get_filenames()
+	public function get_filenames():array
 	{
 		$list = @scandir($this->phpbb_root_path . cnst::DIR);
 
 		if ($list === false)
 		{
-			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'), cnst::DIR), E_USER_WARNING);
+			trigger_error(sprintf($this->language->lang(
+				'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'), 
+				cnst::DIR), E_USER_WARNING);
 		}
 
 		return array_diff($list, array('.', '..', '.htaccess'));
 	}
 
-	/**
-	 *
-	 */
 	public function create()
 	{
-		$this->language->add_lang('common', 'marttiphpbb/customcode');
+		$this->language->add_lang('common', cnst::FOLDER);
 
 		$dir = $this->phpbb_root_path . cnst::DIR;
 
@@ -264,31 +233,42 @@ class customcode_directory
 
 			if (!is_dir($dir))
 			{
-				trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'), cnst::DIR), E_USER_WARNING);
+				trigger_error(sprintf($this->language->lang(
+					'ACP_CUSTOMCODE_DIRECTORY_NOT_CREATED'), 
+					cnst::DIR), E_USER_WARNING);
 			}
 		}
 
 		$filename = $dir . '/.htaccess';
 
-		if (@file_put_contents($filename, $this->htaccess_content) === false)
+		if (@file_put_contents($filename, self::HTACCESS) === false)
 		{
-			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_WRITE_FAIL'), $filename), E_USER_WARNING);
+			trigger_error(sprintf($this->language->lang(
+				'ACP_CUSTOMCODE_FILE_WRITE_FAIL'), 
+				$filename), E_USER_WARNING);
 		}
 
-		foreach ($this->template_events as $template_event => $content)
+		foreach (self::TEMPLATE_EVENTS as $template_event => $content)
 		{
-			$filename = $dir . '/' . $template_event . $this->file_extension;
+			$filename = $dir . '/' . $template_event . self::FILE_EXTENSION;
 
 			if (!file_exists($filename))
 			{
 				if ($content)
 				{
-					$content = sprintf($this->language->lang($content), '<!-- ', " -->\r\n<br/>", '<a href="https://github.com/marttiphpbb/phpbb-ext-customcode">', '</a>', $template_event);
+					$content = sprintf($this->language->lang($content), 
+						'{# ', 
+						" #}\r\n<br>", 
+						'<a href="https://github.com/marttiphpbb/phpbb-ext-customcode">', 
+						'</a>', 
+						$template_event);
 				}
 
 				if (@file_put_contents($filename, $content) === false)
 				{
-					trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_WRITE_FAIL'), $filename), E_USER_WARNING);
+					trigger_error(sprintf($this->language->lang(
+						'ACP_CUSTOMCODE_FILE_WRITE_FAIL'), 
+						$filename), E_USER_WARNING);
 				}
 			}
 		}
@@ -299,7 +279,7 @@ class customcode_directory
 		$this->remove_directory($this->phpbb_root_path . cnst::DIR);
 	}
 
-	private function remove_directory($dir)
+	private function remove_directory(string $dir)
 	{
 		if(!is_dir($dir))
 		{
@@ -310,7 +290,9 @@ class customcode_directory
 
 		if ($objects === false)
 		{
-			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'), $dir), E_USER_WARNING);
+			trigger_error(sprintf($this->language->lang(
+				'ACP_CUSTOMCODE_DIRECTORY_LIST_FAIL'), 
+				$dir), E_USER_WARNING);
 		}
 
 		foreach ($objects as $object)
@@ -326,7 +308,9 @@ class customcode_directory
 
 			if ($filetype === false)
 			{
-				trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_TYPE_FAIL'), $object), E_USER_WARNING);
+				trigger_error(sprintf($this->language->lang(
+					'ACP_CUSTOMCODE_FILE_TYPE_FAIL'), 
+					$object), E_USER_WARNING);
 			}
 
 			if ($filetype == 'dir')
@@ -337,14 +321,54 @@ class customcode_directory
 			{
 				if (!@unlink($object))
 				{
-					trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_FILE_NOT_DELETED'), $object), E_USER_WARNING);
+					trigger_error(sprintf($this->language->lang(
+						'ACP_CUSTOMCODE_FILE_NOT_DELETED'), 
+						$object), E_USER_WARNING);
 				}
 			}
 		}
 
 		if (!@rmdir($dir))
 		{
-			trigger_error(sprintf($this->language->lang('ACP_CUSTOMCODE_DIRECTORY_NOT_DELETED'), $dir), E_USER_WARNING);
+			trigger_error(sprintf($this->language->lang(
+				'ACP_CUSTOMCODE_DIRECTORY_NOT_DELETED'), 
+				$dir), E_USER_WARNING);
 		}
 	}
+
+	private function get_comment_from_line(string $line):string
+	{
+		foreach (self::COMMENT_TAGS as $tag)
+		{
+			$comment = $this->get_content_between_tags($line, $tag[0], $tag[1]);
+
+			if ($comment)
+			{
+				return trim($comment);
+			}
+		}
+
+		return '';
+	}
+
+	private function get_content_between_tags(string $string, string $start_tag, string $end_tag):string
+	{
+		$start = strpos($string, $start_tag);
+
+		if ($start === false)
+		{
+			return '';
+		}
+
+		$start += strlen($start_tag);
+
+		$end = strpos($string, $end_tag, $start);
+
+		if ($end === false)
+		{
+			return '';
+		}
+
+		return substr($string, $start, $end - $start);
+	}	
 }
