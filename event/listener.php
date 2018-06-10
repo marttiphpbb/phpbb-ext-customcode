@@ -163,21 +163,29 @@ class listener implements EventSubscriberInterface
 	{
 		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
 
+		$context = $event['context'];
+		$tpl = [];
+
 		$show_events = $this->request->variable('customcode_show_events', 0) ? true : false;
-		$show_events = $show_events && $show_events && $this->auth->acl_get('a_');
+		$show_events = $show_events && $this->auth->acl_get('a_');
 		$show_events = $show_events && !$this->config['tpl_allow_php'];
+		$tpl['show_events'] = $show_events;
+
+		$query_string = $this->user->page['query_string'];
+		$query = [];
+		parse_str($query_string, $query);
+		$tpl['query'] = $query;
 
 		if (!$show_events)
 		{
+			$context['marttiphpbb_customcode'] = $tpl;
+			$event['context'] = $context;
 			return;
 		}
 
 		$this->language->add_lang('common', 'marttiphpbb/customcode');
 
-		$context = $event['context'];
-
 		$page = $this->user->page['script_path'] . $this->user->page['page_name'];
-		$query_string = $this->user->page['query_string'];
 		$query_string = str_replace([
 			'&customcode_show_events=1', 
 			'&customcode_show_events=0',
@@ -204,12 +212,10 @@ class listener implements EventSubscriberInterface
 				$params, true, $this->user->session_id);
 		}		
 
-		$context['marttiphpbb_customcode'] = [
-			'show_events'	=> true,
-			'u_hide'		=> append_sid($page, $query_string . 'customcode_show_events=0'),
-			'u_edit_events'	=> $u_edit_events,
-		];
-		
+		$tpl['u_hide'] = append_sid($page, $query_string . 'customcode_show_events=0');
+		$tpl['u_edit_events'] = $u_edit_events;
+
+		$context['marttiphpbb_customcode'] = $tpl;
 		$event['context'] = $context;
 	}
 }
