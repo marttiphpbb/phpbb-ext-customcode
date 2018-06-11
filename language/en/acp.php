@@ -20,7 +20,7 @@ $lang = array_merge($lang, [
 
 	'ACP_CUSTOMCODE_INCLUDE_EXAMPLE'			=> 
 		'To include your own created files, 
-		prefix the filename with the variable <code>CUSTOM_CODE</code> like this:',
+		prefix the filename with the variable <code>%1$s</code> like this:',
 	'ACP_CUSTOMCODE_EXAMPLE_FILE'				=> 'my_file.html',
 	'ACP_CUSTOMCODE_CREATE_FILE'				=> 'Create file',
 	'ACP_CUSTOMCODE_DELETE'						=> 'Delete',
