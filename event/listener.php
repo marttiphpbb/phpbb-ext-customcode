@@ -15,58 +15,22 @@ use phpbb\template\twig\twig as template;
 use phpbb\user;
 use phpbb\language\language;
 use phpbb\template\twig\loader;
-
 use marttiphpbb\customcode\model\customcode_directory;
 use marttiphpbb\customcode\util\cnst;
-
-/**
-* @ignore
-*/
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-/**
-* Event listener
-*/
 class listener implements EventSubscriberInterface
 {
-	/** @var auth */
 	protected $auth;
-
-	/** @var config */
 	protected $config;
-
-	/** @var request */
 	protected $request;
-
-	/** @var template */
 	protected $template;
-
-	/** @var user */
 	protected $user;
-
-	/** @var language */
 	protected $language;
-
-	/** @var loader */
 	protected $loader;
-
-	/** @var string */
 	protected $phpbb_root_path;
-
-	/** @var string */
 	protected $php_ext;
 
-	/**
-	 * @param auth $auth
-	 * @param config $config
-	 * @param request $request
-	 * @param template $template
-	 * @param user $user
-	 * @param language $language
-	 * @param loader $loader
-	 * @param string $phpbb_root_path
-	 * @param string $php_ext
-	*/
 	public function __construct(
 		auth $auth,
 		config $config,
@@ -101,7 +65,7 @@ class listener implements EventSubscriberInterface
 	}
 
 	public function core_page_header(event $event)
-	{	
+	{
 		if ($this->config['tpl_allow_php'])
 		{
 			return;
@@ -125,7 +89,7 @@ class listener implements EventSubscriberInterface
 		{
 			return;
 		}
-	
+
 		if (is_string($params))
 		{
 			if (strpos($params, 'customcode_show_events=0') !== false)
@@ -187,11 +151,11 @@ class listener implements EventSubscriberInterface
 
 		$page = $this->user->page['script_path'] . $this->user->page['page_name'];
 		$query_string = str_replace([
-			'&customcode_show_events=1', 
+			'&customcode_show_events=1',
 			'&customcode_show_events=0',
 		], '', $query_string);
 		$query_string = str_replace([
-			'customcode_show_events=1', 
+			'customcode_show_events=1',
 			'customcode_show_events=0',
 		], '', $query_string);
 		$query_string = trim($query_string, '&');
@@ -208,9 +172,9 @@ class listener implements EventSubscriberInterface
 			$params['filename'] = $event_name . '.html';
 
 			$u_edit_events[$event_name] = append_sid(
-				$phpbb_admin_path . 'index.' . $this->php_ext, 
+				$phpbb_admin_path . 'index.' . $this->php_ext,
 				$params, true, $this->user->session_id);
-		}		
+		}
 
 		$tpl['u_hide'] = append_sid($page, $query_string . 'customcode_show_events=0');
 		$tpl['u_edit_events'] = $u_edit_events;

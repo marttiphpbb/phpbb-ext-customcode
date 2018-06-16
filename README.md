@@ -21,12 +21,11 @@ You can install this on the latest release of phpBB 3.2 by following the steps b
 ## Uninstall
 
 * Disable `Custom Code` in the ACP at `Customise -> Extension Management -> Extensions`.
-* To permanently uninstall, click `Delete Data` (the `/store/customcode` directory will be removed automatically). Optionally delete the `/ext/marttiphpbb/customcode` directory.
+* To permanently uninstall, click `Delete Data` (the `store/customcode` directory will be removed automatically). Optionally delete the `/ext/marttiphpbb/customcode` directory.
 
 ## Support
 
 * Report bugs and other issues to the [Issue Tracker](https://github.com/marttiphpbb/phpbb-ext-customcode/issues).
-* Support requests should be posted and discussed in the [Custom Code topic at phpBB.com](https://www.phpbb.com/community/viewtopic.php?f=456&t=2275361).
 
 ## License
 
