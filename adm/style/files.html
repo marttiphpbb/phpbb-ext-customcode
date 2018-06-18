@@ -6,7 +6,7 @@
 
 {%- block explain -%}
 	<p>
-		{{- lang('ACP_CUSTOMCODE_FILES_EXPLAIN', lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'), constant('marttiphpbb\\customcode\\util\\cnst::FOLDER')) -}}
+		{{- lang('ACP_CUSTOMCODE_FILES_EXPLAIN', lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'), constant('marttiphpbb\\customcode\\util\\cnst::DIR')) -}}
 	</p>
 {%- endblock explain -%}
 
@@ -29,7 +29,7 @@
 					<a href="{{- f.U_EDIT -}}">
 						{{- f.NAME -}}
 					</a>
-					{%- if f.S_IS_EVENT %} 
+					{%- if f.S_IS_EVENT %}
 						{{ lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR') -}}
 					{%- endif -%}
 				</td>
