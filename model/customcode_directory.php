@@ -56,6 +56,8 @@ class customcode_directory
 			'<!-- INCLUDEPHP',
 			'{% PHP',
 			'{% INCLUDEPHP',
+			'{%- PHP',
+			'{%- INCLUDEPHP',
 			'<?',
 		],
 	];
