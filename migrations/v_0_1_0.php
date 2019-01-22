@@ -1,41 +1,42 @@
 <?php
 /**
 * phpBB Extension - marttiphpbb customcode
-* @copyright (c) 2014 marttiphpbb <info@martti.be>
+* @copyright (c) 2014 - 2018 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
 namespace marttiphpbb\customcode\migrations;
 
+use marttiphpbb\customcode\util\cnst;
+
 class v_0_1_0 extends \phpbb\db\migration\migration
 {
+	static public function depends_on()
+	{
+		return [
+			'\phpbb\db\migration\data\v32x\v321',
+		];
+	}
+
 	public function update_data()
 	{
-		return array(
-			array('module.add', array(
+		return [
+			['module.add', [
 				'acp',
 				'ACP_CAT_DOT_MODS',
-				'ACP_CUSTOMCODE'
-			)),
-			array('module.add', array(
+				cnst::L_ACP,
+			]],
+			['module.add', [
 				'acp',
-				'ACP_CUSTOMCODE',
-				array(
+				cnst::L_ACP,
+				[
 					'module_basename'	=> '\marttiphpbb\customcode\acp\main_module',
-					'modes'				=> array(
+					'modes'				=> [
 						'files',
 						'edit',
-					),
-				),
-			)),
-		);
-	}
-
-	public function update_schema()
-	{
-	}
-
-	public function revert_schema()
-	{
+					],
+				],
+			]],
+		];
 	}
 }

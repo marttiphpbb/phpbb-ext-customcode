@@ -1,51 +1,65 @@
-<!-- INCLUDE overall_header.html -->
+{%- extends '@marttiphpbb_customcode/base.html' -%}
 
-<h1>{L_ACP_CUSTOMCODE_FILES}</h1>
-<p>{FILES_EXPLAIN}</p>
-<form method="post" action="{U_ACTION}">
+{%- block heading -%}
+	{{- lang('ACP_CUSTOMCODE_FILES') -}}
+{%- endblock heading -%}
+
+{%- block explain -%}
+	<p>
+		{{- lang('ACP_CUSTOMCODE_FILES_EXPLAIN', lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'), constant('marttiphpbb\\customcode\\util\\cnst::DIR')) -}}
+	</p>
+{%- endblock explain -%}
+
+{%- block form_content -%}
+
 	<fieldset>
 		<table class="table1 zebra-table">
 		<thead>
 		<tr>
-			<th>{L_ACP_CUSTOMCODE_FILE_NAME}</th>
-			<th>{L_ACP_CUSTOMCODE_FILE_SIZE}</th>
-			<th>{L_ACP_CUSTOMCODE_FILE_COMMENT}</th>
-			<th>{L_ACP_CUSTOMCODE_DELETE}</th>
+			<th>{{- lang('ACP_CUSTOMCODE_FILE_NAME') -}}</th>
+			<th>{{- lang('ACP_CUSTOMCODE_FILE_SIZE') -}}</th>
+			<th>{{- lang('ACP_CUSTOMCODE_FILE_COMMENT') -}}</th>
+			<th>{{- lang('ACP_CUSTOMCODE_DELETE') -}}</th>
 		</tr>
 		</thead>
 		<tbody>
-		<!-- BEGIN files -->
+		{%- for f in files -%}
 			<tr>
-				<td><a href="{files.U_EDIT}">{files.NAME}</a><!-- IF files.S_IS_EVENT --> {L_ACP_CUSTOMCODE_EVENT_FILE_INDICATOR}<!-- ENDIF --></td>
-				<td>{files.SIZE}</td>
-				<td>{files.COMMENT}</td>
 				<td>
-				<!-- IF not files.S_IS_EVENT -->
-					<input class="button2" type="submit" name="delete[{files.NAME}]" value="x" title="{files.DELETE_FILE_NAME}"/>
-				<!-- ENDIF -->
+					<a href="{{- f.U_EDIT -}}">
+						{{- f.NAME -}}
+					</a>
+					{%- if f.S_IS_EVENT %}
+						{{ lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR') -}}
+					{%- endif -%}
+				</td>
+				<td>{{- f.SIZE -}}</td>
+				<td>{{- f.COMMENT -}}</td>
+				<td>
+				{%- if not f.S_IS_EVENT -%}
+					<input class="button2" type="submit" name="delete[{{- f.NAME -}}]" value="x" title="{{- lang('ACP_CUSTOMCODE_DELETE_FILE_NAME', f.NAME) -}}">
+				{%- endif -%}
 				</td>
 			</tr>
-		<!-- BEGINELSE -->
+		{%- else -%}
 			<tr class="row3">
-				<td colspan="2">{L_ACP_NO_ITEMS}</td>
+				<td colspan="2">
+					{{- lang('ACP_NO_ITEMS') -}}
+				</td>
 			</tr>
-		<!-- END files -->
+		{%- endfor -%}
 		</tbody>
 		</table>
 		<p>
 		<dl>
-			<input type="text" class="text medium" id="new_file" name="new_file" value="{NEW_FILE}" maxlength="100" />
-			<input class="button2" type="submit" id="create" name="create" value="{L_ACP_CUSTOMCODE_CREATE_FILE}" />
+			<input type="text" class="text medium" id="new_file" name="new_file" value="{{- NEW_FILE -}}" maxlength="100">
+			<input class="button2" type="submit" id="create" name="create" value="{{- lang('ACP_CUSTOMCODE_CREATE_FILE') -}}">
  		</dl>
 		</p>
-		<!-- IF U_CUSTOMCODE_HIDE_EVENTS -->
-		<a href="{U_CUSTOMCODE_HIDE_EVENTS}">{L_ACP_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS}</a>
-		<!-- ELSE -->
-		<a href="{U_CUSTOMCODE_SHOW_EVENTS}">{L_ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS}</a>
-		<!-- ENDIF -->
-	</fieldset>
-{S_FORM_TOKEN}
-</form>
 
-<!-- INCLUDEJS customcode.js -->
-<!-- INCLUDE overall_footer.html -->
+		<a href="{{- U_CUSTOMCODE_SHOW_EVENTS -}}">
+			{{- lang('ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS') -}}
+		</a>
+
+	</fieldset>
+{%- endblock form_content -%}

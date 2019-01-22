@@ -1,42 +1,67 @@
-<!-- INCLUDE overall_header.html -->
+{%- extends '@marttiphpbb_customcode/base.html' -%}
 
-<h1>{L_ACP_CUSTOMCODE_EDIT} {L_COLON} {FILENAME}<!-- IF S_IS_EVENT --> {L_ACP_CUSTOMCODE_EVENT_FILE_INDICATOR}<!-- ENDIF --></h1>
+{%- block heading -%}
+	{{- lang('ACP_CUSTOMCODE_EDIT') }} 
+	{{ lang('COLON') }} 
+	{{ FILENAME }}
+	{%- if S_IS_EVENT %} 
+		{{ lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR') -}}
+	{%- endif -%}
+{%- endblock heading -%}
 
-<form method="post" action="{U_ACTION}" id="file_edit">
+{%- block form_content -%}
+	<fieldset>
 
-<fieldset>
+	<dl>
+		<dt>
+			<label for="filename">
+				{{- lang('ACP_CUSTOMCODE_FILE') -}}
+			</label>
+		</dt>
+		<dd>
+			<select id="filename" name="filename">
+				{%- for f in filenames -%}
+					<option value="{{- f.NAME -}}"{%- if f.S_IS_SELECTED %} selected="selected"{%- endif -%}>
+						{{- f.NAME -}}
+						{%- if f.S_IS_EVENT %} {{ lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR') -}}
+						{%- endif -%}
+					</option>
+				{%- endfor -%}
+			</select>
+			<input class="button2" type="submit" value="{{- lang('SELECT') -}}">
+		</dd>
+	</dl>
 
-<dl>
-	<dt><label for="filename">{L_ACP_CUSTOMCODE_FILE}</label>
-	</dt>
-	<dd>
-		<select id="filename" name="filename">
-			{S_FILENAMES}
-		</select>
-		<input class="button2" type="submit" value="{L_SELECT}" />
-	</dd>
-</dl>
-<dl>
-	<dt><label for="editor_rows">{L_ACP_CUSTOMCODE_EDITOR_ROWS}</label></dt>
-	<dd><input id="editor_rows" name="editor_rows" type="number" maxlength="3" min="5" max="999" value="{EDITOR_ROWS}" />
-	</dd>
-</dl>
-<textarea name="file_data" id="file_data" style="font-family:'Courier New', monospace;font-size:9pt;line-height:125%;width:100%;" cols="80" rows="{EDITOR_ROWS}">{FILE_DATA}</textarea>
+	<textarea name="file_data" id="file_data" style="font-family:'Courier New', monospace;font-size:9pt;line-height:125%;width:100%;" cols="80" rows="10"{{- marttiphpbb_codemirror.data_attr ?? '' -}}>
+		{{- FILE_DATA -}}
+	</textarea>
 
-</fieldset>
+	</fieldset>
 
-<fieldset class="submit-buttons">
-	<legend>{L_SUBMIT}</legend>
-	{S_HIDDEN_FIELDS}
-	{S_FORM_TOKEN}
-	<input class="button1" id="save" type="submit" name="save" value="{L_ACP_CUSTOMCODE_SAVE}" />
-	<input class="button1" id="save_purge_cache" type="submit" name="save_purge_cache" value="{L_ACP_CUSTOMCODE_SAVE_PURGE_CACHE}" />
-</fieldset>
-</form>
+	<fieldset class="submit-buttons">
+		<legend>{{- lang('SUBMIT') -}}</legend>
+		{{- S_HIDDEN_FIELDS -}}
+		<input class="button1" id="save" type="submit" name="save" value="{{- lang('ACP_CUSTOMCODE_SAVE') -}}">
+		<input class="button1" id="save_purge_cache" type="submit" name="save_purge_cache" value="{{- lang('ACP_CUSTOMCODE_SAVE_PURGE_CACHE') -}}">
+	</fieldset>
 
-<fieldset>
-	<p>{INCLUDE_EXAMPLE}</p>
-</fieldset>
+{%- endblock form_content -%}
 
-<!-- INCLUDEJS customcode.js -->
-<!-- INCLUDE overall_footer.html -->
+{%- block footnote -%}
+	<fieldset>
+		<p>
+			{{- lang('ACP_CUSTOMCODE_INCLUDE_EXAMPLE', 'CUSTOMCODE_PATH') -}}
+		</p>
+		<p>
+			<code>
+				{%- verbatim -%}
+				{%- include CUSTOMCODE_PATH ~ '
+				{%- endverbatim -%}
+				{{- lang('ACP_CUSTOMCODE_EXAMPLE_FILE') -}}
+				{%- verbatim -%}
+				' -%}
+				{%- endverbatim -%}
+			</code>
+		</p>
+	</fieldset>
+{%- endblock footnote -%}

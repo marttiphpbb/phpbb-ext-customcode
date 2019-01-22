@@ -1,2 +1,5 @@
-<!-- IF U_CUSTOMCODE_TOPICLIST_ROW_APPEND --><a class="customcode-event" href="{U_CUSTOMCODE_TOPICLIST_ROW_APPEND}">topiclist_row_append</a><!-- ENDIF -->
-<!-- INCLUDE ../../../../../../store/customcode/topiclist_row_append.html -->
+{%- embed '@marttiphpbb_customcode/event.html' -%}
+    {%- block event_name -%}
+        topiclist_row_append       
+    {%- endblock event_name -%}
+{%- endembed -%}
