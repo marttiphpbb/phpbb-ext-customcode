@@ -1,17 +1,17 @@
-# phpBB 3.2 PhpBB Extension - marttiphpbb Custom Code
+# phpBB Extension - marttiphpbb Custom Code
 
 [Topic on phpBB.com](https://www.phpbb.com/community/viewtopic.php?f=456&t=2275361)
 
 ## Requirements
 
-* phpBB 3.2.1+
-* PHP 7+
+* phpBB 3.3+
+* PHP 7.1+
 * The [Codemirror helper extension](https://github.com/marttiphpbb/phpbb-ext-codemirror)
-* Disabled PHP in templates
+* Disabled PHP in templates (configuration option in ACP)
 
 ## Quick Install
 
-You can install this on the latest release of phpBB 3.2 by following the steps below:
+You can install this on the latest release of phpBB 3.3 by following the steps below:
 
 * Create `marttiphpbb/customcode` in the `ext` directory.
 * Download and unpack the repository into `ext/marttiphpbb/customcode`

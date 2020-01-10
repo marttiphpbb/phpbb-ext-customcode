@@ -9,12 +9,12 @@ namespace marttiphpbb\customcode\migrations;
 
 use marttiphpbb\customcode\util\cnst;
 
-class v_0_1_0 extends \phpbb\db\migration\migration
+class mgr_1 extends \phpbb\db\migration\migration
 {
 	static public function depends_on()
 	{
 		return [
-			'\phpbb\db\migration\data\v32x\v321',
+			'\phpbb\db\migration\data\v330\v330',
 		];
 	}
 

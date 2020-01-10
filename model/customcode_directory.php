@@ -129,7 +129,7 @@ class customcode_directory
 		return basename($filename, self::FILE_EXTENSION);
 	}
 
-	public function delete_file(string $filename)
+	public function delete_file(string $filename):void
 	{
 		if (!@unlink($this->phpbb_root_path . cnst::DIR . '/' . $filename))
 		{
@@ -137,7 +137,7 @@ class customcode_directory
 		}
 	}
 
-	public function create_file(string $filename)
+	public function create_file(string $filename):void
 	{
 		$file_extension = pathinfo($filename, PATHINFO_EXTENSION);
 
@@ -158,7 +158,7 @@ class customcode_directory
 		return;
 	}
 
-	public function save_to_file(string $filename, string $data)
+	public function save_to_file(string $filename, string $data):void
 	{
 		foreach (self::DISALLOWED['tags'] as $disallowed_tag)
 		{
@@ -215,7 +215,7 @@ class customcode_directory
 		return array_diff($list, ['.', '..', '.htaccess']);
 	}
 
-	public function create()
+	public function create():void
 	{
 		$this->language->add_lang('common', cnst::FOLDER);
 
@@ -269,12 +269,12 @@ class customcode_directory
 		}
 	}
 
-	public function remove()
+	public function remove():void
 	{
 		$this->remove_directory($this->phpbb_root_path . cnst::DIR);
 	}
 
-	private function remove_directory(string $dir)
+	private function remove_directory(string $dir):void
 	{
 		if(!is_dir($dir))
 		{
@@ -346,7 +346,11 @@ class customcode_directory
 		return '';
 	}
 
-	private function get_content_between_tags(string $string, string $start_tag, string $end_tag):string
+	private function get_content_between_tags(
+		string $string,
+		string $start_tag,
+		string $end_tag
+	):string
 	{
 		$start = strpos($string, $start_tag);
 

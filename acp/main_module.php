@@ -14,7 +14,7 @@ class main_module
 {
 	public $u_action;
 
-	function main($id, $mode)
+	function main($id, $mode):void
 	{
 		global $phpbb_admin_path, $phpbb_container;
 
@@ -42,11 +42,11 @@ class main_module
 				'i'		=> 'acp_board',
 				'mode'	=> 'security',
 			];
-	
-			$link = append_sid($phpbb_admin_path . 'index.' . $php_ext, 
+
+			$link = append_sid($phpbb_admin_path . 'index.' . $php_ext,
 				$params, true, $user->session_id) . '#tpl_allow_php';
 			$template->assign_var(
-				cnst::L_ACP . '_INCLUDEPHP_WARNING', 
+				cnst::L_ACP . '_INCLUDEPHP_WARNING',
 				sprintf($language->lang(cnst::L_ACP . '_INCLUDEPHP_WARNING'),
 				'<a href="' . $link . '">', '</a>'
 			));
@@ -59,7 +59,7 @@ class main_module
 				$this->page_title = $language->lang(cnst::L_ACP . '_EDIT');
 
 				$file =	$request->variable('filename', '', true);
-		
+
 				$save = $request->is_set_post('save');
 				$save_purge_cache = $request->is_set_post('save_purge_cache');
 
@@ -77,19 +77,19 @@ class main_module
 							$config->increment('assets_version', 1);
 							$cache->purge();
 							trigger_error(sprintf($language->lang(
-								cnst::L_ACP . '_FILE_SAVED_CACHE_PURGED'), 
+								cnst::L_ACP . '_FILE_SAVED_CACHE_PURGED'),
 								$file) . adm_back_link($this->u_action . '&amp;filename='. $file));
 						}
 
 						trigger_error(sprintf($language->lang(
-							cnst::L_ACP . '_FILE_SAVED'), 
+							cnst::L_ACP . '_FILE_SAVED'),
 							$file) . adm_back_link($this->u_action . '&amp;filename=' . $file));
 					}
 
 					if (!in_array($file, $filenames))
 					{
 						trigger_error(sprintf($language->lang(
-							cnst::L_ACP . '_FILE_DOES_NOT_EXIST'), 
+							cnst::L_ACP . '_FILE_DOES_NOT_EXIST'),
 							$file) . adm_back_link($this->u_action), E_USER_WARNING);
 					}
 
@@ -117,7 +117,7 @@ class main_module
 				{
 					$load = $phpbb_container->get('marttiphpbb.codemirror.load');
 					$load->set_mode('html');
-				}				
+				}
 
 				$data = $customcode_directory->file_get_contents($file);
 
@@ -127,7 +127,7 @@ class main_module
 						'NAME'			=> $filename,
 						'S_IS_SELECTED'	=> $filename === $file,
 						'S_IS_EVENT'	=> $customcode_directory->is_event($filename)
-					]);					
+					]);
 				}
 
 				$template->assign_vars([
@@ -158,22 +158,22 @@ class main_module
 					if (!$new_file)
 					{
 						trigger_error($language->lang(
-							cnst::L_ACP . '_FILENAME_EMPTY') . adm_back_link($this->u_action), 
+							cnst::L_ACP . '_FILENAME_EMPTY') . adm_back_link($this->u_action),
 							E_USER_WARNING);
 					}
 
 					if (in_array($new_file, $filenames))
 					{
 						trigger_error(sprintf($language->lang(
-							cnst::L_ACP . '_FILE_ALREADY_EXISTS'), 
-							$new_file) . adm_back_link($this->u_action), 
+							cnst::L_ACP . '_FILE_ALREADY_EXISTS'),
+							$new_file) . adm_back_link($this->u_action),
 							E_USER_WARNING);
 					}
 
 					$customcode_directory->create_file($new_file);
 
 					trigger_error(sprintf($language->lang(
-						cnst::L_ACP . '_FILE_CREATED'), 
+						cnst::L_ACP . '_FILE_CREATED'),
 						$new_file) . adm_back_link($this->u_action));
 				}
 
@@ -182,8 +182,8 @@ class main_module
 					if (!in_array($file_to_delete, $filenames))
 					{
 						trigger_error(sprintf($language->lang(
-							cnst::L_ACP . '_FILE_DOES_NOT_EXIST'), 
-							$file_to_delete) . adm_back_link($this->u_action), 
+							cnst::L_ACP . '_FILE_DOES_NOT_EXIST'),
+							$file_to_delete) . adm_back_link($this->u_action),
 							E_USER_WARNING);
 					}
 
@@ -192,7 +192,7 @@ class main_module
 						$customcode_directory->delete_file($file_to_delete);
 
 						trigger_error(sprintf($language->lang(
-							cnst::L_ACP . '_FILE_DELETED'), 
+							cnst::L_ACP . '_FILE_DELETED'),
 							$file_to_delete) . adm_back_link($this->u_action));
 					}
 
@@ -204,7 +204,7 @@ class main_module
 					];
 
 					confirm_box(false, sprintf($language->lang(
-						cnst::L_ACP . '_DELETE_FILE_CONFIRM'), 
+						cnst::L_ACP . '_DELETE_FILE_CONFIRM'),
 						$file_to_delete), build_hidden_fields($s_hidden_fields));
 				}
 
@@ -230,7 +230,7 @@ class main_module
 					'NEW_FILE'					=> $new_file,
 					'U_CUSTOMCODE_SHOW_EVENTS'	=> $u_show,
 				]);
-		
+
 				break;
 		}
 	}

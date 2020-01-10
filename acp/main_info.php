@@ -11,7 +11,7 @@ use marttiphpbb\customcode\util\cnst;
 
 class main_info
 {
-	function module()
+	function module():array
 	{
 		return [
 			'filename'	=> '\marttiphpbb\customcode\acp\main_module',

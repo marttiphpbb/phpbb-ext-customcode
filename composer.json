@@ -14,7 +14,7 @@
 			"role": "Developer"
 		}],
 	"require": {
-		"php": ">=7"
+		"php": ">=7.1"
 	},
 	"require-dev": {
 		"phpbb/epv": "dev-master"
@@ -22,7 +22,7 @@
 	"extra": {
 		"display-name": "Custom Code",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.2.1"
+			"phpbb/phpbb": ">=3.3.0"
 		},
 		"version-check": {
 			"host": "marttiphpbb.github.io",

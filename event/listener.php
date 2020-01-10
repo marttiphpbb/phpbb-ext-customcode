@@ -54,7 +54,7 @@ class listener implements EventSubscriberInterface
 		$this->php_ext = $php_ext;
 	}
 
-	static public function getSubscribedEvents()
+	static public function getSubscribedEvents():array
 	{
 		return [
 			'core.page_header'		=> 'core_page_header',
@@ -64,7 +64,7 @@ class listener implements EventSubscriberInterface
 		];
 	}
 
-	public function core_page_header(event $event)
+	public function core_page_header(event $event):void
 	{
 		if ($this->config['tpl_allow_php'])
 		{
@@ -75,7 +75,7 @@ class listener implements EventSubscriberInterface
 		$this->template->assign_var('CUSTOMCODE_PATH', cnst::PATH . '/');
 	}
 
-	public function core_append_sid(event $event)
+	public function core_append_sid(event $event):void
 	{
 		$url = $event['url'];
 		$params = $event['params'];
@@ -123,7 +123,7 @@ class listener implements EventSubscriberInterface
 		}
 	}
 
-	public function core_twig_environment_render_template_before(event $event)
+	public function core_twig_environment_render_template_before(event $event):void
 	{
 		global $phpbb_admin_path; // core.admin_path doesn't seem to exist.
 
