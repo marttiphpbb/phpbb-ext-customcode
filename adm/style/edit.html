@@ -1,11 +1,11 @@
 {%- extends '@marttiphpbb_customcode/base.html' -%}
 
 {%- block heading -%}
-	{{- lang('ACP_CUSTOMCODE_EDIT') }} 
-	{{ lang('COLON') }} 
+	{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_EDIT') }}
+	{{ lang('COLON') }}
 	{{ FILENAME }}
-	{%- if S_IS_EVENT %} 
-		{{ lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR') -}}
+	{%- if S_IS_EVENT %}
+		{{ lang('ACP_MARTTIPHPBB_CUSTOMCODE_EVENT_FILE_INDICATOR') -}}
 	{%- endif -%}
 {%- endblock heading -%}
 
@@ -15,7 +15,7 @@
 	<dl>
 		<dt>
 			<label for="filename">
-				{{- lang('ACP_CUSTOMCODE_FILE') -}}
+				{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_FILE') -}}
 			</label>
 		</dt>
 		<dd>
@@ -23,7 +23,7 @@
 				{%- for f in filenames -%}
 					<option value="{{- f.NAME -}}"{%- if f.S_IS_SELECTED %} selected="selected"{%- endif -%}>
 						{{- f.NAME -}}
-						{%- if f.S_IS_EVENT %} {{ lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR') -}}
+						{%- if f.S_IS_EVENT %} {{ lang('ACP_MARTTIPHPBB_CUSTOMCODE_EVENT_FILE_INDICATOR') -}}
 						{%- endif -%}
 					</option>
 				{%- endfor -%}
@@ -41,8 +41,8 @@
 	<fieldset class="submit-buttons">
 		<legend>{{- lang('SUBMIT') -}}</legend>
 		{{- S_HIDDEN_FIELDS -}}
-		<input class="button1" id="save" type="submit" name="save" value="{{- lang('ACP_CUSTOMCODE_SAVE') -}}">
-		<input class="button1" id="save_purge_cache" type="submit" name="save_purge_cache" value="{{- lang('ACP_CUSTOMCODE_SAVE_PURGE_CACHE') -}}">
+		<input class="button1" id="save" type="submit" name="save" value="{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_SAVE') -}}">
+		<input class="button1" id="save_purge_cache" type="submit" name="save_purge_cache" value="{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_SAVE_PURGE_CACHE') -}}">
 	</fieldset>
 
 {%- endblock form_content -%}
@@ -50,14 +50,14 @@
 {%- block footnote -%}
 	<fieldset>
 		<p>
-			{{- lang('ACP_CUSTOMCODE_INCLUDE_EXAMPLE', 'CUSTOMCODE_PATH') -}}
+			{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_INCLUDE_EXAMPLE', 'CUSTOMCODE_PATH') -}}
 		</p>
 		<p>
 			<code>
 				{%- verbatim -%}
 				{%- include CUSTOMCODE_PATH ~ '
 				{%- endverbatim -%}
-				{{- lang('ACP_CUSTOMCODE_EXAMPLE_FILE') -}}
+				{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_EXAMPLE_FILE') -}}
 				{%- verbatim -%}
 				' -%}
 				{%- endverbatim -%}

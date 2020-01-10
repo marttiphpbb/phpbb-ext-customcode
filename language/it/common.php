@@ -18,11 +18,11 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
-	'CUSTOMCODE_LINK_EDIT_TITLE'				=> 'Edit custom code for this location.',
-	'CUSTOMCODE_HIDE'							=> 'Hide',
-	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Nascondi le posizioni degli eventi template di Custom code',
-	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(nell’<code>head</code> dell’html)',
-	'CUSTOMCODE_GITHUB_LINK'					=> '%1$sLink Github a Custom code%2$s%3$sCustom code%4$s, estensione per phpBB',
+	'MARTTIPHPBB_CUSTOMCODE_LINK_EDIT_TITLE'				=> 'Edit custom code for this location.',
+	'MARTTIPHPBB_CUSTOMCODE_HIDE'							=> 'Hide',
+	'MARTTIPHPBB_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Nascondi le posizioni degli eventi template di Custom code',
+	'MARTTIPHPBB_CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(nell’<code>head</code> dell’html)',
+	'MARTTIPHPBB_CUSTOMCODE_GITHUB_LINK'					=> '%1$sLink Github a Custom code%2$s%3$sCustom code%4$s, estensione per phpBB',
 		// CUSTOMCODE_GITHUB_LINK: This is the example github link in the footer to be loaded on installation.
 		// Between %1$s and %2$s is a html comment. Between %3$s and %4$s is the link to the Custom Code repository on Github.
 ]);

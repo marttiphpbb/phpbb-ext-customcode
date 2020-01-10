@@ -17,9 +17,9 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
-	'CUSTOMCODE_LINK_EDIT_TITLE'				=> 'Edit custom code for this location.',
-	'CUSTOMCODE_HIDE'							=> 'Hide',	
-	'CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Verberg de Custom Code locaties',
-	'CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(binnen html header)',
+	'MARTTIPHPBB_CUSTOMCODE_LINK_EDIT_TITLE'				=> 'Edit custom code for this location.',
+	'MARTTIPHPBB_CUSTOMCODE_HIDE'							=> 'Hide',
+	'MARTTIPHPBB_CUSTOMCODE_HIDE_TEMPLATE_EVENTS_LOCATIONS'	=> 'Verberg de Custom Code locaties',
+	'MARTTIPHPBB_CUSTOMCODE_INSIDE_HTML_HEAD'				=> '(binnen html header)',
 
 ]);

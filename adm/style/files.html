@@ -1,12 +1,12 @@
 {%- extends '@marttiphpbb_customcode/base.html' -%}
 
 {%- block heading -%}
-	{{- lang('ACP_CUSTOMCODE_FILES') -}}
+	{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_FILES') -}}
 {%- endblock heading -%}
 
 {%- block explain -%}
 	<p>
-		{{- lang('ACP_CUSTOMCODE_FILES_EXPLAIN', lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR'), constant('marttiphpbb\\customcode\\util\\cnst::DIR')) -}}
+		{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_FILES_EXPLAIN', lang('ACP_MARTTIPHPBB_CUSTOMCODE_EVENT_FILE_INDICATOR'), constant('marttiphpbb\\customcode\\util\\cnst::DIR')) -}}
 	</p>
 {%- endblock explain -%}
 
@@ -16,10 +16,10 @@
 		<table class="table1 zebra-table">
 		<thead>
 		<tr>
-			<th>{{- lang('ACP_CUSTOMCODE_FILE_NAME') -}}</th>
-			<th>{{- lang('ACP_CUSTOMCODE_FILE_SIZE') -}}</th>
-			<th>{{- lang('ACP_CUSTOMCODE_FILE_COMMENT') -}}</th>
-			<th>{{- lang('ACP_CUSTOMCODE_DELETE') -}}</th>
+			<th>{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_FILE_NAME') -}}</th>
+			<th>{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_FILE_SIZE') -}}</th>
+			<th>{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_FILE_COMMENT') -}}</th>
+			<th>{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_DELETE') -}}</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -30,14 +30,14 @@
 						{{- f.NAME -}}
 					</a>
 					{%- if f.S_IS_EVENT %}
-						{{ lang('ACP_CUSTOMCODE_EVENT_FILE_INDICATOR') -}}
+						{{ lang('ACP_MARTTIPHPBB_CUSTOMCODE_EVENT_FILE_INDICATOR') -}}
 					{%- endif -%}
 				</td>
 				<td>{{- f.SIZE -}}</td>
 				<td>{{- f.COMMENT -}}</td>
 				<td>
 				{%- if not f.S_IS_EVENT -%}
-					<input class="button2" type="submit" name="delete[{{- f.NAME -}}]" value="x" title="{{- lang('ACP_CUSTOMCODE_DELETE_FILE_NAME', f.NAME) -}}">
+					<input class="button2" type="submit" name="delete[{{- f.NAME -}}]" value="x" title="{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_DELETE_FILE_NAME', f.NAME) -}}">
 				{%- endif -%}
 				</td>
 			</tr>
@@ -53,12 +53,12 @@
 		<p>
 		<dl>
 			<input type="text" class="text medium" id="new_file" name="new_file" value="{{- NEW_FILE -}}" maxlength="100">
-			<input class="button2" type="submit" id="create" name="create" value="{{- lang('ACP_CUSTOMCODE_CREATE_FILE') -}}">
+			<input class="button2" type="submit" id="create" name="create" value="{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_CREATE_FILE') -}}">
  		</dl>
 		</p>
 
 		<a href="{{- U_CUSTOMCODE_SHOW_EVENTS -}}">
-			{{- lang('ACP_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS') -}}
+			{{- lang('ACP_MARTTIPHPBB_CUSTOMCODE_SHOW_TEMPLATE_EVENTS_LOCATIONS') -}}
 		</a>
 
 	</fieldset>
