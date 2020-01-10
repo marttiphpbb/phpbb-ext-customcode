@@ -1,7 +1,7 @@
 <?php
 /**
 * phpBB Extension - marttiphpbb customcode
-* @copyright (c) 2014 - 2018 marttiphpbb <info@martti.be>
+* @copyright (c) 2014 - 2020 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
@@ -71,8 +71,15 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
-		$this->loader->addSafeDirectory($this->phpbb_root_path . cnst::DIR);
+		$custom_code_dir = $this->phpbb_root_path . cnst::DIR;
+
+//		error_log('safe dir: ' . $custom_code_dir);
+
+		$this->loader->addSafeDirectory($custom_code_dir);
 		$this->template->assign_var('CUSTOMCODE_PATH', cnst::PATH . '/');
+//		$this->template->assign_var('CUSTOMCODE_PATH', cnst::PATH . '/');
+
+//		error_log(json_encode($this->loader->getSafeDirectories()));
 	}
 
 	public function core_append_sid(event $event):void
