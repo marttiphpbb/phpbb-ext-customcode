@@ -79,8 +79,6 @@ class listener implements EventSubscriberInterface
 //		$this->template->set_style(['store/customcode', 'styles']);
 
 		$this->template->assign_var('CUSTOMCODE_PATH', '@store_marttiphpbb_customcode/');
-
-		error_log(json_encode($this->loader->getSafeDirectories()));
 	}
 
 	public function core_append_sid(event $event):void
