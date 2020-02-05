@@ -73,13 +73,14 @@ class listener implements EventSubscriberInterface
 
 		$custom_code_dir = $this->phpbb_root_path . cnst::DIR;
 
-//		error_log('safe dir: ' . $custom_code_dir);
-
 		$this->loader->addSafeDirectory($custom_code_dir);
-		$this->template->assign_var('CUSTOMCODE_PATH', cnst::PATH . '/');
-//		$this->template->assign_var('CUSTOMCODE_PATH', cnst::PATH . '/');
+		$this->loader->addPath($custom_code_dir, 'store_marttiphpbb_customcode');
 
-//		error_log(json_encode($this->loader->getSafeDirectories()));
+//		$this->template->set_style(['store/customcode', 'styles']);
+
+		$this->template->assign_var('CUSTOMCODE_PATH', '@store_marttiphpbb_customcode/');
+
+		error_log(json_encode($this->loader->getSafeDirectories()));
 	}
 
 	public function core_append_sid(event $event):void

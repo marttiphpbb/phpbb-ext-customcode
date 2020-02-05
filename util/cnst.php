@@ -17,5 +17,4 @@ class cnst
 	const L_ACP = 'ACP_' . self::L;
 	const L_MCP = 'MCP_' . self::L;
 	const TPL = '@' . self::ID . '/';
-	const PATH = self::TPL . '../../../../../../' . self::DIR . '/';
 }
