@@ -21,7 +21,7 @@ class customcode_directory
 		'forumlist_body_category_header_before'	=> '',
 		'overall_footer_after'					=> '',
 		'overall_footer_body_after'				=> '',
-		'overall_footer_copyright_append'		=> 'CUSTOMCODE_GITHUB_LINK',
+		'overall_footer_copyright_append'		=> cnst::L . '_GITHUB_LINK',
 		'overall_footer_page_body_after'		=> '',
 		'overall_header_body_before'			=> '',
 		'overall_header_content_before'			=> '',
