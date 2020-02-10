@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "Custom Code Extension for phpBB 3.3",
 	"homepage": "https://github.com/marttiphpbb/phpbb-ext-customcode",
-	"version": "3.0.1",
-	"time": "2020-02-06",
+	"version": "3.0.2",
+	"time": "2020-02-10",
 	"keywords": ["phpbb", "extension", "template", "custom"],
 	"license": "GPL-2.0-only",
 	"authors": [{
