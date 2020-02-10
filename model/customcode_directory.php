@@ -249,7 +249,7 @@ class customcode_directory
 
 			if (!file_exists($filename))
 			{
-				if ($content === 'CUSTOMCODE_GITHUB_LINK')
+				if ($content === 'MARTTIPHPBB_CUSTOMCODE_GITHUB_LINK')
 				{
 					$content = sprintf($this->language->lang($content),
 						'{# ',
