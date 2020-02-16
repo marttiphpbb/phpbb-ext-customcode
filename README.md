@@ -9,6 +9,12 @@
 * The [Codemirror helper extension](https://github.com/marttiphpbb/phpbb-ext-codemirror)
 * Disabled PHP in templates (configuration option in ACP)
 
+## Languages
+
+I don't keep translations in my phpBB extensions anymore. The translations provided by other authors tend to go out of sync all the time. (The last version with translations of this extensions was 3.0.2).
+
+[Galixte](https://github.com/Galixte) maintains [a french translation in his fork](https://github.com/Galixte/phpbb-ext-customcode).
+
 ## Quick Install
 
 You can install this on the latest release of phpBB 3.3 by following the steps below:
